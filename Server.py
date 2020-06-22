@@ -23,7 +23,7 @@ line_bot_api = line_channel_access_token
 handler = WebhookHandler(line_channel_secret)
 
 # 監聽所有來自 /callback 的 Post Request
-@app.route("/", methods=['POST'])
+@app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature header value
     signature = request.headers['X-Line-Signature']
