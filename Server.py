@@ -98,11 +98,10 @@ def handle_message(event):
                                     label='人身保險',
                                     uri='line://app/1653886666-7oZWKRLr'
                                 ),
-                                URIAction(
-                                    label='財產保險',
-                                    uri='line://app/1653886666-7oZWKRLr'
+                                MessageAction(
+                                    label = '人身保險'
+                                    text = '人身保險'
                                 )
-
                             ]
                         ),
                         CarouselColumn(
@@ -113,16 +112,7 @@ def handle_message(event):
                                 URIAction(
                                     label='股票',
                                     uri='line://app/1653886666-zqljLkA7'
-                                ),
-                                URIAction(
-                                    label='基金',
-                                    uri='line://app/1653886666-zqljLkA7'
-                                ),
-                                URIAction(
-                                    label='衍生性金融商品',
-                                    uri='line://app/1653886666-zqljLkA7'
                                 )
-
                             ]
                         )
                     ]
