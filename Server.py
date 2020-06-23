@@ -101,10 +101,6 @@ def handle_message(event):
                                 MessageAction(
                                     label = '財產保險',
                                     text = '財產保險'
-                                ),
-                                MessageAction(
-                                    label = '',
-                                    text = ''
                                 )
                             ]
                         ),
@@ -120,10 +116,6 @@ def handle_message(event):
                                 MessageAction(
                                     label = '基金',
                                     text = '基金'
-                                ),
-                                MessageAction(
-                                    label = '衍伸型金融產品',
-                                    text = '衍伸型金融產品'
                                 )
                             ]
                         )
