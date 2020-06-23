@@ -140,7 +140,7 @@ def handle_message(event):
                                 MessageAction(
                                     label = '意外保險',
                                     text = '意外保險'
-                                )
+                                ),
                                 MessageAction(
                                     label = '健康保險',
                                     text = '健康保險'
@@ -178,7 +178,7 @@ def handle_message(event):
                                 MessageAction(
                                     label = '雋享年年終身保險',
                                     text = '雋享年年終身保險'
-                                )
+                                ),
                                 MessageAction(
                                     label = '微馨愛小額終身壽險',
                                     text = '微馨愛小額終身壽險'
