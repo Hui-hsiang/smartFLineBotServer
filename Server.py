@@ -169,7 +169,7 @@ def handle_message(event):
                         CarouselColumn(
                             thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
                             title='👫人壽保險',
-                            text='',
+                            text='人壽保險產品',
                             actions=[
                                 MessageAction(
                                     label = '幸福轉蛋保險',
