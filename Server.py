@@ -22,7 +22,7 @@ class states(Enum):
     QUSTION = 1
 
 state = states.START
-
+quastionCount = 0
 
 
 # Channel Access Token
@@ -51,6 +51,8 @@ def handle_message(event):
     print(event)
     text=event.message.text
     global state
+    global quastionCount
+
     if state == states.START :
         if (text=="金融小知識"):
             case = random.randint(0,6)
@@ -239,19 +241,26 @@ def handle_message(event):
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-                text='Quick reply',
+                text='一、請問您投資金融商品最主要的考量因素為何？',
                 quick_reply=QuickReply(
                     items=[
                         QuickReplyButton(
-                            action = MessageAction(
-                                    label = '投資風險屬性分析問卷',
-                                    text = '投資風險屬性分析問卷'
-                                )
+                            action = MessageAction(label = '追求總投資報酬最大',text = '追求總投資報酬最大')
                         ),
                         QuickReplyButton(
-                            action = MessageAction(label="label2", text="text2")
+                            action = MessageAction(label="賺取資本利得", text="賺取資本利得")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="賺取固定的利息收益", text="賺取固定的利息收益")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="保本", text="保本")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="保持資產的流動性", text="保持資產的流動性")
                         )
                     ])))
+            quastionCount += 1
 
         else:
 
@@ -262,7 +271,95 @@ def handle_message(event):
             if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
-
+    
+    elif state == states.QUSTION :
+        if quastionCount == 1:
+            quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text='二、假設您有 NT100 萬元之投資組合，請問您可承擔最大本金下跌幅度為何？',
+                quick_reply=QuickReply(
+                    items=[
+                        QuickReplyButton(
+                            action = MessageAction(label = '0%',text = '0%')
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="-5%", text="-5%")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="-10%", text="-10%")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="-15%", text="-15")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="-20%以上", text="-20%以上")
+                        )
+                    ])))
+        elif quastionCount == 2:
+            quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text='九、如您持有之整體投資資產下跌超過 15%，請問對您的生活影響程度為何？',
+                quick_reply=QuickReply(
+                    items=[
+                        QuickReplyButton(
+                            action = MessageAction(label = '無法承受',text = '無法承受')
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="中度影響", text="中度影響")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="影響程度小", text="影響程度小")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="沒有影響", text="沒有影響")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="影響程度大", text="影響程度大")
+                        )
+                    ])))
+        elif quastionCount == 3:
+            quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text='十、當您的投資組合預期平均報酬率達到多少時才會考慮賣出？',
+                quick_reply=QuickReply(
+                    items=[
+                        QuickReplyButton(
+                            action = MessageAction(label = '25%以上',text = '25%以上')
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="20%", text="20%")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="15%", text="15%")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="10%", text="10%")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="5%", text="5%")
+                        )
+                    ])))
+        else:
+            state = states.QUSTION
+            reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
+            reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
+            
+            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+            
+            reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
+            
+            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+        
     
 
     
