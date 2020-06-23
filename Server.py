@@ -91,64 +91,40 @@ def handle_message(event):
                     columns=[
                         CarouselColumn(
                             thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
-                            title='為什麼我非理財不可！？',
-                            text='2020/2/29',
+                            title='💰保險產品',
+                            text='包含了人身保險以及財產保險，請於下方點選欲查詢之保險產品分類',
                             actions=[
                                 URIAction(
-                                    label='繼續閱讀',
+                                    label='人身保險',
+                                    uri='line://app/1653886666-7oZWKRLr'
+                                )
+                                URIAction(
+                                    label='財產保險',
                                     uri='line://app/1653886666-7oZWKRLr'
                                 )
 
                             ]
                         ),
                         CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/w20dz5X.png',
-                            title='分散風險，你做到了嗎？',
-                            text='2020/2/29',
-                            actions=[
-                                 URIAction(
-                                    label='繼續閱讀',
-                                    uri='line://app/1653886666-KQ9PZ8pR'
-                                )
-
-                            ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/GuNpoQg.png',
-                            title='生活和投資理財都要錢，怎麼分配才好？',
-                            text='2020/2/29',
-                            actions=[
-                                 URIAction(
-                                    label='繼續閱讀',
-                                    uri='line://app/1653886666-qx3JObrN'
-                                )
-
-                            ]
-                        ),
-                        CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/ZPzlUFG.png',
-                            title='存錢，從收支管理開始吧！',
-                            text='2020/2/29',
-                            actions=[
-                                 URIAction(
-                                    label='繼續閱讀',
-                                    uri='line://app/1653886666-Eemr8LO5'
-                                )
-
-                            ]
-                        ),
-                        CarouselColumn(
                             thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
-                            title='投資風險，我扛得住嗎？',
-                            text='2020/2/29',
+                            title='💹證券商品',
+                            text='包含了股票、基金與衍生性金融商品，於下方點選欲查詢之商品分類。',
                             actions=[
-                                 URIAction(
-                                    label='繼續閱讀',
+                                URIAction(
+                                    label='股票',
+                                    uri='line://app/1653886666-zqljLkA7'
+                                )
+                                URIAction(
+                                    label='基金'',
+                                    uri='line://app/1653886666-zqljLkA7'
+                                )
+                                URIAction(
+                                    label='衍生性金融商品,
                                     uri='line://app/1653886666-zqljLkA7'
                                 )
 
                             ]
-                          )
+                        )
                     ]
                 )
             )
