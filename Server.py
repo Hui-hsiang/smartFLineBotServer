@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 class states(Enum):
     START = 0
-
+    QUSTION = 1
 state = states.START
 
 
@@ -191,15 +191,15 @@ def handle_message(event):
             line_bot_api.reply_message(event.reply_token, carousel_template_message)
         elif(text=="幸福轉蛋保險"):
             reply_text = "幸福轉蛋保險:\n\t商品特色\n"
-            reply_text += "\t\t承保年齡：21 - 45歲\n"
-            reply_text += "\t\t低保費擁有高保障\n"
-            reply_text += "\t\t提供終身型別變更權，鎖住優良體況與未來保費\n"
-            reply_text += "\t\t享有滿期金或生存金，回饋定期型年繳保險費\n"
-            reply_text += "\t給付項目\n"
-            reply_text += "\t\t身故/完全失能給付\n"
-            reply_text += "\t\t生存金\n"
-            reply_text += "\t\t祝壽金\n"
-            reply_text += "\t\t滿期金\n"
+            reply_text += "承保年齡：21 - 45歲\n"
+            reply_text += "低保費擁有高保障\n"
+            reply_text += "提供終身型別變更權，鎖住優良體況與未來保費\n"
+            reply_text += "享有滿期金或生存金，回饋定期型年繳保險費\n"
+            reply_text += "給付項目\n"
+            reply_text += "身故/完全失能給付\n"
+            reply_text += "生存金\n"
+            reply_text += "祝壽金\n"
+            reply_text += "滿期金\n"
             if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
@@ -213,6 +213,56 @@ def handle_message(event):
             if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
+        elif "投資方案" in text:
+            carousel_template_message = TemplateSendMessage(
+                alt_text='人壽保險',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='請填問券',
+                            text='麻煩您先填寫此風險屬性分析問卷，藉由您的答覆您會得知您的風險屬性，我也會幫您找到最合適的營業員，提供專業知識😃',
+                            actions=[
+                                MessageAction(
+                                    label = '投資風險屬性分析問卷',
+                                    text = '投資風險屬性分析問卷'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        elif in text == "投資風險屬性分析問卷":
+            state = states.QUSTION
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text='Quick reply',
+                quick_reply=QuickReply(
+                    items=[
+                        QuickReplyButton(
+                            action=PostbackAction(label="label1", data="data1")
+                        ),
+                        QuickReplyButton(
+                            action=MessageAction(label="label2", text="text2")
+                        ),
+                        QuickReplyButton(
+                            action=DatetimePickerAction(label="label3",
+                                                        data="data3",
+                                                        mode="date")
+                        ),
+                        QuickReplyButton(
+                            action=CameraAction(label="label4")
+                        ),
+                        QuickReplyButton(
+                            action=CameraRollAction(label="label5")
+                        ),
+                        QuickReplyButton(
+                            action=LocationAction(label="label6")
+                        ),
+                    ])))
+
         else:
 
             reply_text = "Hi\n我是智能金融導購平台💼\n"
