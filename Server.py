@@ -98,6 +98,14 @@ def handle_message(event):
                                     label = '人身保險',
                                     text = '人身保險'
                                 )
+                                MessageAction(
+                                    label = '財產保險',
+                                    text = '財產保險'
+                                )
+                                MessageAction(
+                                    label = '',
+                                    text = ''
+                                )
                             ]
                         ),
                         CarouselColumn(
@@ -108,6 +116,14 @@ def handle_message(event):
                                 MessageAction(
                                     label = '股票',
                                     text = '股票'
+                                )
+                                MessageAction(
+                                    label = '基金',
+                                    text = '基金'
+                                )
+                                MessageAction(
+                                    label = '衍伸型金融產品',
+                                    text = '衍伸型金融產品'
                                 )
                             ]
                         )
