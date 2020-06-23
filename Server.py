@@ -94,10 +94,6 @@ def handle_message(event):
                             title='💰保險產品',
                             text='包含了人身保險以及財產保險，請於下方點選欲查詢之保險產品分類',
                             actions=[
-                                URIAction(
-                                    label='人身保險',
-                                    uri='line://app/1653886666-7oZWKRLr'
-                                ),
                                 MessageAction(
                                     label = '人身保險',
                                     text = '人身保險'
@@ -109,9 +105,9 @@ def handle_message(event):
                             title='💹證券商品',
                             text='包含了股票、基金與衍生性金融商品，於下方點選欲查詢之商品分類。',
                             actions=[
-                                URIAction(
-                                    label='股票',
-                                    uri='line://app/1653886666-zqljLkA7'
+                                MessageAction(
+                                    label = '股票',
+                                    text = '股票'
                                 )
                             ]
                         )
