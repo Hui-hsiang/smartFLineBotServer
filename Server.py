@@ -360,6 +360,59 @@ def handle_message(event):
                 message = TextSendMessage(reply_text)
                 line_bot_api.push_message(event.source.user_id, TextSendMessage(text=reply_text))
 
+            carousel_template_message = TemplateSendMessage(
+                alt_text='營業員',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='👔營業員 嘉禾',
+                            text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
+                            actions=[
+                                MessageAction(
+                                    label = '查看評價',
+                                    text = '查看評價'
+                                ),
+                                MessageAction(
+                                    label = '諮詢',
+                                    text = '諮詢'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='👔營業員 麥基',
+                            text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
+                            actions=[
+                                MessageAction(
+                                    label = '查看評價',
+                                    text = '查看評價'
+                                ),
+                                MessageAction(
+                                    label = '諮詢',
+                                    text = '諮詢'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='👔營業員 曉琪',
+                            text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
+                            actions=[
+                                MessageAction(
+                                    label = '查看評價',
+                                    text = '查看評價'
+                                ),
+                                MessageAction(
+                                    label = '諮詢',
+                                    text = '諮詢'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            )
+            line_bot_api.push_message(event.source.user_id, carousel_template_message)
         
     
 
