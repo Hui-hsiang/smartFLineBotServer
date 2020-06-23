@@ -412,7 +412,7 @@ def handle_message(event):
                                     label = '查看評價',
                                     text = '查看評價'
                                 ),
-                                MessageAction(
+                                PostbackTemplateAction(
                                     label = '諮詢',
                                     data='jerry'
                                 )
@@ -427,7 +427,7 @@ def handle_message(event):
                                     label = '查看評價',
                                     text = '查看評價'
                                 ),
-                                MessageAction(
+                                PostbackTemplateAction(
                                     label = '諮詢',
                                     data='maggie'
                                 )
