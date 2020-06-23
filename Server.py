@@ -233,7 +233,7 @@ def handle_message(event):
                 )
             )
             line_bot_api.reply_message(event.reply_token, carousel_template_message)
-        elif in text == "投資風險屬性分析問卷":
+        elif text == "投資風險屬性分析問卷":
             state = states.QUSTION
             line_bot_api.reply_message(
             event.reply_token,
