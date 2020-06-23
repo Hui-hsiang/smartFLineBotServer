@@ -99,7 +99,7 @@ def handle_message(event):
                                     uri='line://app/1653886666-7oZWKRLr'
                                 ),
                                 MessageAction(
-                                    label = '人身保險'
+                                    label = '人身保險',
                                     text = '人身保險'
                                 )
                             ]
