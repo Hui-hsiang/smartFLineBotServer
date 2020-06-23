@@ -20,11 +20,13 @@ app = Flask(__name__)
 class states(Enum):
     START = 0
     QUSTION = 1
+    DIV = 2
 class User():
     def __init__(self, id):
         self.user_id = id
         self.state = states.START
         self.quastionCount = 0
+        self.div_id = 0
     
 
 Users = []
@@ -53,13 +55,18 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_post_message(event):
 # can not get event text
-    print("event =", event)
-    line_bot_api.reply_message(
-                event.reply_token,
-                TextMessage(
-                    text=str(str(event.postback.data)),
+    for i in Users:
+        if i.user_id == event.source.user_id:
+            i.div_id = 'Uf8cd3b30a1c8cc65f7d2cfdaebc632b4'
+            i.state = states.DIV
+    if event.postback.data == 'apple':
+
+        line_bot_api.reply_message(
+                    event.reply_token,
+                    TextMessage(
+                        text="正在幫您導向營業員",
+                    )
                 )
-            )
 
 
 # 處理訊息
@@ -401,7 +408,7 @@ def handle_message(event):
                                 ),
                                 MessageAction(
                                     label = '諮詢',
-                                    text = '諮詢'
+                                    data='jerry'
                                 )
                             ]
                         ),
@@ -416,7 +423,7 @@ def handle_message(event):
                                 ),
                                 MessageAction(
                                     label = '諮詢',
-                                    text = '諮詢'
+                                    data='maggie'
                                 )
                             ]
                         ),
@@ -431,8 +438,7 @@ def handle_message(event):
                                 ),
                                 PostbackTemplateAction(
                                         label='諮詢', 
-                                        text='諮詢',
-                                        data='action=ask&apple=1'
+                                        data='apple'
                                     ),
                             ]
                         )
@@ -440,7 +446,8 @@ def handle_message(event):
                 )
             )
             line_bot_api.push_message(event.source.user_id, carousel_template_message)
-        
+    elif u.state == states.DIV  
+        line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     
 
     
