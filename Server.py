@@ -50,7 +50,7 @@ def callback():
 def handle_message(event):
     print(event)
     text=event.message.text
-    
+    global state
     if state == states.START :
         if (text=="金融小知識"):
             case = random.randint(0,6)
@@ -235,7 +235,6 @@ def handle_message(event):
             )
             line_bot_api.reply_message(event.reply_token, carousel_template_message)
         elif text == "投資風險屬性分析問卷":
-            global state
             state = states.QUSTION
             line_bot_api.reply_message(
             event.reply_token,
