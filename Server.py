@@ -346,7 +346,7 @@ def handle_message(event):
                         )
                     ])))
         else:
-            state = states.QUSTION
+            state = states.START
             reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
             reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
             
@@ -358,7 +358,8 @@ def handle_message(event):
             
             if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                 message = TextSendMessage(reply_text)
-                line_bot_api.reply_message(event.reply_token, message)
+                line_bot_api.push_message(event.source.user_id, TextSendMessage(text=reply_text))
+
         
     
 
