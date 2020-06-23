@@ -85,7 +85,74 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, message)
             
         elif(text=="金融產品"):
-            reply_text = "哈囉"
+            carousel_template_message = TemplateSendMessage(
+                alt_text='理財小知識',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
+                            title='為什麼我非理財不可！？',
+                            text='2020/2/29',
+                            actions=[
+                                URIAction(
+                                    label='繼續閱讀',
+                                    uri='line://app/1653886666-7oZWKRLr'
+                                )
+
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/w20dz5X.png',
+                            title='分散風險，你做到了嗎？',
+                            text='2020/2/29',
+                            actions=[
+                                 URIAction(
+                                    label='繼續閱讀',
+                                    uri='line://app/1653886666-KQ9PZ8pR'
+                                )
+
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/GuNpoQg.png',
+                            title='生活和投資理財都要錢，怎麼分配才好？',
+                            text='2020/2/29',
+                            actions=[
+                                 URIAction(
+                                    label='繼續閱讀',
+                                    uri='line://app/1653886666-qx3JObrN'
+                                )
+
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/ZPzlUFG.png',
+                            title='存錢，從收支管理開始吧！',
+                            text='2020/2/29',
+                            actions=[
+                                 URIAction(
+                                    label='繼續閱讀',
+                                    uri='line://app/1653886666-Eemr8LO5'
+                                )
+
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='投資風險，我扛得住嗎？',
+                            text='2020/2/29',
+                            actions=[
+                                 URIAction(
+                                    label='繼續閱讀',
+                                    uri='line://app/1653886666-zqljLkA7'
+                                )
+
+                            ]
+                          )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, carousel_template_message)
 
         else:
             reply_text = text
