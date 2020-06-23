@@ -57,9 +57,37 @@ def handle_post_message(event):
 # can not get event text
     for i in Users:
         if i.user_id == event.source.user_id:
-            i.div_id = 'Uf8cd3b30a1c8cc65f7d2cfdaebc632b4'
+            i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
             i.state = states.DIV
     if event.postback.data == 'apple':
+
+        line_bot_api.reply_message(
+                    event.reply_token,
+                    TextMessage(
+                        text="正在幫您導向營業員",
+                    )
+                )
+        line_bot_api.push_message(
+                        i.div_id,
+                        TextMessage(
+                            text="有新用戶想向您詢問問題",
+                        )
+                    )
+    if event.postback.data == 'maggie':
+
+        line_bot_api.reply_message(
+                    event.reply_token,
+                    TextMessage(
+                        text="正在幫您導向營業員",
+                    )
+                )
+        line_bot_api.push_message(
+                        i.div_id,
+                        TextMessage(
+                            text="有新用戶想向您詢問問題",
+                        )
+                    )
+    if event.postback.data == 'jerry':
 
         line_bot_api.reply_message(
                     event.reply_token,
