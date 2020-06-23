@@ -53,11 +53,11 @@ def handle_message(event):
     if state == states.START :
         if (text=="金融小知識"):
             case = random.randint(0,6)
-            reply_text = str(case)
+            reply_text = ""
             if case == 1:
                 reply_text += "超額投保:\n超額投保是指投保的保險金額超過被保險人的可保價值、或是超過要保人繳費能力的保額。"
             elif case == 2:
-                reply_text = "利率變動型年金:\n"
+                reply_text += "利率變動型年金:\n"
                 reply_text += "與傳統型年金最大差異包括：\n"
                 reply_text += "（1）透明化的年金帳戶餘額計算方式，每個扣除項目與累加項目均有明確的交代。\n"
                 reply_text += "（2）定期、不定期、主動或被動提供客戶對帳單。\n"
@@ -97,11 +97,11 @@ def handle_message(event):
                                 MessageAction(
                                     label = '人身保險',
                                     text = '人身保險'
-                                )
+                                ),
                                 MessageAction(
                                     label = '財產保險',
                                     text = '財產保險'
-                                )
+                                ),
                                 MessageAction(
                                     label = '',
                                     text = ''
@@ -116,11 +116,11 @@ def handle_message(event):
                                 MessageAction(
                                     label = '股票',
                                     text = '股票'
-                                )
+                                ),
                                 MessageAction(
                                     label = '基金',
                                     text = '基金'
-                                )
+                                ),
                                 MessageAction(
                                     label = '衍伸型金融產品',
                                     text = '衍伸型金融產品'
