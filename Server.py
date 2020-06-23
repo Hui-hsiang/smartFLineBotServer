@@ -86,7 +86,7 @@ def handle_message(event):
             
         elif(text=="金融產品"):
             carousel_template_message = TemplateSendMessage(
-                alt_text='理財小知識',
+                alt_text='金融產品',
                 template=CarouselTemplate(
                     columns=[
                         CarouselColumn(
@@ -123,9 +123,98 @@ def handle_message(event):
                 )
             )
             line_bot_api.reply_message(event.reply_token, carousel_template_message)
-
+        elif(text=="人身保險"):
+            carousel_template_message = TemplateSendMessage(
+                alt_text='人身保險',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='👫人身保險',
+                            text='人身保險是以人的壽命和身體為保險標的的一種保險。保險人對被保險人或受益人給付預定的保險金或年金，以解決病殘老死所造成的經濟困難，是對社會保障不足的一種補充。',
+                            actions=[
+                                MessageAction(
+                                    label = '人壽保險',
+                                    text = '人壽保險'
+                                ),
+                                MessageAction(
+                                    label = '意外保險',
+                                    text = '意外保險'
+                                )
+                                MessageAction(
+                                    label = '健康保險',
+                                    text = '健康保險'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        elif(text=="意外保險"):
+            reply_text = "EY不EY"
+            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+        elif(text=="健康保險"):
+            reply_text = "健康的保險非常重要喔"
+            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+        elif(text=="人壽保險"):
+            carousel_template_message = TemplateSendMessage(
+                alt_text='人壽保險',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='👫人壽保險',
+                            text='人身保險是以人的壽命和身體為保險標的的一種保險。保險人對被保險人或受益人給付預定的保險金或年金，以解決病殘老死所造成的經濟困難，是對社會保障不足的一種補充。',
+                            actions=[
+                                MessageAction(
+                                    label = '幸福轉蛋保險',
+                                    text = '幸福轉蛋保險'
+                                ),
+                                MessageAction(
+                                    label = '雋享年年終身保險',
+                                    text = '雋享年年終身保險'
+                                )
+                                MessageAction(
+                                    label = '微馨愛小額終身壽險',
+                                    text = '微馨愛小額終身壽險'
+                                )
+                            ]
+                        )
+                    ]
+                )
+            )
+            line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        elif(text=="幸福轉蛋保險"):
+            reply_text = "幸福轉蛋保險:\n\t商品特色\n"
+            reply_text += "\t\t承保年齡：21 - 45歲\n"
+            reply_text += "\t\t低保費擁有高保障\n"
+            reply_text += "\t\t提供終身型別變更權，鎖住優良體況與未來保費\n"
+            reply_text += "\t\t享有滿期金或生存金，回饋定期型年繳保險費\n"
+            reply_text += "\t給付項目\n"
+            reply_text += "\t\t身故/完全失能給付\n"
+            reply_text += "\t\t生存金\n"
+            reply_text += "\t\t祝壽金\n"
+            reply_text += "\t\t滿期金\n"
+            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+        elif(text=="雋享年年終身保險"):
+            reply_text = "沒有"
+            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+        elif(text=="微馨愛小額終身壽險"):
+            reply_text = "也沒有"
+            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
         else:
-            reply_text = text
+
             reply_text = "Hi\n我是智能金融導購平台💼\n"
             reply_text += "有任何金融相關的問題都可以詢問我喔！\n"
             reply_text += "我會幫你轉接專業證券營業員與保險業務員\n"
