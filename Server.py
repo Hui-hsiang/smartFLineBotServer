@@ -242,25 +242,14 @@ def handle_message(event):
                 quick_reply=QuickReply(
                     items=[
                         QuickReplyButton(
-                            action=PostbackAction(label="label1", data="data1")
+                            action = MessageAction(
+                                    label = '投資風險屬性分析問卷',
+                                    text = '投資風險屬性分析問卷'
+                                )
                         ),
                         QuickReplyButton(
-                            action=MessageAction(label="label2", text="text2")
-                        ),
-                        QuickReplyButton(
-                            action=DatetimePickerAction(label="label3",
-                                                        data="data3",
-                                                        mode="date")
-                        ),
-                        QuickReplyButton(
-                            action=CameraAction(label="label4")
-                        ),
-                        QuickReplyButton(
-                            action=CameraRollAction(label="label5")
-                        ),
-                        QuickReplyButton(
-                            action=LocationAction(label="label6")
-                        ),
+                            action = MessageAction(label="label2", text="text2")
+                        )
                     ])))
 
         else:
