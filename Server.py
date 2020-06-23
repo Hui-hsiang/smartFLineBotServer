@@ -21,7 +21,7 @@ class states(Enum):
     START = 0
     QUSTION = 1
 
-global state = states.START
+state = states.START
 
 
 
