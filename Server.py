@@ -131,7 +131,7 @@ def handle_message(event):
                         CarouselColumn(
                             thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
                             title='👫人身保險',
-                            text='人身保險是以人的壽命和身體為保險標的的一種保險。'
+                            text='人身保險是以人的壽命和身體為保險標的的一種保險。',
                             actions=[
                                 MessageAction(
                                     label = '人壽保險',
