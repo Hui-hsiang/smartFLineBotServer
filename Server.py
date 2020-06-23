@@ -20,9 +20,14 @@ app = Flask(__name__)
 class states(Enum):
     START = 0
     QUSTION = 1
+class User():
+    def __init__(self, id):
+        self.user_id = id
+        self.state = states.START
+        self.quastionCount = 0
+    
 
-state = states.START
-quastionCount = 0
+Users = []
 
 
 # Channel Access Token
@@ -45,15 +50,36 @@ def callback():
         abort(400)
     return 'OK'
 
+@handler.add(PostbackEvent)
+def handle_post_message(event):
+# can not get event text
+    print("event =", event)
+    line_bot_api.reply_message(
+                event.reply_token,
+                TextMessage(
+                    text=str(str(event.postback.data)),
+                )
+            )
+
+
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     print(event)
     text=event.message.text
-    global state
-    global quastionCount
+    
+    f = False
+    u = User(event.source.user_id)
+    for i in Users:
+        if i.user_id == event.source.user_id:
+            u = i
+            f = True
+            break
 
-    if state == states.START :
+    if (f == False):
+        Users.append(u)
+
+    if u.state == states.START :
         if (text=="金融小知識"):
             case = random.randint(0,6)
             reply_text = ""
@@ -237,7 +263,7 @@ def handle_message(event):
             )
             line_bot_api.reply_message(event.reply_token, carousel_template_message)
         elif text == "投資風險屬性分析問卷":
-            state = states.QUSTION
+            u.state = states.QUSTION
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
@@ -260,7 +286,7 @@ def handle_message(event):
                             action = MessageAction(label="保持資產的流動性", text="保持資產的流動性")
                         )
                     ])))
-            quastionCount += 1
+            u.quastionCount += 1
 
         else:
 
@@ -272,9 +298,9 @@ def handle_message(event):
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
     
-    elif state == states.QUSTION :
-        if quastionCount == 1:
-            quastionCount += 1
+    elif u.state == states.QUSTION :
+        if u.quastionCount == 1:
+            u.quastionCount += 1
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
@@ -297,8 +323,8 @@ def handle_message(event):
                             action = MessageAction(label="-20%以上", text="-20%以上")
                         )
                     ])))
-        elif quastionCount == 2:
-            quastionCount += 1
+        elif u.quastionCount == 2:
+            u.quastionCount += 1
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
@@ -321,8 +347,8 @@ def handle_message(event):
                             action = MessageAction(label="影響程度大", text="影響程度大")
                         )
                     ])))
-        elif quastionCount == 3:
-            quastionCount += 1
+        elif u.quastionCount == 3:
+            u.quastionCount += 1
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
@@ -346,7 +372,7 @@ def handle_message(event):
                         )
                     ])))
         else:
-            state = states.START
+            u.state = states.START
             reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
             reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
             
@@ -403,10 +429,11 @@ def handle_message(event):
                                     label = '查看評價',
                                     text = '查看評價'
                                 ),
-                                MessageAction(
-                                    label = '諮詢',
-                                    text = '諮詢'
-                                )
+                                PostbackTemplateAction(
+                                        label='諮詢', 
+                                        text='諮詢',
+                                        data='action=ask&apple=1'
+                                    ),
                             ]
                         )
                     ]
