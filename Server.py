@@ -3,7 +3,7 @@ from flask import Flask, request, abort
 from urllib.request import urlopen
 from config import line_channel_access_token, line_channel_secret
 #from oauth2client.service_account import ServiceAccountCredentials
-
+from enum import Enum
 from linebot import (
     LineBotApi, WebhookHandler
 )
@@ -17,6 +17,10 @@ from linebot.models import *
 
 app = Flask(__name__)
 
+class states(Enum):
+    START = 0
+
+state = states.START
 
 
 
@@ -45,17 +49,22 @@ def callback():
 def handle_message(event):
     print(event)
     text=event.message.text
+    
+    if state == states.START :
+        if (text=="Hi"):
+            reply_text = "Hello"
+        elif(text=="你好"):
+            reply_text = "哈囉"
+        elif(text=="機器人"):
+            reply_text = "叫我嗎"
+        else:
+            reply_text = text
+            reply_text = "Hi\n我是智能金融導購平台💼\n"
+            reply_text += "有任何金融相關的問題都可以詢問我喔！\n"
+            reply_text += "我會幫你轉接專業證券營業員與保險業務員\n"
+            reply_text += "他們能幫你做詳細的介紹與申購👍"
 
-    if (text=="Hi"):
-        reply_text = "Hello"
-        #Your user ID
-
-    elif(text=="你好"):
-        reply_text = "哈囉"
-    elif(text=="機器人"):
-        reply_text = "叫我嗎"
-    else:
-        reply_text = text
+    
 #如果非以上的選項，就會學你說話
     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
         message = TextSendMessage(reply_text)
