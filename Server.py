@@ -53,7 +53,7 @@ def handle_message(event):
     if state == states.START :
         if (text=="金融小知識"):
             case = random.randint(0,6)
-            reply_text = string(case)
+            reply_text = str(case)
             if case == 0:
                 reply_text += "超額投保:\n超額投保是指投保的保險金額超過被保險人的可保價值、或是超過要保人繳費能力的保額。"
             if case == 1:
