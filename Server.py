@@ -67,6 +67,12 @@ def handle_post_message(event):
                         text="正在幫您導向營業員",
                     )
                 )
+        line_bot_api.push_message(
+                        i.div_id,
+                        TextMessage(
+                            text="有新用戶想向您詢問問題",
+                        )
+                    )
 
 
 # 處理訊息
@@ -446,7 +452,7 @@ def handle_message(event):
                 )
             )
             line_bot_api.push_message(event.source.user_id, carousel_template_message)
-    elif u.state == states.DIV  
+    elif u.state == states.DIV:  
         line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     
 
