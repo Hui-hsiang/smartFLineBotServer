@@ -18,7 +18,7 @@ from linebot.models import *
 app = Flask(__name__)
 
 class states(Enum):
-    START = 0,
+    START = 0
     QUSTION = 1
 
 state = states.START
@@ -235,6 +235,7 @@ def handle_message(event):
             )
             line_bot_api.reply_message(event.reply_token, carousel_template_message)
         elif text == "投資風險屬性分析問卷":
+            global state
             state = states.QUSTION
             line_bot_api.reply_message(
             event.reply_token,
