@@ -20,7 +20,8 @@ app = Flask(__name__)
 class states(Enum):
     START = 0
     QUSTION = 1
-state = states.START
+
+global state = states.START
 
 
 
