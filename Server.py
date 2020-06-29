@@ -511,7 +511,7 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, message)
             else:
                 carousel_template_message = TemplateSendMessage(
-                    alt_text=reply_text,
+                    alt_text="請確認手機號碼是否正確：",
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
