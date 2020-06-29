@@ -489,8 +489,25 @@ def handle_message(event):
                     )
                 )
                 line_bot_api.push_message(event.source.user_id, carousel_template_message)
-        elif u.state == states.DIV:  
-            line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
+        elif u.state == states.DIV:
+            if text == "離開":
+                reply_text = "您已離開對話"
+
+                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                    message = TextSendMessage(reply_text)
+                    line_bot_api.reply_message(event.reply_token, message)
+                line_bot_api.push_message(
+                        u.div_id,
+                        TextMessage(
+                            text="對方已離開對話",
+                        )
+                    )
+                for i in Users:
+                    if i.user_id == u.div_id:
+                        i.state = states.LOGIN
+                        break
+            else:
+                line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     else:
         if u.state == states.START:
 
@@ -555,13 +572,32 @@ def handle_message(event):
                         headers=headers)
 
         elif u.state == states.DIV :
-            if (u.div_id != 0):
+            if text == "離開":
+                reply_text = "您已離開對話"
+
+                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                    message = TextSendMessage(reply_text)
+                    line_bot_api.reply_message(event.reply_token, message)
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
-                            text=text,
+                            text="對方已離開對話",
                         )
                     )
+                for i in Users:
+                    if i.user_id == u.div_id:
+                        i.state = states.START
+                        break
+
+            else:
+
+                if (u.div_id != 0):
+                    line_bot_api.push_message(
+                            u.div_id,
+                            TextMessage(
+                                text=text,
+                            )
+                        )
 
     
     
