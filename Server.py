@@ -21,6 +21,8 @@ class states(Enum):
     START = 0
     QUSTION = 1
     DIV = 2
+    UNLOGIN = 3
+    LOGIN = 4
 class User():
     def __init__(self, id):
         self.user_id = id
@@ -487,8 +489,50 @@ def handle_message(event):
         elif u.state == states.DIV:  
             line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     else:
-        #if u.state == states.START:
-        if u.state == states.DIV :
+        if u.state == states.START:
+
+            reply_text = "請輸入【手機號碼】登入系統"
+
+            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+
+        elif u.state == states.LOGIN:
+            if(text == "確認"): 
+                reply_text = "歡迎登入\n請點選下方【服務項目】執行動作"
+                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                    message = TextSendMessage(reply_text)
+                u.state = 
+            elif(text == "修改"):
+                reply_text = "輸入【手機號碼】登入系統"
+                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                    message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+            else:
+                carousel_template_message = TemplateSendMessage(
+                    alt_text=reply_text,
+                    template=CarouselTemplate(
+                        columns=[
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
+                                title='請確認手機號碼是否正確：',
+                                text="【" + text + "】",
+                                actions=[
+                                    MessageAction(
+                                        label = '確認',
+                                        text = '確認''
+                                    ),
+                                    MessageAction(
+                                        label = '修改',
+                                        text = '修改'
+                                    )
+                                ]
+                            )
+                        ]
+                    )
+                )
+                line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        elif u.state == states.DIV :
             if (u.div_id != 0):
                 line_bot_api.push_message(
                         u.div_id,
@@ -506,3 +550,5 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
     app.run(host='0.0.0.0', port=port)
+
+    
