@@ -496,13 +496,13 @@ def handle_message(event):
             if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
-
-        elif u.state == states.LOGIN:
+            u.state == states.UNLOGIN
+        elif u.state == states.UNLOGIN:
             if(text == "確認"): 
                 reply_text = "歡迎登入\n請點選下方【服務項目】執行動作"
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
-                u.state = 
+                u.state = LOGIN
             elif(text == "修改"):
                 reply_text = "輸入【手機號碼】登入系統"
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
@@ -532,6 +532,8 @@ def handle_message(event):
                     )
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
+        
+        elif 
         elif u.state == states.DIV :
             if (u.div_id != 0):
                 line_bot_api.push_message(
