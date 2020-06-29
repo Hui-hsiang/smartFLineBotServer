@@ -79,6 +79,7 @@ def handle_post_message(event):
                         )
                     )
         selling.state = states.DIV
+
     if event.postback.data == 'maggie':
 
         line_bot_api.reply_message(
@@ -520,7 +521,7 @@ def handle_message(event):
                                 actions=[
                                     MessageAction(
                                         label = '確認',
-                                        text = '確認''
+                                        text = '確認'
                                     ),
                                     MessageAction(
                                         label = '修改',
@@ -533,7 +534,13 @@ def handle_message(event):
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
-        elif 
+        elif u.state == states.LOGIN:
+            reply_text = "請輸入【手機號碼】登入系統"
+
+            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+            
         elif u.state == states.DIV :
             if (u.div_id != 0):
                 line_bot_api.push_message(
