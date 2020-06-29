@@ -11,7 +11,8 @@ from linebot.exceptions import (
     InvalidSignatureError,LineBotApiError
 )
 import random
-
+import requests
+import json
 ################################
 
 from linebot.models import *
