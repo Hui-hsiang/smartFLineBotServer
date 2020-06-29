@@ -535,7 +535,7 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
         elif u.state == states.LOGIN:
-            reply_text = "請輸入【手機號碼】登入系統"
+            reply_text = "請輸入幹你娘登入系統"
 
             if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                 message = TextSendMessage(reply_text)
