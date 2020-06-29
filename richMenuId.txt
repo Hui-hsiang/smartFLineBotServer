@@ -1,0 +1,2 @@
+general : richmenu-6b8167a5a521e96c320ca94ad954e6c6
+selling : richmenu-9a3e9e8fd2ca493c4b6c1c638ea5304d
