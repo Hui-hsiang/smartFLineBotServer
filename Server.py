@@ -503,7 +503,7 @@ def handle_message(event):
                 reply_text = "歡迎登入\n請點選下方【服務項目】執行動作"
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
-                u.state = LOGIN
+                u.state = states.LOGIN
             elif(text == "修改"):
                 reply_text = "輸入【手機號碼】登入系統"
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
