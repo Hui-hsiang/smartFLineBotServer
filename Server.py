@@ -506,6 +506,7 @@ def handle_message(event):
                     if i.user_id == u.div_id:
                         i.state = states.LOGIN
                         break
+                u.state =states.START
             else:
                 line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     else:
@@ -588,7 +589,7 @@ def handle_message(event):
                     if i.user_id == u.div_id:
                         i.state = states.START
                         break
-
+                u.state = states.LOGIN
             else:
 
                 if (u.div_id != 0):
