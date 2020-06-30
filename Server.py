@@ -61,7 +61,7 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_post_message(event):
 # can not get event text
-    
+    u = User(event.source.user_id)
     for i in Users:
         if i.user_id == event.source.user_id:
             u = i 
