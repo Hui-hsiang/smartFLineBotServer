@@ -154,7 +154,7 @@ def handle_message(event):
     
     doc = { 
             'user_id' : "",
-            'state' : states.START,
+            'state' : 0,
             'quastionCount' : 0,
             'div_id' : "",
             'identity' : 0
