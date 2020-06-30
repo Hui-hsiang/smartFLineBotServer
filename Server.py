@@ -91,7 +91,7 @@ def handle_post_message(event):
             s.state = states.DIV
             for i in Users:
                 if i.user_id == event.source.user_id:
-                    i.div_id = 'U2649922b5604a80e08b0f9dba91f9029']
+                    i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
                     u = i
             for i in Users:
                 if i.user_id == event.source.user_id:
