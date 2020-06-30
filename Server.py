@@ -89,13 +89,10 @@ def handle_post_message(event):
                 )
         else:
             s.state = states.DIV
-            for i in Users:
-                if i.user_id == event.source.user_id:
-                    i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
-                    u = i
-            for i in Users:
-                if i.user_id == event.source.user_id:
-                    i.state =  states.DIV
+            u.state = states.DIV
+            s.div_id = event.source.user_id
+            u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
+            
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
@@ -103,12 +100,12 @@ def handle_post_message(event):
                     )
                 )
             line_bot_api.push_message(
-                            u.div_id,
+                            s.div_id,
                             TextMessage(
                                 text="有新用戶想向您詢問問題",
                             )
                         )         
-            s.div_id = u.user_id
+
 
     if event.postback.data == 'maggie':
 
