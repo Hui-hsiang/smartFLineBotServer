@@ -32,7 +32,7 @@ class User():
         self.quastionCount = 0
         self.div_id = 0
         self.identity = 0
-        self.msgQuerry
+        
 selling = User('U2649922b5604a80e08b0f9dba91f9029')
 selling.identity = 1
 Users = [selling]
