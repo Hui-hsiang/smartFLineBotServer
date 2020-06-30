@@ -68,14 +68,14 @@ def handle_post_message(event):
             
 
     if event.postback.data == 'apple':
-        if selling.state != states.LOGIN{
+        if selling.state != states.LOGIN:
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
                         text="營業員目前無法回覆您訊息\n",
                     )
                 )
-        }
+        
         else:
             line_bot_api.reply_message(
                     event.reply_token,
@@ -93,7 +93,7 @@ def handle_post_message(event):
             i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
             i.state = states.DIV
             selling.div_id = i.user_id
-            
+
     if event.postback.data == 'maggie':
 
         line_bot_api.reply_message(
