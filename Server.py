@@ -52,6 +52,15 @@ selling = User('U2649922b5604a80e08b0f9dba91f9029')
 selling.identity = 1
 Users = [selling]
 
+def UserData_get(self, id):
+    path = "user/" + id
+    collection_ref = db.document(path)
+    doc = collection_ref.get()
+    return doc.to_dict()
+
+
+
+
 # Channel Access Token
 line_bot_api = LineBotApi(line_channel_access_token)
 # Channel Secret
@@ -78,7 +87,6 @@ def callback():
 def handle_post_message(event):
 # can not get event text
     doc_ref = db.collection("user")
-
     u = User(event.source.user_id)
     for i in Users:
         if i.user_id == event.source.user_id:
@@ -153,14 +161,15 @@ def handle_message(event):
     text=event.message.text
     
     doc = { 
-            'user_id' : "",
+            'user_id' : event.source.user_id,
             'state' : 0,
             'quastionCount' : 0,
             'div_id' : "",
             'identity' : 0
         }
 
-    db.collection("user").document(event.source.user_id).set(doc)
+    if UserData_get(event.source.user_id) == None:
+        db.collection("user").document(event.source.user_id).set(doc)
     
     f = False
     u = User(event.source.user_id)
