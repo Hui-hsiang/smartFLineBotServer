@@ -84,7 +84,7 @@ def handle_post_message(event):
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
-                        text="營業員目前無法回覆您訊息\n",
+                        text="營業員目前忙碌中～無法回覆您訊息\n",
                     )
                 )
         else:
