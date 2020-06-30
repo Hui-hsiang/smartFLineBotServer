@@ -58,14 +58,14 @@ def callback():
         abort(400)
     return 'OK'
 
-def UseriChangeState(self, id, state):
-    for i in Users:
-        if i.user_id == id:
-            i.state =  state
-def UseriChangeDivId(self, id, divId):
-    for i in Users:
-        if i.user_id == id:
-            i.div_id = divId
+# def UseriChangeState(self, id, state):
+#     for i in Users:
+#         if i.user_id == id:
+#             i.state =  state
+# def UseriChangeDivId(self, id, divId):
+#     for i in Users:
+#         if i.user_id == id:
+#             i.div_id = divId
 
 @handler.add(PostbackEvent)
 def handle_post_message(event):
@@ -87,8 +87,13 @@ def handle_post_message(event):
         
         else:
             selling.state = states.DIV
-            UseriChangeDivId(u.user_id,'U2649922b5604a80e08b0f9dba91f9029')
-            UseriChangeState(u.user_id,states.DIV)
+
+            for i in Users:
+                if i.user_id == id:
+                    i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
+            for i in Users:
+                if i.user_id == id:
+                    i.state =  states.DIV
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
@@ -527,7 +532,7 @@ def handle_message(event):
                     if i.user_id == u.div_id:
                         i.state = states.START
                         break
-                u.state =states.LOGIN
+                u.state = states.LOGIN
             else:
                 line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     else:
