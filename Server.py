@@ -52,7 +52,7 @@ selling = User('U2649922b5604a80e08b0f9dba91f9029')
 selling.identity = 1
 Users = [selling]
 
-def UserData_get(self, id):
+def UserData_get(id):
     path = "user/" + id
     collection_ref = db.document(path)
     doc = collection_ref.get()
