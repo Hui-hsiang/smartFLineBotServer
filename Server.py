@@ -84,7 +84,7 @@ def handle_post_message(event):
                     )
                 )
             line_bot_api.push_message(
-                            i.div_id,
+                            u.div_id,
                             TextMessage(
                                 text="有新用戶想向您詢問問題",
                             )
