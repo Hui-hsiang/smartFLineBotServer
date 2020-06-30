@@ -100,7 +100,7 @@ def handle_post_message(event):
                     )
                 )
             line_bot_api.push_message(
-                            s.div_id,
+                            u.div_id,
                             TextMessage(
                                 text="有新用戶想向您詢問問題",
                             )
@@ -530,9 +530,9 @@ def handle_message(event):
                     )
                 for i in Users:
                     if i.user_id == u.div_id:
-                        i.state = states.START
+                        i.state = states.LOGIN
                         break
-                u.state = states.LOGIN
+                u.state = states.START
             else:
                 line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     else:
