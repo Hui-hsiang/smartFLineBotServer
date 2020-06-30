@@ -87,13 +87,12 @@ def handle_post_message(event):
                         text="營業員目前無法回覆您訊息\n",
                     )
                 )
-        
         else:
-
             s.state = states.DIV
             for i in Users:
                 if i.user_id == event.source.user_id:
-                    i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
+                    i.div_id = 'U2649922b5604a80e08b0f9dba91f9029']
+                    u = i
             for i in Users:
                 if i.user_id == event.source.user_id:
                     i.state =  states.DIV
@@ -452,6 +451,7 @@ def handle_message(event):
                         ])))
             else:
                 u.state = states.START
+                u.quastionCount = 0
                 reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
                 reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
                 
