@@ -90,9 +90,9 @@ def handle_post_message(event):
                             )
                         )
             selling.state = states.DIV
-            i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
-            i.state = states.DIV
-            selling.div_id = i.user_id
+            u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
+            u.state = states.DIV
+            selling.div_id = u.user_id
 
     if event.postback.data == 'maggie':
 
