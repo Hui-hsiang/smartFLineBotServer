@@ -77,6 +77,9 @@ def handle_post_message(event):
                 )
         
         else:
+            selling.state = states.DIV
+            u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
+            u.state = states.DIV
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
@@ -89,9 +92,7 @@ def handle_post_message(event):
                                 text="有新用戶想向您詢問問題",
                             )
                         )
-            selling.state = states.DIV
-            u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
-            u.state = states.DIV
+            
             selling.div_id = u.user_id
 
     if event.postback.data == 'maggie':
