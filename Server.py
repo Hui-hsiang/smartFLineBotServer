@@ -32,6 +32,7 @@ class User():
         self.quastionCount = 0
         self.div_id = 0
         self.identity = 0
+        self.msgQuerry
 selling = User('U2649922b5604a80e08b0f9dba91f9029')
 selling.identity = 1
 Users = [selling]
@@ -60,28 +61,39 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_post_message(event):
 # can not get event text
+    
     for i in Users:
         if i.user_id == event.source.user_id:
-            i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
-            i.state = states.DIV
-            selling.div_id = i.user_id
+            u = i 
+            
 
     if event.postback.data == 'apple':
-
-        line_bot_api.reply_message(
+        if selling.state != states.LOGIN{
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextMessage(
+                        text="營業員目前無法回覆您訊息\n",
+                    )
+                )
+        }
+        else:
+            line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
                         text="正在幫您導向營業員",
                     )
                 )
-        line_bot_api.push_message(
-                        i.div_id,
-                        TextMessage(
-                            text="有新用戶想向您詢問問題",
+            line_bot_api.push_message(
+                            i.div_id,
+                            TextMessage(
+                                text="有新用戶想向您詢問問題",
+                            )
                         )
-                    )
-        selling.state = states.DIV
-
+            selling.state = states.DIV
+            i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
+            i.state = states.DIV
+            selling.div_id = i.user_id
+            
     if event.postback.data == 'maggie':
 
         line_bot_api.reply_message(
