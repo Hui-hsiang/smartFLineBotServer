@@ -100,8 +100,7 @@ def handle_post_message(event):
                             TextMessage(
                                 text="有新用戶想向您詢問問題",
                             )
-                        )
-            
+                        )         
             selling.div_id = u.user_id
 
     if event.postback.data == 'maggie':
