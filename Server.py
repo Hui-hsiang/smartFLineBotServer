@@ -159,13 +159,15 @@ def handle_post_message(event):
 def handle_message(event):
     print(event)
     text=event.message.text
-    
+
+    profile = line_bot_api.get_profile(event.source.user_id)
     doc = { 
             'user_id' : event.source.user_id,
             'state' : 0,
             'quastionCount' : 0,
             'div_id' : "",
-            'identity' : 0
+            'identity' : 0,
+            'name' : profile.display_name
         }
 
     if UserData_get(event.source.user_id) == None:
