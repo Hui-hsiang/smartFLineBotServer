@@ -525,9 +525,9 @@ def handle_message(event):
                     )
                 for i in Users:
                     if i.user_id == u.div_id:
-                        i.state = states.LOGIN
+                        i.state = states.START
                         break
-                u.state =states.START
+                u.state =states.LOGIN
             else:
                 line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     else:
