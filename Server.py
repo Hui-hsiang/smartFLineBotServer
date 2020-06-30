@@ -19,6 +19,14 @@ from linebot.models import *
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
+# 引用私密金鑰
+# path/to/serviceAccount.json 請用自己存放的路徑
+cred = credentials.Certificate('smartflinebotserver-firebase-adminsdk-q4kci-72696b6a64.json')
+
+# 初始化firebase，注意不能重複初始化
+firebase_admin.initialize_app(cred)
+
+# 初始化firestore
 
 db = firestore.client()
 
@@ -31,6 +39,7 @@ class states(Enum):
     DIV = 2
     UNLOGIN = 3
     LOGIN = 4
+
 class User():
     def __init__(self, id):
         self.user_id = id
@@ -63,14 +72,7 @@ def callback():
         abort(400)
     return 'OK'
 
-# def UseriChangeState(self, id, state):
-#     for i in Users:
-#         if i.user_id == id:
-#             i.state =  state
-# def UseriChangeDivId(self, id, divId):
-#     for i in Users:
-#         if i.user_id == id:
-#             i.div_id = divId
+
 
 @handler.add(PostbackEvent)
 def handle_post_message(event):
