@@ -20,12 +20,8 @@ import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import firestore
 
-# 引用私密金鑰
-# path/to/serviceAccount.json 請用自己存放的路徑
-cred = credentials.Certificate('smartflinebotserver-firebase-adminsdk-q4kci-72696b6a64.json')
+db = firestore.client()
 
-# 初始化firebase，注意不能重複初始化
-firebase_admin.initialize_app(cred)
 
 app = Flask(__name__)
 
@@ -46,7 +42,6 @@ class User():
 selling = User('U2649922b5604a80e08b0f9dba91f9029')
 selling.identity = 1
 Users = [selling]
-
 
 # Channel Access Token
 line_bot_api = LineBotApi(line_channel_access_token)
@@ -80,6 +75,8 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_post_message(event):
 # can not get event text
+    doc_ref = db.collection("user")
+
     u = User(event.source.user_id)
     for i in Users:
         if i.user_id == event.source.user_id:
@@ -152,6 +149,16 @@ def handle_post_message(event):
 def handle_message(event):
     print(event)
     text=event.message.text
+    
+    doc = { 
+            'user_id' : "",
+            'state' : states.START,
+            'quastionCount' : 0,
+            'div_id' : "",
+            'identity' : 0
+        }
+
+    db.collection("user").document(event.source.user_id).set(doc)
     
     f = False
     u = User(event.source.user_id)
