@@ -58,6 +58,15 @@ def callback():
         abort(400)
     return 'OK'
 
+def UseriChangeState(self, id, state):
+    for i in Users:
+        if i.user_id == id:
+            i.state =  state
+def UseriChangeDivId(self, id, divId):
+    for i in Users:
+        if i.user_id == id:
+            i.div_id = divId
+
 @handler.add(PostbackEvent)
 def handle_post_message(event):
 # can not get event text
@@ -78,8 +87,8 @@ def handle_post_message(event):
         
         else:
             selling.state = states.DIV
-            u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
-            u.state = states.DIV
+            UseriChangeDivId(u.user_id,'U2649922b5604a80e08b0f9dba91f9029')
+            UseriChangeState(u.user_id,states.DIV)
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
