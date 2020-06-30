@@ -74,10 +74,13 @@ def handle_post_message(event):
     for i in Users:
         if i.user_id == event.source.user_id:
             u = i 
-            
+    s = User(event.source.user_id)     
 
     if event.postback.data == 'apple':
-        if selling.state != states.LOGIN:
+        for i in Users:
+                if i.user_id == 'U2649922b5604a80e08b0f9dba91f9029':
+                    s = i
+        if s.state != states.LOGIN:
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
@@ -86,13 +89,13 @@ def handle_post_message(event):
                 )
         
         else:
-            selling.state = states.DIV
 
+            s.state = states.DIV
             for i in Users:
-                if i.user_id == id:
+                if i.user_id == event.source.user_id:
                     i.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
             for i in Users:
-                if i.user_id == id:
+                if i.user_id == event.source.user_id:
                     i.state =  states.DIV
             line_bot_api.reply_message(
                     event.reply_token,
@@ -106,7 +109,7 @@ def handle_post_message(event):
                                 text="有新用戶想向您詢問問題",
                             )
                         )         
-            selling.div_id = u.user_id
+            s.div_id = u.user_id
 
     if event.postback.data == 'maggie':
 
@@ -615,6 +618,7 @@ def handle_message(event):
                     if i.user_id == u.div_id:
                         i.state = states.START
                         break
+                
                 u.state = states.LOGIN
             else:
 
