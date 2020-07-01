@@ -111,7 +111,7 @@ def handle_post_message(event):
         if i.user_id == event.source.user_id:
             u = i 
     s = User(event.source.user_id)     
-    
+
     if event.postback.data == 'apple':
         for i in Users:
                 if i.user_id == 'U2649922b5604a80e08b0f9dba91f9029':
@@ -183,6 +183,7 @@ def handle_message(event):
     doc = UserData_get(event.source.user_id)
     if  doc == None:
         UserData_new(event.source.user_id, profile)
+        doc = UserData_get(event.source.user_id)
 
     u = toUser(doc)
 
