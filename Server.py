@@ -190,7 +190,7 @@ def handle_message(event):
     if u.identity == 0:
         print (u.state)
         print (states.START)
-        if u.state == states.START :
+        if u.state == int(states.START) :
             if (text=="金融小知識"):
                 case = random.randint(0,6)
                 reply_text = ""
