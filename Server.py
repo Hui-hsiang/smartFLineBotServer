@@ -47,7 +47,7 @@ class User():
         self.quastionCount = 0
         self.div_id = 0
         self.identity = 0
-        
+        self.name =""
 selling = User('U2649922b5604a80e08b0f9dba91f9029')
 selling.identity = 1
 Users = [selling]
@@ -58,8 +58,24 @@ def UserData_get(id):
     doc = collection_ref.get()
     return doc.to_dict()
 
+def UserData_new(id, profile):
+    doc = { 
+            'user_id' : id,
+            'state' : 0,
+            'quastionCount' : 0,
+            'div_id' : "",
+            'identity' : 0,
+            'name' : profile.display_name
+        }
+    db.collection("user").document(id).set(Ndoc)
 
-
+def toUser(doc):
+    u = User(doc['user_id'])
+    u.state = doc['state']
+    u.quastionCount = doc['quastionCount']
+    u.div_id = doc['div_id']
+    u.identity = doc['identity']
+    u.name = doc['name']
 
 # Channel Access Token
 line_bot_api = LineBotApi(line_channel_access_token)
@@ -161,18 +177,10 @@ def handle_message(event):
     text=event.message.text
 
     profile = line_bot_api.get_profile(event.source.user_id)
-    doc = { 
-            'user_id' : event.source.user_id,
-            'state' : 0,
-            'quastionCount' : 0,
-            'div_id' : "",
-            'identity' : 0,
-            'name' : profile.display_name
-        }
+    doc = UserData_get(event.source.user_id)
+    if  doc == None:
+        UserData_new(event.source.user_id, profile)
 
-    if UserData_get(event.source.user_id) == None:
-        db.collection("user").document(event.source.user_id).set(doc)
-    
     f = False
     u = User(event.source.user_id)
     for i in Users:
@@ -183,7 +191,8 @@ def handle_message(event):
 
     if (f == False):
         Users.append(u)
-    if u.identity == 0:
+
+    if doc.identity == 0:
         if u.state == states.START :
             if (text=="金融小知識"):
                 case = random.randint(0,6)
