@@ -188,6 +188,7 @@ def handle_message(event):
     u = toUser(doc)
 
     if u.identity == 0:
+        print (8787)
         if u.state == states.START :
             if (text=="金融小知識"):
                 case = random.randint(0,6)
