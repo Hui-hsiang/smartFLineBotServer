@@ -43,7 +43,7 @@ class states(Enum):
 class User():
     def __init__(self, id):
         self.user_id = id
-        self.state = states.START
+        self.state = states.START.value
         self.quastionCount = 0
         self.div_id = 0
         self.identity = 0
@@ -116,7 +116,7 @@ def handle_post_message(event):
         for i in Users:
                 if i.user_id == 'U2649922b5604a80e08b0f9dba91f9029':
                     s = i
-        if s.state != states.LOGIN:
+        if s.state != states.LOGIN.value:
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
@@ -124,8 +124,8 @@ def handle_post_message(event):
                     )
                 )
         else:
-            s.state = states.DIV
-            u.state = states.DIV
+            s.state = states.DIV.value
+            u.state = states.DIV.value
             s.div_id = event.source.user_id
             u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
             
@@ -412,7 +412,7 @@ def handle_message(event):
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
         
-        elif u.state == states.QUSTION :
+        elif u.state == states.QUSTION.value :
             if u.quastionCount == 1:
                 u.quastionCount += 1
                 line_bot_api.reply_message(
@@ -486,7 +486,7 @@ def handle_message(event):
                             )
                         ])))
             else:
-                u.state = states.START
+                u.state = states.START.value
                 u.quastionCount = 0
                 reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
                 reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
@@ -556,7 +556,7 @@ def handle_message(event):
                 line_bot_api.push_message(event.source.user_id, carousel_template_message)
             doc["quastionCount"] = u.quastionCount
             doc["state"] = u.state
-        elif u.state == states.DIV:
+        elif u.state == states.DIV.value:
             if text == "離開":
                 reply_text = "您已離開對話"
 
@@ -571,27 +571,27 @@ def handle_message(event):
                     )
                 for i in Users:
                     if i.user_id == u.div_id:
-                        i.state = states.LOGIN
+                        i.state = states.LOGIN.value
                         break
-                u.state = states.START
+                u.state = states.START.value
             else:
                 line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     else:
-        if u.state == states.START:
+        if u.state == states.START.value:
 
             reply_text = "請輸入【手機號碼】登入系統"
 
             if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
-            u.state = states.UNLOGIN
-        elif u.state == states.UNLOGIN:
+            u.state = states.UNLOGIN.value
+        elif u.state == states.UNLOGIN.value:
             if(text == "確認"): 
                 reply_text = "歡迎登入\n請點選下方【服務項目】執行動作"
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
-                u.state = states.LOGIN
+                u.state = states.LOGIN.value
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
 
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-9a3e9e8fd2ca493c4b6c1c638ea5304d', 
@@ -626,7 +626,7 @@ def handle_message(event):
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
         
-        elif u.state == states.LOGIN:
+        elif u.state == states.LOGIN.value:
             if text == "登出":
                 reply_text = "您已成功登出"
 
@@ -634,12 +634,12 @@ def handle_message(event):
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
                 
-                u.state = states.START
+                u.state = states.START.value
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
                         headers=headers)
 
-        elif u.state == states.DIV :
+        elif u.state == states.DIV.value :
             if text == "離開":
                 reply_text = "您已離開對話"
 
@@ -654,10 +654,10 @@ def handle_message(event):
                     )
                 for i in Users:
                     if i.user_id == u.div_id:
-                        i.state = states.START
+                        i.state = states.START.value
                         break
                 
-                u.state = states.LOGIN
+                u.state = states.LOGIN.value
             else:
 
                 if (u.div_id != 0):
