@@ -67,7 +67,7 @@ def UserData_new(id, profile):
             'identity' : 0,
             'name' : profile.display_name
         }
-    db.collection("user").document(id).set(Ndoc)
+    db.collection("user").document(id).set(doc)
 
 def toUser(doc):
     u = User(doc['user_id'])
@@ -76,6 +76,9 @@ def toUser(doc):
     u.div_id = doc['div_id']
     u.identity = doc['identity']
     u.name = doc['name']
+
+def UserData_update(u,doc):
+    db.collection("user").document(u.user_id).update(doc)
 
 # Channel Access Token
 line_bot_api = LineBotApi(line_channel_access_token)
@@ -108,7 +111,7 @@ def handle_post_message(event):
         if i.user_id == event.source.user_id:
             u = i 
     s = User(event.source.user_id)     
-
+    
     if event.postback.data == 'apple':
         for i in Users:
                 if i.user_id == 'U2649922b5604a80e08b0f9dba91f9029':
@@ -181,18 +184,9 @@ def handle_message(event):
     if  doc == None:
         UserData_new(event.source.user_id, profile)
 
-    f = False
-    u = User(event.source.user_id)
-    for i in Users:
-        if i.user_id == event.source.user_id:
-            u = i
-            f = True
-            break
+    u = toUser(doc)
 
-    if (f == False):
-        Users.append(u)
-
-    if doc.identity == 0:
+    if u.identity == 0:
         if u.state == states.START :
             if (text=="金融小知識"):
                 case = random.randint(0,6)
@@ -378,6 +372,8 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             elif text == "投資風險屬性分析問卷":
                 u.state = states.QUSTION
+                doc["state"] = u.state
+
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(
@@ -401,7 +397,8 @@ def handle_message(event):
                             )
                         ])))
                 u.quastionCount += 1
-
+                doc["quastionCount"] = u.quastionCount
+                
             else:
 
                 reply_text = "Hi\n我是智能金融導購平台💼\n"
@@ -554,6 +551,8 @@ def handle_message(event):
                     )
                 )
                 line_bot_api.push_message(event.source.user_id, carousel_template_message)
+            doc["quastionCount"] = u.quastionCount
+            doc["state"] = u.state
         elif u.state == states.DIV:
             if text == "離開":
                 reply_text = "您已離開對話"
@@ -665,6 +664,8 @@ def handle_message(event):
                                 text=text,
                             )
                         )
+
+    UserData_update(u,doc)
 
     
     
