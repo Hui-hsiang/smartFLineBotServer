@@ -190,7 +190,7 @@ def handle_message(event):
     if u.identity == 0:
         print (u.state)
         print (states.START)
-        if u.state == int(states.START) :
+        if u.state == states.START.value :
             if (text=="金融小知識"):
                 case = random.randint(0,6)
                 reply_text = ""
@@ -374,7 +374,7 @@ def handle_message(event):
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             elif text == "投資風險屬性分析問卷":
-                u.state = states.QUSTION
+                u.state = states.QUSTION.value
                 doc["state"] = u.state
 
                 line_bot_api.reply_message(
