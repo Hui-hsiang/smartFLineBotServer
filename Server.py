@@ -76,7 +76,7 @@ def toUser(doc):
     u.div_id = doc['div_id']
     u.identity = doc['identity']
     u.name = doc['name']
-
+    return u
 def UserData_update(u,doc):
     db.collection("user").document(u.user_id).update(doc)
 
