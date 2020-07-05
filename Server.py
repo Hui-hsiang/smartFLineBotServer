@@ -687,7 +687,15 @@ def handle_message(event):
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
                         headers=headers)
+            if text == "導購諮詢連結":
+                reply_text = "您已成功"
 
+                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                    message = TextSendMessage(reply_text)
+                    line_bot_api.reply_message(event.reply_token, message)
+                
+
+                
         elif u.state == states.DIV.value :
             if text == "離開":
                 reply_text = "您已離開對話"
