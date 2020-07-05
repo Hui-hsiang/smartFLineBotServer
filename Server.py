@@ -66,7 +66,8 @@ def UserData_new(id, profile):
             'name' : profile.display_name
         }
     db.collection("user").document(id).set(doc)
-
+def message_new(id,message):
+    db.collection("message").document(id).set(message)
 def toUser(doc):
     u = User(doc['user_id'])
     u.state = doc['state']
@@ -395,6 +396,7 @@ def handle_message(event):
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
             elif "投資方案" in text:
+
                 carousel_template_message = TemplateSendMessage(
                     alt_text='人壽保險',
                     template=CarouselTemplate(
@@ -414,6 +416,19 @@ def handle_message(event):
                     )
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
+            elif "方法" in text:
+                message_doc = {
+                    'message' : text
+                    'name' : profile.display_name
+                }
+                
+                message_new(u.user_id,message_doc)
+                reply_text = "您的問題已加入等候序列\n請耐心等候專員回復\n"
+                
+                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                    message = TextSendMessage(reply_text)
+                    line_bot_api.reply_message(event.reply_token, message)
+
             elif text == "投資風險屬性分析問卷":
                 u.state = states.QUSTION.value
                 doc["state"] = u.state
