@@ -708,14 +708,14 @@ def handle_message(event):
                 
                 docs = db.collection('message').get()
                 columns = []
-                if db.collection('message').list_documents().to_dict() == None:
+                if db.collection('message').list_documents().num_results == 0:
                     reply_text = "目前沒有導購諮詢呦"
 
                     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                         message = TextSendMessage(reply_text)
                         line_bot_api.reply_message(event.reply_token, message)
                 else:
-                    print (db.collection('message').list_documents().to_dict())
+                    print (list(db.collection('message').list_documents()))
                     for i in docs:
                         doc = i.to_dict()
                         columns.append(
