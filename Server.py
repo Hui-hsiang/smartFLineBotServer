@@ -105,17 +105,17 @@ def callback():
 @handler.add(PostbackEvent)
 def handle_post_message(event):
 # can not get event text
-    doc_ref = db.collection("user")
-    u = User(event.source.user_id)
-    for i in Users:
-        if i.user_id == event.source.user_id:
-            u = i 
-    s = User(event.source.user_id)     
+
+
+    u_doc = UserData_get(event.source.user_id)
+    u = toUser(u_doc)
+    
 
     if event.postback.data == 'apple':
-        for i in Users:
-                if i.user_id == 'U2649922b5604a80e08b0f9dba91f9029':
-                    s = i
+        
+        s_doc = UserData_get('U2649922b5604a80e08b0f9dba91f9029')
+        s = toUser(s_doc)
+
         if s.state != states.LOGIN.value:
             line_bot_api.reply_message(
                     event.reply_token,
@@ -125,10 +125,14 @@ def handle_post_message(event):
                 )
         else:
             s.state = states.DIV.value
+            s_doc["state"] = s.state
             u.state = states.DIV.value
+            u_doc["state"] = u.state
             s.div_id = event.source.user_id
+            s_doc["div_id"] = s.div_id
             u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
-            
+            u_doc["div_id"] = u.div_id
+
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
@@ -141,8 +145,6 @@ def handle_post_message(event):
                                 text="有新用戶想向您詢問問題",
                             )
                         )         
-
-
     if event.postback.data == 'maggie':
 
         line_bot_api.reply_message(
@@ -171,6 +173,9 @@ def handle_post_message(event):
                             text="有新用戶想向您詢問問題",
                         )
                     )
+    
+    UserData_update(s,s_doc)
+    UserData_update(u,u_doc)
 
 
 # 處理訊息
@@ -569,10 +574,14 @@ def handle_message(event):
                             text="對方已離開對話",
                         )
                     )
-                for i in Users:
-                    if i.user_id == u.div_id:
-                        i.state = states.LOGIN.value
-                        break
+
+                div_doc = UserData_get(u.div_id)
+                div_u = toUser(div_doc)
+                div_u.state = states.LOGIN.value
+                div_doc["state"] = div_u.state
+                UserData_update(div_u,div_doc)
+
+                
                 u.state = states.START.value
                 doc["state"] = u.state
             else:
@@ -656,11 +665,13 @@ def handle_message(event):
                             text="對方已離開對話",
                         )
                     )
-                for i in Users:
-                    if i.user_id == u.div_id:
-                        i.state = states.START.value
-                        break
                 
+                div_doc = UserData_get(u.div_id)
+                div_u = toUser(div_doc)
+                div_u.state = states.START.value
+                div_doc["state"] = div_u.state
+                UserData_update(div_u,div_doc)
+
                 u.state = states.LOGIN.value
                 doc["state"] = u.state
             else:
