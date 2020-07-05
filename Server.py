@@ -707,9 +707,9 @@ def handle_message(event):
             if text == "導購諮詢連結":
                 
                 docs = db.collection('message').stream()
-
                 columns = []
-                for doc in docs:
+                for i in docs:
+                    doc = i.to_dict()
                     columns.append(
                         CarouselColumn(
                             thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
