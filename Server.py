@@ -710,7 +710,6 @@ def handle_message(event):
                 columns = []
                 for i in docs:
                     doc = i.to_dict()
-                    print(doc)
                     columns.append(
                         CarouselColumn(
                             thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
