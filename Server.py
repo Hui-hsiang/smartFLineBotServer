@@ -213,7 +213,34 @@ def handle_post_message(event):
                                 text="有新用戶想向您詢問問題",
                             )
                         )         
-    
+    else:
+        s_doc = UserData_get(event.postback.data)
+        s = toUser(s_doc)
+        s.state = states.DIV.value
+        s_doc["state"] = s.state
+        u.state = states.DIV.value
+        u_doc["state"] = u.state
+        s.div_id = event.source.user_id
+        s_doc["div_id"] = s.div_id
+        u.div_id = event.postback.data
+        u_doc["div_id"] = u.div_id
+
+        line_bot_api.reply_message(
+                event.reply_token,
+                TextMessage(
+                    text="正在幫您導向該用戶",
+                )
+            )
+        line_bot_api.push_message(
+                        u.div_id,
+                        TextMessage(
+                            text="專員已接受您的諮詢，正在幫您導向專員",
+                        )
+                    )
+        path = "message/" + event.postback.data
+        doc_ref = db.document(path);
+        doc_ref.delete()
+
     UserData_update(s,s_doc)
     UserData_update(u,u_doc)
 
@@ -422,6 +449,7 @@ def handle_message(event):
                 message_doc = {
                     'message' : text,
                     'name' : profile.display_name
+                    'user_id' : u.user_id
                 }
 
                 message_new(u.user_id,message_doc)
@@ -500,7 +528,7 @@ def handle_message(event):
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(
-                    text='九、如您持有之整體投資資產下跌超過 15%，請問對您的生活影響程度為何？',
+                    text='三、如您持有之整體投資資產下跌超過 15%，請問對您的生活影響程度為何？',
                     quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
@@ -524,7 +552,7 @@ def handle_message(event):
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(
-                    text='十、當您的投資組合預期平均報酬率達到多少時才會考慮賣出？',
+                    text='四、當您的投資組合預期平均報酬率達到多少時才會考慮賣出？',
                     quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
@@ -724,9 +752,9 @@ def handle_message(event):
                                 title=doc['name'],
                                 text=doc['message'],
                                 actions=[
-                                    MessageAction(
-                                        label = '接受諮詢',
-                                        text = '接受諮詢'
+                                    PostbackTemplateAction(
+                                        label='接受諮詢', 
+                                        data=doc['user_id']
                                     )
                                 ]
                             )
