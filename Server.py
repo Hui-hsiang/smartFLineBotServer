@@ -708,7 +708,7 @@ def handle_message(event):
                 
                 docs = db.collection('message').get()
                 columns = []
-                if db.collection('message').list_documents().num_results == 0:
+                if len(list(db.collection('message').list_documents())) == 0:
                     print (list(db.collection('message').list_documents()))
                     reply_text = "目前沒有導購諮詢呦"
 
@@ -716,7 +716,6 @@ def handle_message(event):
                         message = TextSendMessage(reply_text)
                         line_bot_api.reply_message(event.reply_token, message)
                 else:
-                    print (list(db.collection('message').list_documents()))
                     for i in docs:
                         doc = i.to_dict()
                         columns.append(
