@@ -68,6 +68,8 @@ def UserData_new(id, profile):
     db.collection("user").document(id).set(doc)
 def message_new(id,message):
     db.collection("message").document(id).set(message)
+
+
 def toUser(doc):
     u = User(doc['user_id'])
     u.state = doc['state']
@@ -423,7 +425,7 @@ def handle_message(event):
                 }
 
                 message_new(u.user_id,message_doc)
-                reply_text = "您的問題已加入等候序列\n請耐心等候專員回復\n"
+                reply_text = "您的問題已加入等候序列\n請耐心等候專員回復"
                 
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
@@ -703,13 +705,32 @@ def handle_message(event):
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
                         headers=headers)
             if text == "導購諮詢連結":
-                reply_text = "您已成功"
-
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
                 
+                docs = db.collection('message').stream()
 
+                columns = []
+                for doc in docs:
+                    columns.append(
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
+                            title=doc['name'],
+                            text=doc['message'],
+                            actions=[
+                                MessageAction(
+                                    label = '接受諮詢',
+                                    text = '接受諮詢'
+                                )
+                            ]
+                        )
+                    )
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='金融產品',
+                    template=CarouselTemplate(
+                        columns
+                    )
+                )
+                line_bot_api.reply_message(event.reply_token, carousel_template_message)
+                
                 
         elif u.state == states.DIV.value :
             if text == "離開":
