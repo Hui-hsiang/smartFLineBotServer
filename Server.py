@@ -708,28 +708,35 @@ def handle_message(event):
                 
                 docs = db.collection('message').stream()
                 columns = []
-                for i in docs:
-                    doc = i.to_dict()
-                    columns.append(
-                        CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
-                            title=doc['name'],
-                            text=doc['message'],
-                            actions=[
-                                MessageAction(
-                                    label = '接受諮詢',
-                                    text = '接受諮詢'
-                                )
-                            ]
+                if docs == None:
+                    reply_text = "目前沒有導購諮詢呦"
+
+                    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                        message = TextSendMessage(reply_text)
+                        line_bot_api.reply_message(event.reply_token, message)
+                else:
+                    for i in docs:
+                        doc = i.to_dict()
+                        columns.append(
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
+                                title=doc['name'],
+                                text=doc['message'],
+                                actions=[
+                                    MessageAction(
+                                        label = '接受諮詢',
+                                        text = '接受諮詢'
+                                    )
+                                ]
+                            )
+                        )
+                    carousel_template_message = TemplateSendMessage(
+                        alt_text='金融產品',
+                        template=CarouselTemplate(
+                            columns
                         )
                     )
-                carousel_template_message = TemplateSendMessage(
-                    alt_text='金融產品',
-                    template=CarouselTemplate(
-                        columns
-                    )
-                )
-                line_bot_api.reply_message(event.reply_token, carousel_template_message)
+                    line_bot_api.reply_message(event.reply_token, carousel_template_message)
                 
                 
         elif u.state == states.DIV.value :
