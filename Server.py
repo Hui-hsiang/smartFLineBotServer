@@ -418,10 +418,10 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             elif "方法" in text:
                 message_doc = {
-                    'message' : text
+                    'message' : text,
                     'name' : profile.display_name
                 }
-                
+
                 message_new(u.user_id,message_doc)
                 reply_text = "您的問題已加入等候序列\n請耐心等候專員回復\n"
                 
