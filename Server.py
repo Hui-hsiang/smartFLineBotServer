@@ -238,7 +238,7 @@ def handle_post_message(event):
                         )
                     )
         path = "message/" + event.postback.data
-        doc_ref = db.document(path);
+        doc_ref = db.document(path)
         doc_ref.delete()
 
     UserData_update(s,s_doc)
@@ -745,16 +745,16 @@ def handle_message(event):
                         line_bot_api.reply_message(event.reply_token, message)
                 else:
                     for i in docs:
-                        doc = i.to_dict()
+                        m_doc = i.to_dict()
                         columns.append(
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
-                                title=doc['name'],
-                                text=doc['message'],
+                                title=m_doc['name'],
+                                text=m_doc['message'],
                                 actions=[
                                     PostbackTemplateAction(
                                         label='接受諮詢', 
-                                        data=doc['user_id']
+                                        data=m_doc['user_id']
                                     )
                                 ]
                             )
