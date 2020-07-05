@@ -706,7 +706,7 @@ def handle_message(event):
                         headers=headers)
             if text == "導購諮詢連結":
                 
-                docs = db.collection('message').stream()
+                docs = db.collection('message').get()
                 columns = []
                 if docs == None:
                     print ("in")
