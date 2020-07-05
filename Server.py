@@ -709,6 +709,7 @@ def handle_message(event):
                 docs = db.collection('message').get()
                 columns = []
                 if db.collection('message').list_documents().num_results == 0:
+                    print (list(db.collection('message').list_documents()))
                     reply_text = "目前沒有導購諮詢呦"
 
                     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
