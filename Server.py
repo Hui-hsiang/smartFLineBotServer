@@ -574,6 +574,7 @@ def handle_message(event):
                         i.state = states.LOGIN.value
                         break
                 u.state = states.START.value
+                doc["state"] = u.state
             else:
                 line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
     else:
@@ -585,6 +586,7 @@ def handle_message(event):
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
             u.state = states.UNLOGIN.value
+            doc["state"] = u.state
         elif u.state == states.UNLOGIN.value:
             if(text == "確認"): 
                 reply_text = "歡迎登入\n請點選下方【服務項目】執行動作"
@@ -592,6 +594,7 @@ def handle_message(event):
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
                 u.state = states.LOGIN.value
+                doc["state"] = u.state
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
 
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-9a3e9e8fd2ca493c4b6c1c638ea5304d', 
@@ -635,6 +638,7 @@ def handle_message(event):
                     line_bot_api.reply_message(event.reply_token, message)
                 
                 u.state = states.START.value
+                doc["state"] = u.state
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
                         headers=headers)
@@ -658,6 +662,7 @@ def handle_message(event):
                         break
                 
                 u.state = states.LOGIN.value
+                doc["state"] = u.state
             else:
 
                 if (u.div_id != 0):
