@@ -448,7 +448,7 @@ def handle_message(event):
             elif "方法" in text:
                 message_doc = {
                     'message' : text,
-                    'name' : profile.display_name
+                    'name' : profile.display_name,
                     'user_id' : u.user_id
                 }
 
