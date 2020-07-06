@@ -415,12 +415,30 @@ def handle_message(event):
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
             elif(text=="雋享年年終身保險"):
-                reply_text = "沒有"
+                reply_text = "雋享年年終身保險:\n\t商品特色\n"
+                reply_text += "承保年齡(15年期)：0 - 65歲\n"
+                reply_text += "承保年齡(20年期)：0 - 60歲\n"
+                reply_text += "年年領取生存金，資金活用高\n"
+                reply_text += "繳費期間高保障，繳費期滿高生存金\n"
+                reply_text += "意外相關保障加倍至85歲前，揪安心\n"
+                reply_text += "給付項目\n"
+                reply_text += "生存保險金\n"
+                reply_text += "祝壽保險金\n"
+                reply_text += "身故保險金\n"
+                reply_text += "完全失能保險金\n"
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
             elif(text=="微馨愛小額終身壽險"):
-                reply_text = "也沒有"
+                reply_text = "微馨愛小額終身壽險:\n\t商品特色\n"
+                reply_text += "承保年齡(6年期)16 - 88歲\n"
+                reply_text += "承保年齡(10年期)：16 - 82歲\n"
+                reply_text += "承保年齡(15、20年期)：16 - 80歲\n"
+                reply_text += "保費便宜保障終身\n"
+                reply_text += "給付項目\n"
+                reply_text += "身故保險金\n"
+                reply_text += "完全失能保險金\n"
+                reply_text += "祝壽金\n"
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
