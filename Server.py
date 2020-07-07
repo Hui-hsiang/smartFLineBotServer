@@ -77,7 +77,7 @@ def rank_flex():
             "contents": [
             {
                 "type": "text",
-                "text": r_doc["name"],
+                "text": "aa",
                 "size": "sm",
                 "color": "#555555"
             }
