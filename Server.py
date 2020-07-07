@@ -517,7 +517,7 @@ def handle_message(event):
                     preview_image_url='https://imgur.com/A0E7Hwz.png'
                 )
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
+                    message = image_message
                     line_bot_api.reply_message(event.reply_token, message)
             elif "投資方案" in text:
 
