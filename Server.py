@@ -50,6 +50,139 @@ class User():
         self.name =""
 
 
+def prepare_flex(text, date,product): 
+    contents ={
+        "type": "bubble",
+        "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+        {
+            "type": "text",
+            "text": "交易紀錄",
+            "weight": "bold",
+            "color": "#1DB446",
+            "size": "sm"
+        },
+        {
+            "type": "text",
+            "text": text,
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+        },
+        {
+            "type": "separator",
+            "margin": "xxl"
+        },
+        {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": date,
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                }
+                ]
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": product,
+                    "size": "sm",
+                    "color": "#555555"
+                }
+                ]
+            }
+            ]
+        }
+        ]
+        },
+        "styles": {
+            "footer": {
+            "separator": True
+            }
+        }
+        }
+    {
+        "type": "bubble",
+        "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+        {
+            "type": "text",
+            "text": "交易紀錄",
+            "weight": "bold",
+            "color": "#1DB446",
+            "size": "sm"
+        },
+        {
+            "type": "text",
+            "text": text,
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+        },
+        {
+            "type": "separator",
+            "margin": "xxl"
+        },
+        {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": date,
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                }
+                ]
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": product,
+                    "size": "sm",
+                    "color": "#555555"
+                }
+                ]
+            }
+            ]
+        }
+        ]
+        },
+        "styles": {
+            "footer": {
+            "separator": True
+            }
+        }
+        }
+    return contents    
+
 def UserData_get(id):
     path = "user/" + id
     collection_ref = db.document(path)
@@ -758,6 +891,23 @@ def handle_message(event):
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
                         headers=headers)
+            
+            if text == "歷史服務紀錄":
+                docs = db.collection("transaction").where('salesID','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
+                contents = []
+                for i in docs:
+                    t_doc = i.to_dict()
+                    print ("8787:"+t_doc["customerNAME"])
+                    print ("8787: "+str(t_doc['date']) + "\n" + t_doc['product'])
+                    contents.append(prepare_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
+                    
+                print(contents)
+                line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
+                    event.reply_token,
+                    FlexSendMessage('交易紀錄', contents[0])
+                    )
+                )
+            
             if text == "導購諮詢連結":
                 
                 docs = db.collection('message').get()
@@ -785,6 +935,7 @@ def handle_message(event):
                                 ]
                             )
                         )
+                    
                     carousel_template_message = TemplateSendMessage(
                         alt_text='金融產品',
                         template=CarouselTemplate(
@@ -792,7 +943,7 @@ def handle_message(event):
                         )
                     )
                     line_bot_api.reply_message(event.reply_token, carousel_template_message)
-                
+                    
                 
         elif u.state == states.DIV.value :
             if text == "離開":
