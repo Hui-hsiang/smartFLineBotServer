@@ -112,7 +112,7 @@ def rank_flex():
         "contents": [
         {
             "type": "text",
-            "text": today,
+            "text": str(today),
             "weight": "bold",
             "color": "#1DB446",
             "size": "sm"
