@@ -829,7 +829,7 @@ def handle_message(event):
                         headers=headers)
             
             if text == "歷史服務紀錄":
-                docs = db.collection("transaction").where('salesID','==', u.user_id).order_by("date").get()
+                docs = db.collection("transaction").where('salesID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
                 contents = []
                 for i in docs:
                     t_doc = i.to_dict()
