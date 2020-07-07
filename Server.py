@@ -829,7 +829,7 @@ def handle_message(event):
                         headers=headers)
             
             if text == "歷史服務紀錄":
-                docs = db.collection("transaction").where('salesID','==', u.user_id).get()
+                docs = db.collection("transaction").where('salesID','==', u.user_id).orderBy("date").get()
                 contents = []
                 for i in docs:
                     t_doc = i.to_dict()
