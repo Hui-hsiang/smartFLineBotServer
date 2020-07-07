@@ -50,11 +50,11 @@ class User():
         self.identity = 0
         self.name =""
 
-def rank_flex(docs):
+def rank_flex():
     rank = 1
     today = date.today()
     user_sep = []
-
+    docs = db.collection('sales').order_by('profit',direction=firestore.Query.DESCENDING)
     for i in docs:
         r_doc = i.to_dict()
         content = {
@@ -945,8 +945,7 @@ def handle_message(event):
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
                         headers=headers)
             elif text == "業績英雄榜":
-                docs = db.collection('sales').order_by('profit',direction=firestore.Query.DESCENDING)
-                contents = rank_flex(docs)
+                contents = rank_flex()
                 line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
                     FlexSendMessage('交易紀錄', contents)
