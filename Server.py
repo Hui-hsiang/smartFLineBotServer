@@ -762,15 +762,11 @@ def handle_message(event):
                         CarouselColumn(
                             thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
                             title=t_doc['customerNAME'],
-                            text= str(t_doc['date']) + "\n" + t_doc['product']
+                            text= str(t_doc['date']) + "\n" + t_doc['product'],
                             actions=[
                                 MessageAction(
                                     label = '確認',
                                     text = '確認'
-                                ),
-                                MessageAction(
-                                    label = '修改',
-                                    text = '修改'
                                 )
                             ]
                         )
