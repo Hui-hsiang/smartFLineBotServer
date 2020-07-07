@@ -101,6 +101,7 @@ def rank_flex():
             "type": "separator",
             "margin": "xxl"
         }
+        user_sep.append(content)
         rank += 1
 
 
