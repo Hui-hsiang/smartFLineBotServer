@@ -873,7 +873,7 @@ def handle_message(event):
                         )
                     )
             elif text == "本月分潤獎金":
-                s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get()
+                s_doc = db.collection('sales').document(u.user_id).get()
                 reply_text = "您的本月分潤獎金為\n【" + str(s_doc.to_dict()['profit'])  +  "】元"
 
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
