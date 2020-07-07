@@ -762,8 +762,11 @@ def handle_message(event):
                         message = TextSendMessage(reply_text)
                         line_bot_api.reply_message(event.reply_token, message)
                 else:
+                    print(list(docs))
                     for i in docs:
                         t_doc = i.to_dict()
+                        print (t_doc["customerNAME"])
+                        print (str(t_doc['date']) + "\n" + t_doc['product'])
                         columns.append(
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
