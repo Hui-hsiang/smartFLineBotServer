@@ -63,7 +63,7 @@ def rank_flex():
             "contents": [
             {
                 "type": "text",
-                "text": "第幾名",
+                "text": "第" + rank + "名",
                 "size": "sm",
                 "color": "#555555",
                 "flex": 0
@@ -77,7 +77,7 @@ def rank_flex():
             "contents": [
             {
                 "type": "text",
-                "text": "姓名",
+                "text": "業務員: " + r_doc["name"],
                 "size": "sm",
                 "color": "#555555"
             }
@@ -90,7 +90,7 @@ def rank_flex():
             "contents": [
             {
                 "type": "text",
-                "text": str(r_doc["profit"]),
+                "text": "分潤金額: " + str(r_doc["profit"]),
                 "size": "sm",
                 "color": "#555555"
             }
