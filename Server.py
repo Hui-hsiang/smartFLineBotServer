@@ -66,7 +66,72 @@ def prepare_flex(text, date,product):
         },
         {
             "type": "text",
-            "text": "text",
+            "text": text,
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+        },
+        {
+            "type": "separator",
+            "margin": "xxl"
+        },
+        {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": date,
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                }
+                ]
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": product,
+                    "size": "sm",
+                    "color": "#555555"
+                }
+                ]
+            }
+            ]
+        }
+        ]
+        },
+        "styles": {
+            "footer": {
+            "separator": True
+            }
+        }
+        }
+    {
+        "type": "bubble",
+        "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+        {
+            "type": "text",
+            "text": "交易紀錄",
+            "weight": "bold",
+            "color": "#1DB446",
+            "size": "sm"
+        },
+        {
+            "type": "text",
+            "text": text,
             "weight": "bold",
             "size": "xxl",
             "margin": "md"
