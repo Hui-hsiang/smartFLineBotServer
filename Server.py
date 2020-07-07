@@ -63,7 +63,7 @@ def rank_flex():
             "contents": [
             {
                 "type": "text",
-                "text": "第"+str(rank)+"名",
+                "text": "第幾名",
                 "size": "sm",
                 "color": "#555555",
                 "flex": 0
@@ -77,7 +77,7 @@ def rank_flex():
             "contents": [
             {
                 "type": "text",
-                "text": "aa",
+                "text": "姓名",
                 "size": "sm",
                 "color": "#555555"
             }
@@ -90,7 +90,7 @@ def rank_flex():
             "contents": [
             {
                 "type": "text",
-                "text": r_doc["profit"],
+                "text": str(r_doc["profit"]),
                 "size": "sm",
                 "color": "#555555"
             }
