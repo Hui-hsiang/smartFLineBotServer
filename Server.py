@@ -54,7 +54,7 @@ def rank_flex():
     rank = 1
     today = date.today()
     user_sep = []
-    docs = db.collection('sales').order_by('profit',direction=firestore.Query.ASCENDING).stream()
+    docs = db.collection('sales').order_by('profit',direction=firestore.Query.ASCENDING).get()
     for i in docs:
         r_doc = i.to_dict()
         content = {
