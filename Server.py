@@ -51,7 +51,8 @@ class User():
 
 
 def prepare_flex(text, date,product): 
-    contents ={
+    
+    contents1 ={
         "type": "bubble",
         "body": {
         "type": "box",
@@ -116,7 +117,7 @@ def prepare_flex(text, date,product):
             }
         }
         }
-    {
+    contents2 = {
         "type": "bubble",
         "body": {
         "type": "box",
@@ -180,7 +181,10 @@ def prepare_flex(text, date,product):
             "separator": True
             }
         }
-        }
+    }
+    contents = {
+    "type": "carousel",
+    "contents": [contents1,contents2]}
     return contents    
 
 def UserData_get(id):
