@@ -51,72 +51,8 @@ class User():
 
 
 def prepare_flex(text, date,product): 
+    
     contents ={
-        "type": "bubble",
-        "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-        {
-            "type": "text",
-            "text": "交易紀錄",
-            "weight": "bold",
-            "color": "#1DB446",
-            "size": "sm"
-        },
-        {
-            "type": "text",
-            "text": text,
-            "weight": "bold",
-            "size": "xxl",
-            "margin": "md"
-        },
-        {
-            "type": "separator",
-            "margin": "xxl"
-        },
-        {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-            {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                {
-                    "type": "text",
-                    "text": date,
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                }
-                ]
-            },
-            {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                {
-                    "type": "text",
-                    "text": product,
-                    "size": "sm",
-                    "color": "#555555"
-                }
-                ]
-            }
-            ]
-        }
-        ]
-        },
-        "styles": {
-            "footer": {
-            "separator": True
-            }
-        }
-        }
-    {
         "type": "bubble",
         "body": {
         "type": "box",
@@ -617,7 +553,29 @@ def handle_message(event):
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
+            elif text == "交易紀錄":
+                docs = db.collection("transaction").where('customerID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
+                contents = []
+                for i in docs:
+                    t_doc = i.to_dict()
+                    contents.append(prepare_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
 
+                if len(contents) == 0:
+                    reply_text = "您目前沒有交易紀錄呦"
+
+                    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                        message = TextSendMessage(reply_text)
+                        line_bot_api.reply_message(event.reply_token, message)
+                else:   
+                    carousel_contents = {
+                        "type": "carousel",
+                        "contents": contents}
+                    line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
+                        event.reply_token,
+                        FlexSendMessage('交易紀錄', carousel_contents)
+                        )
+                    )
+                    
             elif text == "投資風險屬性分析問卷":
                 u.state = states.QUSTION.value
                 doc["state"] = u.state
@@ -892,23 +850,30 @@ def handle_message(event):
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
                         headers=headers)
             
-            if text == "歷史服務紀錄":
-                docs = db.collection("transaction").where('salesID','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
+            elif text == "歷史服務紀錄":
+                docs = db.collection("transaction").where('salesID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
                 contents = []
                 for i in docs:
                     t_doc = i.to_dict()
-                    print ("8787:"+t_doc["customerNAME"])
-                    print ("8787: "+str(t_doc['date']) + "\n" + t_doc['product'])
                     contents.append(prepare_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
-                    
-                print(contents)
-                line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
-                    event.reply_token,
-                    FlexSendMessage('交易紀錄', contents[0])
+
+                if len(contents) == 0:
+                    reply_text = "您目前沒有交易紀錄呦"
+
+                    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                        message = TextSendMessage(reply_text)
+                        line_bot_api.reply_message(event.reply_token, message)
+                else:   
+                    carousel_contents = {
+                        "type": "carousel",
+                        "contents": contents}
+                    line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
+                        event.reply_token,
+                        FlexSendMessage('交易紀錄', carousel_contents)
+                        )
                     )
-                )
             
-            if text == "導購諮詢連結":
+            elif text == "導購諮詢連結":
                 
                 docs = db.collection('message').get()
                 columns = []
