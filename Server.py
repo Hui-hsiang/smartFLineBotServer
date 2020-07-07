@@ -833,18 +833,23 @@ def handle_message(event):
                 contents = []
                 for i in docs:
                     t_doc = i.to_dict()
-                    print ("8787:"+t_doc["customerNAME"])
-                    print ("8787: "+str(t_doc['date']) + "\n" + t_doc['product'])
                     contents.append(prepare_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
-                    
-                carousel_contents = {
-                    "type": "carousel",
-                    "contents": contents}
-                line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
-                    event.reply_token,
-                    FlexSendMessage('交易紀錄', carousel_contents)
+
+                if len(contents) == 0:
+                    reply_text = "您目前沒有交易紀錄呦"
+
+                    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                        message = TextSendMessage(reply_text)
+                        line_bot_api.reply_message(event.reply_token, message)
+                else:   
+                    carousel_contents = {
+                        "type": "carousel",
+                        "contents": contents}
+                    line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
+                        event.reply_token,
+                        FlexSendMessage('交易紀錄', carousel_contents)
+                        )
                     )
-                )
             
             if text == "導購諮詢連結":
                 
