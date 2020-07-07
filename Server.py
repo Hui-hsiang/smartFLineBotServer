@@ -998,7 +998,7 @@ def handle_message(event):
                         m_doc = i.to_dict()
                         columns.append(
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
+                                thumbnail_image_url= line_bot_api.get_profile(m_doc['user_id']).picture_url,
                                 title=m_doc['name'],
                                 text=m_doc['message'],
                                 actions=[
