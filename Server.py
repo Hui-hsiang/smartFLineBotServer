@@ -2,6 +2,7 @@
 from flask import Flask, request, abort
 from urllib.request import urlopen
 from config import line_channel_access_token, line_channel_secret
+from datetime import date
 #from oauth2client.service_account import ServiceAccountCredentials
 from enum import Enum
 from linebot import (
@@ -49,6 +50,100 @@ class User():
         self.identity = 0
         self.name =""
 
+def rank_flex(docs):
+    rank = 1
+    today = date.today()
+    user_sep = []
+
+    for i in docs:
+        r_doc = i.to_dict()
+        content = {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+            {
+                "type": "text",
+                "text": "第"+rank+"名",
+                "size": "sm",
+                "color": "#555555",
+                "flex": 0
+            }
+            ]
+        }
+        user_sep.append(content)
+        content = {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+            {
+                "type": "text",
+                "text": r_doc["name"],
+                "size": "sm",
+                "color": "#555555"
+            }
+            ]
+        }
+        user_sep.append(content)
+        content = {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+            {
+                "type": "text",
+                "text": r_doc["profit"],
+                "size": "sm",
+                "color": "#555555"
+            }
+            ]
+        }
+        user_sep.append(content)
+        content = {
+            "type": "separator",
+            "margin": "xxl"
+        }
+        rank += 1
+
+
+    contents ={
+        "type": "bubble",
+        "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+        {
+            "type": "text",
+            "text": today,
+            "weight": "bold",
+            "color": "#1DB446",
+            "size": "sm"
+        },
+        {
+            "type": "text",
+            "text": "業績英雄榜",
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+        },
+        {
+            "type": "separator",
+            "margin": "xxl"
+        },
+        {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": user_sep
+        }
+        ]
+        },
+        "styles": {
+            "footer": {
+            "separator": True
+            }
+        }
+    }
+    return contents 
 
 def prepare_flex(text, date,product): 
     
@@ -849,7 +944,14 @@ def handle_message(event):
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
                         headers=headers)
-            
+            elif text == "業績英雄榜":
+                docs = db.collection('sales').order_by('profit',direction=firestore.Query.DESCENDING)
+                contents = rank_flex(docs)
+                line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
+                    event.reply_token,
+                    FlexSendMessage('交易紀錄', contents)
+                    )
+                )
             elif text == "歷史服務紀錄":
                 docs = db.collection("transaction").where('salesID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
                 contents = []
