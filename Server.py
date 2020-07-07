@@ -754,31 +754,24 @@ def handle_message(event):
             if text == "歷史服務紀錄":
                 docs = db.collection("transaction").where('salesID','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
                 columns = []
-                if len(list(docs)) == 0:
-                    reply_text = "目前沒有服務紀錄呦"
-
-                    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                        message = TextSendMessage(reply_text)
-                        line_bot_api.reply_message(event.reply_token, message)
-                else:
-                    for i in docs:
-                        t_doc = i.to_dict()
-                        print ("8787:"+t_doc["customerNAME"])
-                        print ("8787: "+str(t_doc['date']) + "\n" + t_doc['product'])
-                        columns.append(
-                            CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
-                                title=t_doc['customerNAME'],
-                                text= str(t_doc['date']) + "\n" + t_doc['product']
-                            )
-                        )
-                    carousel_template_message = TemplateSendMessage(
-                        alt_text='金融產品',
-                        template=CarouselTemplate(
-                            columns
+                for i in docs:
+                    t_doc = i.to_dict()
+                    print ("8787:"+t_doc["customerNAME"])
+                    print ("8787: "+str(t_doc['date']) + "\n" + t_doc['product'])
+                    columns.append(
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
+                            title=t_doc['customerNAME'],
+                            text= str(t_doc['date']) + "\n" + t_doc['product']
                         )
                     )
-                    line_bot_api.reply_message(event.reply_token, carousel_template_message)
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='金融產品',
+                    template=CarouselTemplate(
+                        columns
+                    )
+                )
+                line_bot_api.reply_message(event.reply_token, carousel_template_message)
             
             if text == "導購諮詢連結":
                 
