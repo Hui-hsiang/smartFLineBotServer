@@ -732,6 +732,35 @@ def handle_message(event):
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
                         headers=headers)
+            
+            if text == "歷史服務紀錄":
+                collection_ref = db.collection("transaction")
+                docs = collection_ref.where('salesID','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
+                columns = []
+                if len(list(docs)) == 0:
+                    reply_text = "目前沒有服務紀錄呦"
+
+                    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                        message = TextSendMessage(reply_text)
+                        line_bot_api.reply_message(event.reply_token, message)
+                else:
+                    for i in docs:
+                        t_doc = i.to_dict()
+                        columns.append(
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
+                                title=t_doc['customerNAME'],
+                                text= str(t_doc['date']) + "\n" + t_doc['product']
+                            )
+                        )
+                    carousel_template_message = TemplateSendMessage(
+                        alt_text='金融產品',
+                        template=CarouselTemplate(
+                            columns
+                        )
+                    )
+                    line_bot_api.reply_message(event.reply_token, carousel_template_message)
+            
             if text == "導購諮詢連結":
                 
                 docs = db.collection('message').get()
@@ -766,7 +795,6 @@ def handle_message(event):
                         )
                     )
                     line_bot_api.reply_message(event.reply_token, carousel_template_message)
-                
                 
         elif u.state == states.DIV.value :
             if text == "離開":
