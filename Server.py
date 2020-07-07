@@ -50,6 +50,74 @@ class User():
         self.name =""
 
 
+def prepare_flex(text, date,product): 
+    contents ={
+        "type": "bubble",
+        "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+        {
+            "type": "text",
+            "text": "交易紀錄",
+            "weight": "bold",
+            "color": "#1DB446",
+            "size": "sm"
+        },
+        {
+            "type": "text",
+            "text": "text",
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+        },
+        {
+            "type": "separator",
+            "margin": "xxl"
+        },
+        {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": [
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": date,
+                    "size": "sm",
+                    "color": "#555555",
+                    "flex": 0
+                }
+                ]
+            },
+            {
+                "type": "box",
+                "layout": "horizontal",
+                "contents": [
+                {
+                    "type": "text",
+                    "text": product,
+                    "size": "sm",
+                    "color": "#555555"
+                }
+                ]
+            }
+            ]
+        }
+        ]
+        },
+        "styles": {
+            "footer": {
+            "separator": true
+            }
+        }
+        }
+    return contents    
+
 def UserData_get(id):
     path = "user/" + id
     collection_ref = db.document(path)
@@ -753,26 +821,19 @@ def handle_message(event):
             
             if text == "歷史服務紀錄":
                 docs = db.collection("transaction").where('salesID','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
-                columns = []
+                contents = []
                 for i in docs:
                     t_doc = i.to_dict()
                     print ("8787:"+t_doc["customerNAME"])
                     print ("8787: "+str(t_doc['date']) + "\n" + t_doc['product'])
-                    columns.append(
-                        CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
-                            title=t_doc['customerNAME'],
-                            text= str(t_doc['date']).split(" ")[0] + "\n" + t_doc['product'],
-                            actions=None
-                        )
-                    )
-                carousel_template_message = TemplateSendMessage(
-                    alt_text='金融產品',
-                    template=CarouselTemplate(
-                        columns
+                    contents.append(prepare_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
+                    
+                
+                line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
+                    event.reply_token,
+                    FlexSendMessage('交易紀錄', contents)
                     )
                 )
-                line_bot_api.reply_message(event.reply_token, carousel_template_message)
             
             if text == "導購諮詢連結":
                 
@@ -801,6 +862,7 @@ def handle_message(event):
                                 ]
                             )
                         )
+                    
                     carousel_template_message = TemplateSendMessage(
                         alt_text='金融產品',
                         template=CarouselTemplate(
@@ -808,6 +870,7 @@ def handle_message(event):
                         )
                     )
                     line_bot_api.reply_message(event.reply_token, carousel_template_message)
+                    
                 
         elif u.state == states.DIV.value :
             if text == "離開":
