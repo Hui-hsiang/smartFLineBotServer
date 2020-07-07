@@ -752,8 +752,7 @@ def handle_message(event):
                         headers=headers)
             
             if text == "歷史服務紀錄":
-                collection_ref = db.collection("transaction")
-                docs = collection_ref.where('salesID','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
+                docs = db.collection("transaction").where('salesID','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
                 columns = []
                 if len(list(docs)) == 0:
                     reply_text = "目前沒有服務紀錄呦"
@@ -762,11 +761,10 @@ def handle_message(event):
                         message = TextSendMessage(reply_text)
                         line_bot_api.reply_message(event.reply_token, message)
                 else:
-                    print(list(docs))
                     for i in docs:
                         t_doc = i.to_dict()
-                        print (t_doc["customerNAME"])
-                        print (str(t_doc['date']) + "\n" + t_doc['product'])
+                        print ("8787:"+t_doc["customerNAME"])
+                        print ("8787: "+str(t_doc['date']) + "\n" + t_doc['product'])
                         columns.append(
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
