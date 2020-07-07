@@ -112,7 +112,7 @@ def prepare_flex(text, date,product):
         },
         "styles": {
             "footer": {
-            "separator": true
+            "separator": True
             }
         }
         }
