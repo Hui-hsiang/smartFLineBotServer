@@ -513,8 +513,8 @@ def handle_message(event):
                     line_bot_api.reply_message(event.reply_token, message)
             elif(text=="平台介紹"):
                 image_message = ImageSendMessage(
-                    original_content_url='https://imgur.com/A0E7Hwz',
-                    preview_image_url='https://imgur.com/A0E7Hwz'
+                    original_content_url='https://imgur.com/A0E7Hwz.png',
+                    preview_image_url='https://imgur.com/A0E7Hwz.png'
                 )
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
@@ -575,7 +575,7 @@ def handle_message(event):
                         FlexSendMessage('交易紀錄', carousel_contents)
                         )
                     )
-                    
+
             elif text == "投資風險屬性分析問卷":
                 u.state = states.QUSTION.value
                 doc["state"] = u.state
