@@ -874,7 +874,7 @@ def handle_message(event):
                     )
             elif text == "本月分潤獎金":
                 s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get()
-                reply_text = "您這個月目前的分潤獎金為【" + str(s_doc.to_dict()['profit'])  +  "】"
+                reply_text = "您的本月分潤獎金為\n【" + str(s_doc.to_dict()['profit'])  +  "】元"
 
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
