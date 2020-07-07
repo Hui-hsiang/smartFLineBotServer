@@ -872,7 +872,14 @@ def handle_message(event):
                         FlexSendMessage('交易紀錄', carousel_contents)
                         )
                     )
-            
+            elif text == "本月分潤獎金":
+                s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get()
+                reply_text = "您這個月目前的分潤獎金為【" + str(s_doc['profit'])  +  "】"
+
+                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                    message = TextSendMessage(reply_text)
+                    line_bot_api.reply_message(event.reply_token, message)
+
             elif text == "導購諮詢連結":
                 
                 docs = db.collection('message').get()
