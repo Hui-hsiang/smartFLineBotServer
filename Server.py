@@ -827,11 +827,11 @@ def handle_message(event):
                     print ("8787:"+t_doc["customerNAME"])
                     print ("8787: "+str(t_doc['date']) + "\n" + t_doc['product'])
                     contents.append(prepare_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
-                    print(contents)
-                
+                    
+                print(contents)
                 line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
-                    FlexSendMessage('交易紀錄', contents)
+                    FlexSendMessage('交易紀錄', contents[0])
                     )
                 )
             
