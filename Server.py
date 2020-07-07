@@ -52,7 +52,7 @@ class User():
 
 def prepare_flex(text, date,product): 
     
-    contents1 ={
+    contents ={
         "type": "bubble",
         "body": {
         "type": "box",
@@ -117,74 +117,6 @@ def prepare_flex(text, date,product):
             }
         }
         }
-    contents2 = {
-        "type": "bubble",
-        "body": {
-        "type": "box",
-        "layout": "vertical",
-        "contents": [
-        {
-            "type": "text",
-            "text": "交易紀錄",
-            "weight": "bold",
-            "color": "#1DB446",
-            "size": "sm"
-        },
-        {
-            "type": "text",
-            "text": text,
-            "weight": "bold",
-            "size": "xxl",
-            "margin": "md"
-        },
-        {
-            "type": "separator",
-            "margin": "xxl"
-        },
-        {
-            "type": "box",
-            "layout": "vertical",
-            "margin": "xxl",
-            "spacing": "sm",
-            "contents": [
-            {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                {
-                    "type": "text",
-                    "text": date,
-                    "size": "sm",
-                    "color": "#555555",
-                    "flex": 0
-                }
-                ]
-            },
-            {
-                "type": "box",
-                "layout": "horizontal",
-                "contents": [
-                {
-                    "type": "text",
-                    "text": product,
-                    "size": "sm",
-                    "color": "#555555"
-                }
-                ]
-            }
-            ]
-        }
-        ]
-        },
-        "styles": {
-            "footer": {
-            "separator": True
-            }
-        }
-    }
-    contents = {
-    "type": "carousel",
-    "contents": [contents1,contents2]}
     return contents    
 
 def UserData_get(id):
@@ -905,10 +837,12 @@ def handle_message(event):
                     print ("8787: "+str(t_doc['date']) + "\n" + t_doc['product'])
                     contents.append(prepare_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
                     
-                print(contents)
+                carousel_contents = {
+                    "type": "carousel",
+                    "contents": contents}
                 line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
-                    FlexSendMessage('交易紀錄', contents[0])
+                    FlexSendMessage('交易紀錄', carousel_contents)
                     )
                 )
             
