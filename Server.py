@@ -385,7 +385,7 @@ def handle_post_message(event):
         if event.postback.data == 'a':
             u.score += 2
             u_doc["score"] = u.score
-            print (8787)
+            print (u.score)
         elif event.postback.data == 'b':
             u.score += 4
             u_doc["score"] = u.score
