@@ -415,36 +415,36 @@ def handle_post_message(event):
                             QuickReplyButton(
                                 
                                 action = PostbackAction(
-                                            label='保持資產的流動性',
-                                            display_text='保持資產的流動性',
+                                            label='沒有經驗',
+                                            display_text='沒有經驗',
                                             data='a'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='保本',
-                                            display_text='保本',
+                                            label='1-3年',
+                                            display_text='1-3年',
                                             data='b'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='賺取固定的利息收益',
-                                            display_text='賺取固定的利息收益',
+                                            label='4-6年',
+                                            display_text='4-6年',
                                             data='c'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='賺取資本利得(價差)',
-                                            display_text='賺取資本利得(價差)',
+                                            label='7-9年',
+                                            display_text='7-9年',
                                             data='d'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='追求總投資報酬最大',
-                                            display_text='追求總投資報酬最大',
+                                            label='10年以上',
+                                            display_text='10年以上',
                                             data='e'
                                         )
                             )
@@ -454,42 +454,42 @@ def handle_post_message(event):
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-            text='請問您曾經投資過那些金融商品?',
+            text='三、請問您曾經投資過那些金融商品?',
             quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
                                 
                                 action = PostbackAction(
-                                            label='保持資產的流動性',
-                                            display_text='保持資產的流動性',
+                                            label='台外幣存款、貨幣型基金、儲蓄型保險',
+                                            display_text='台外幣存款、貨幣型基金、儲蓄型保險',
                                             data='a'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='保本',
-                                            display_text='保本',
+                                            label='債券、債券型基金',
+                                            display_text='債券、債券型基金',
                                             data='b'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='賺取固定的利息收益',
-                                            display_text='賺取固定的利息收益',
+                                            label='股票、股票型基金、 ETF',
+                                            display_text='股票、股票型基金、 ETF',
                                             data='c'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='賺取資本利得(價差)',
-                                            display_text='賺取資本利得(價差)',
+                                            label='結構型商品、投資型保單',
+                                            display_text='結構型商品、投資型保單',
                                             data='d'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='追求總投資報酬最大',
-                                            display_text='追求總投資報酬最大',
+                                            label='期貨、選擇權或其他衍生性金融商品',
+                                            display_text='期貨、選擇權或其他衍生性金融商品',
                                             data='e'
                                         )
                             )
@@ -499,42 +499,42 @@ def handle_post_message(event):
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-            text='請問您曾經投資過那些金融商品?',
+            text='四、請問您有多少年投資經驗在具價值波動性之商品(包括股票、共同基金、外幣、結構型投資商品、認(售)購權證、期貨、選擇權及投資型保單) ？(風險評估-偏好)',
             quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
                                 
                                 action = PostbackAction(
-                                            label='保持資產的流動性',
-                                            display_text='保持資產的流動性',
+                                            label='沒有經驗',
+                                            display_text='沒有經驗',
                                             data='a'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='保本',
-                                            display_text='保本',
+                                            label='1 〜 3 年',
+                                            display_text='1 〜 3 年',
                                             data='b'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='賺取固定的利息收益',
-                                            display_text='賺取固定的利息收益',
+                                            label='4 〜 6 年',
+                                            display_text='4 〜 6 年',
                                             data='c'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='賺取資本利得(價差)',
-                                            display_text='賺取資本利得(價差)',
+                                            label='7 〜 9 年',
+                                            display_text='7 〜 9 年',
                                             data='d'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='追求總投資報酬最大',
-                                            display_text='追求總投資報酬最大',
+                                            label='10 年以上',
+                                            display_text='10 年以上',
                                             data='e'
                                         )
                             )
@@ -544,42 +544,403 @@ def handle_post_message(event):
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-            text='請問您曾經投資過那些金融商品?',
+            text='五、請問您目前投資之資產中，約有多少比例是持有前述 2.4 所列舉之具價值波動性得商品 ？ (風險評估-偏好)',
             quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
                                 
                                 action = PostbackAction(
-                                            label='保持資產的流動性',
-                                            display_text='保持資產的流動性',
+                                            label='0%',
+                                            display_text='0%',
                                             data='a'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='保本',
-                                            display_text='保本',
+                                            label='介於 0%〜10%(含)',
+                                            display_text='介於 0%〜10%(含)',
                                             data='b'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='賺取固定的利息收益',
-                                            display_text='賺取固定的利息收益',
+                                            label='介於 10%〜25%(含) ',
+                                            display_text='介於 10%〜25%(含) ',
                                             data='c'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='賺取資本利得(價差)',
-                                            display_text='賺取資本利得(價差)',
+                                            label='介於 25%〜50%(含) ',
+                                            display_text='介於 25%〜50%(含) ',
                                             data='d'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='追求總投資報酬最大',
-                                            display_text='追求總投資報酬最大',
+                                            label='超過 50%',
+                                            display_text='超過 50%',
+                                            data='e'
+                                        )
+                            )
+                ])))
+        elif u.quastionCount == 5:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+            text='六、在一般情況下，您所能接受之價格波動，大約在那種程度？ (風險評估-偏好)',
+            quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='價格波動介於-5% 〜 +5%之間',
+                                            display_text='價格波動介於-5% 〜 +5%之間',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='價格波動介於-10% 〜 +10%之間',
+                                            display_text='價格波動介於-10% 〜 +10%之間',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='價格波動介於-15% 〜 +15%之間',
+                                            display_text='價格波動介於-15% 〜 +15%之間',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='價格波動介於-20% 〜 +20%之間',
+                                            display_text='價格波動介於-20% 〜 +20%之間',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='價格波動超過±20%',
+                                            display_text='價格波動超過±20%',
+                                            data='e'
+                                        )
+                            )
+                ])))
+        elif u.quastionCount == 6:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+            text='7、假設您有 NT100 萬元之投資組合，請問您可承擔最大本金下跌幅度為何？(風險評估- 承受力)',
+            quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='0%',
+                                            display_text='0%',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='-5% ',
+                                            display_text='-5% ',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='-10%',
+                                            display_text='-10%',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='-15%',
+                                            display_text='-15%',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='-20%以上',
+                                            display_text='-20%以上',
+                                            data='e'
+                                        )
+                            )
+                ])))
+        elif u.quastionCount == 7:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+            text='八、如您持有之整體投資資產下跌超過 15%，請問對您的生活影響程度為何？(風險評估-承受力)(現金流量期望)',
+            quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='無法承受',
+                                            display_text='無法承受',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='影響程度大',
+                                            display_text='影響程度大',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='中度影響',
+                                            display_text='中度影響',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='影響程度小',
+                                            display_text='影響程度小',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='沒有影響',
+                                            display_text='沒有影響',
+                                            data='e'
+                                        )
+                            )
+                ])))
+        elif u.quastionCount == 8:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+            text='九、當您的投資超過預設的停損或停利點時，請問您會採取那種處置方式？(風險評估-偏好) (現金流量期望)',
+            quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='立即賣出所有部位',
+                                            display_text='立即賣出所有部位',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='先賣出一半或一半以上部位',
+                                            display_text='先賣出一半或一半以上部位',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='先賣出一半以內部位',
+                                            display_text='先賣出一半以內部位',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='暫時觀望，視情況再因應(價差)',
+                                            display_text='暫時觀望，視情況再因應(價差)',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='繼續持有至回本或不漲為止',
+                                            display_text='繼續持有至回本或不漲為止',
+                                            data='e'
+                                        )
+                            )
+                ])))
+        elif u.quastionCount == 9:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+            text='十、當您的投資組合預期平均報酬率達到多少時才會考慮賣出？(風險評估) (現金流量期望)',
+            quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='5%',
+                                            display_text='5%',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='10%',
+                                            display_text='10%',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='15%',
+                                            display_text='15%',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='20%',
+                                            display_text='20%',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='25%以上',
+                                            display_text='25%以上',
+                                            data='e'
+                                        )
+                            )
+                ])))
+        elif u.quastionCount == 9:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+            text='十、當您的投資組合預期平均報酬率達到多少時才會考慮賣出？(風險評估) (現金流量期望)',
+            quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='5%',
+                                            display_text='5%',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='10%',
+                                            display_text='10%',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='15%',
+                                            display_text='15%',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='20%',
+                                            display_text='20%',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='25%以上',
+                                            display_text='25%以上',
+                                            data='e'
+                                        )
+                            )
+                ])))
+        
+        elif u.quastionCount == 10:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+            text='十一、若有臨時且非預期之事件發生時，請問您的備用金相當於您幾個月的家庭開支？(備用金係指在沒有違約金的前提下可隨時動用的存款) (風險評估-承受力)',
+            quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='無備用金儲蓄',
+                                            display_text='無備用金儲蓄',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='3 個月以下',
+                                            display_text='3 個月以下',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='3 個月(含)以上 〜 6 個月',
+                                            display_text='3 個月(含)以上 〜 6 個月',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='6 個月(含)以上〜9 個月',
+                                            display_text='6 個月(含)以上〜9 個月',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='9 個月(含)以上',
+                                            display_text='9 個月(含)以上',
+                                            data='e'
+                                        )
+                            )
+                ])))
+        elif u.quastionCount == 11:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+            text='十二、請問您偏好以下那類風險及報酬率之投資組合？(期望報酬)',
+            quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='沒有概念',
+                                            display_text='沒有概念',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='絕對低度風險投資組合+穩健保本(低度風險，只要保本就好)',
+                                            display_text='絕對低度風險投資組合+穩健保本(低度風險，只要保本就好)',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='低度風險投資組合+低度回報(低風險承擔下，追求低的投資報酬)',
+                                            display_text='低度風險投資組合+低度回報(低風險承擔下，追求低的投資報酬)',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='中度風險投資組合+中度回報(在中等風險承擔下，要求中等水準的合理報酬)',
+                                            display_text='中度風險投資組合+中度回報(在中等風險承擔下，要求中等水準的合理報酬)',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='高風險投資組合+高度回報(願意承擔高度風險，也期待創造超額報酬)',
+                                            display_text='高風險投資組合+高度回報(願意承擔高度風險，也期待創造超額報酬)',
                                             data='e'
                                         )
                             )
@@ -587,8 +948,22 @@ def handle_post_message(event):
         else:
             u.state = states.START.value
             u.quastionCount = 0
-            reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
-            reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
+            if u.score>=20 && u.score <=27:
+                reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【保守型】\n"
+                reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
+            elif u.score>=28 && u.score <=36:
+                reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【安穩型】\n"
+                reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
+            elif u.score>=37 && u.score <=47:
+                reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
+                reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
+            elif u.score>=48 && u.score <=60:
+                reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【成長型】\n"
+                reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
+            else:
+                reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【積極型】\n"
+                reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
+
             line_bot_api.reply_message(
                     event.reply_token,
                     TextMessage(
