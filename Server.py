@@ -49,6 +49,7 @@ class User():
         self.div_id = 0
         self.identity = 0
         self.name =""
+        self.score = 0
 
 def rank_flex():
     rank = 1
@@ -228,7 +229,8 @@ def UserData_new(id, profile):
             'quastionCount' : 0,
             'div_id' : "",
             'identity' : 0,
-            'name' : profile.display_name
+            'name' : profile.display_name,
+            'score' : 0
         }
     db.collection("user").document(id).set(doc)
 def message_new(id,message):
@@ -242,6 +244,7 @@ def toUser(doc):
     u.div_id = doc['div_id']
     u.identity = doc['identity']
     u.name = doc['name']
+    u.score = doc['score']
     return u
 def UserData_update(u,doc):
     db.collection("user").document(u.user_id).update(doc)
@@ -377,8 +380,24 @@ def handle_post_message(event):
                             TextMessage(
                                 text="有新用戶想向您詢問問題",
                             )
-                        )      
-    if event.postback.data == 'a':
+                        )
+    if u.state == states.QUSTION.value :
+        if event.postback.data == 'a':
+            u.score += 2
+            u_doc["score"] = u.score
+        elif event.postback.data == 'b':
+            u.score += 4
+            u_doc["score"] = u.score
+        elif event.postback.data == 'c':
+            u.score += 6
+            u_doc["score"] = u.score
+        elif event.postback.data == 'd':
+            u.score += 8
+            u_doc["score"] = u.score
+        elif event.postback.data == 'e':    
+            u.score += 10
+            u_doc["score"] = u.score
+
         if u.quastionCount == 1:
             u.quastionCount += 1
             line_bot_api.reply_message(
@@ -402,7 +421,32 @@ def handle_post_message(event):
                         QuickReplyButton(
                             action = MessageAction(label="-20%以上", text="-20%以上")
                         )
-                    ])))   
+                    ])))
+        elif u.quastionCount == 2:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+            text='二、假設您有 NT100 萬元之投資組合，請問您可承擔最大本金下跌幅度為何？',
+            quick_reply=QuickReply(
+                items=[
+                    QuickReplyButton(
+                        action = MessageAction(label = '0%',text = '0%')
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label="-5%", text="-5%")
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label="-10%", text="-10%")
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label="-15%", text="-15")
+                    ),
+                    QuickReplyButton(
+                        action = MessageAction(label="-20%以上", text="-20%以上")
+                    )
+                ])))
+
     else:
         s_doc = UserData_get(event.postback.data)
         s = toUser(s_doc)
