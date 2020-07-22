@@ -385,7 +385,6 @@ def handle_post_message(event):
         if event.postback.data == 'a':
             u.score += 2
             u_doc["score"] = u.score
-            print (u.score)
         elif event.postback.data == 'b':
             u.score += 4
             u_doc["score"] = u.score
@@ -476,6 +475,8 @@ def handle_post_message(event):
         doc_ref = db.document(path)
         doc_ref.delete()
 
+    print ('8787error')
+    print(u_doc['score'])
     UserData_update(s,s_doc)
     UserData_update(u,u_doc)
 
