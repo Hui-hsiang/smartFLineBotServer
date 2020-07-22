@@ -377,7 +377,32 @@ def handle_post_message(event):
                             TextMessage(
                                 text="有新用戶想向您詢問問題",
                             )
-                        )         
+                        )      
+    if event.postback.data == 'a':
+        if u.quastionCount == 1:
+            u.quastionCount += 1
+            line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text='二、假設您有 NT100 萬元之投資組合，請問您可承擔最大本金下跌幅度為何？',
+                quick_reply=QuickReply(
+                    items=[
+                        QuickReplyButton(
+                            action = MessageAction(label = '0%',text = '0%')
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="-5%", text="-5%")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="-10%", text="-10%")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="-15%", text="-15")
+                        ),
+                        QuickReplyButton(
+                            action = MessageAction(label="-20%以上", text="-20%以上")
+                        )
+                    ])))   
     else:
         s_doc = UserData_get(event.postback.data)
         s = toUser(s_doc)
@@ -679,28 +704,44 @@ def handle_message(event):
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(
-                    text='一、請問您投資金融商品最主要的考量因素為何？',
+                    text='一、請問您投資金融商品最主要的考量因素為何？(投資目的),
                     quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
                                 
                                 action = PostbackAction(
-                                            label='postback',
-                                            display_text='postback text',
-                                            data='action=buy&itemid=1'
+                                            label='保持資產的流動性',
+                                            display_text='保持資產的流動性',
+                                            data='a'
                                         )
                             ),
                             QuickReplyButton(
-                                action = MessageAction(label="賺取資本利得", text="賺取資本利得")
+                                action = PostbackAction(
+                                            label='保本',
+                                            display_text='保本',
+                                            data='b'
+                                        )
                             ),
                             QuickReplyButton(
-                                action = MessageAction(label="賺取固定的利息收益", text="賺取固定的利息收益")
+                                action = PostbackAction(
+                                            label='賺取固定的利息收益',
+                                            display_text='賺取固定的利息收益',
+                                            data='c'
+                                        )
                             ),
                             QuickReplyButton(
-                                action = MessageAction(label="保本", text="保本")
+                                action = PostbackAction(
+                                            label='賺取資本利得(價差)',
+                                            display_text='賺取資本利得(價差)',
+                                            data='d'
+                                        )
                             ),
                             QuickReplyButton(
-                                action = MessageAction(label="保持資產的流動性", text="保持資產的流動性")
+                                action = PostbackAction(
+                                            label='追求總投資報酬最大',
+                                            display_text='追求總投資報酬最大',
+                                            data='e'
+                                        )
                             )
                         ])))
                 u.quastionCount += 1
