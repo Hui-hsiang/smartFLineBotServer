@@ -313,7 +313,9 @@ def handle_post_message(event):
                             TextMessage(
                                 text="有新用戶想向您詢問問題",
                             )
-                        )         
+                        )
+        UserData_update(s,s_doc)
+
     if event.postback.data == 'maggie':
         s_doc = UserData_get('U2649922b5604a80e08b0f9dba91f9029')
         s = toUser(s_doc)
@@ -346,7 +348,9 @@ def handle_post_message(event):
                             TextMessage(
                                 text="有新用戶想向您詢問問題",
                             )
-                        )         
+                        )
+        UserData_update(s,s_doc)
+
     if event.postback.data == 'jerry':
 
         s_doc = UserData_get('U60d04b2a91c5b050242a42de2c1b1947')
@@ -381,6 +385,8 @@ def handle_post_message(event):
                                 text="有新用戶想向您詢問問題",
                             )
                         )
+        UserData_update(s,s_doc)
+
     if u.state == states.QUSTION.value :
         if event.postback.data == 'a':
             u.score += 2
@@ -474,10 +480,8 @@ def handle_post_message(event):
         path = "message/" + event.postback.data
         doc_ref = db.document(path)
         doc_ref.delete()
+        UserData_update(s,s_doc)
 
-    print ('8787error')
-    print(u_doc['score'])
-    UserData_update(s,s_doc)
     UserData_update(u,u_doc)
 
 
