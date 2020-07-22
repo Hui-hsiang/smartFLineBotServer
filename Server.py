@@ -385,6 +385,7 @@ def handle_post_message(event):
         if event.postback.data == 'a':
             u.score += 2
             u_doc["score"] = u.score
+            print (8787)
         elif event.postback.data == 'b':
             u.score += 4
             u_doc["score"] = u.score
@@ -403,7 +404,7 @@ def handle_post_message(event):
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-                text='二、假設您有 NT100 萬元之投資組合，請問您可承擔最大本金下跌幅度為何？',
+                text='二、請問您的投資經驗為何?(投資經驗、時間)',
                 quick_reply=QuickReply(
                     items=[
                         QuickReplyButton(
@@ -427,7 +428,7 @@ def handle_post_message(event):
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
-            text='二、假設您有 NT100 萬元之投資組合，請問您可承擔最大本金下跌幅度為何？',
+            text='請問您曾經投資過那些金融商品?',
             quick_reply=QuickReply(
                 items=[
                     QuickReplyButton(
