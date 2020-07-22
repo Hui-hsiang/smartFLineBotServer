@@ -411,22 +411,43 @@ def handle_post_message(event):
             TextSendMessage(
                 text='二、請問您的投資經驗為何?(投資經驗、時間)',
                 quick_reply=QuickReply(
-                    items=[
-                        QuickReplyButton(
-                            action = MessageAction(label = '0%',text = '0%')
-                        ),
-                        QuickReplyButton(
-                            action = MessageAction(label="-5%", text="-5%")
-                        ),
-                        QuickReplyButton(
-                            action = MessageAction(label="-10%", text="-10%")
-                        ),
-                        QuickReplyButton(
-                            action = MessageAction(label="-15%", text="-15")
-                        ),
-                        QuickReplyButton(
-                            action = MessageAction(label="-20%以上", text="-20%以上")
-                        )
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='保持資產的流動性',
+                                            display_text='保持資產的流動性',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='保本',
+                                            display_text='保本',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='賺取固定的利息收益',
+                                            display_text='賺取固定的利息收益',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='賺取資本利得(價差)',
+                                            display_text='賺取資本利得(價差)',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='追求總投資報酬最大',
+                                            display_text='追求總投資報酬最大',
+                                            data='e'
+                                        )
+                            )
                     ])))
         elif u.quastionCount == 2:
             u.quastionCount += 1
@@ -435,70 +456,133 @@ def handle_post_message(event):
             TextSendMessage(
             text='請問您曾經投資過那些金融商品?',
             quick_reply=QuickReply(
-                items=[
-                    QuickReplyButton(
-                        action = MessageAction(label = '0%',text = '0%')
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-5%", text="-5%")
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-10%", text="-10%")
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-15%", text="-15")
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-20%以上", text="-20%以上")
-                    )
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='保持資產的流動性',
+                                            display_text='保持資產的流動性',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='保本',
+                                            display_text='保本',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='賺取固定的利息收益',
+                                            display_text='賺取固定的利息收益',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='賺取資本利得(價差)',
+                                            display_text='賺取資本利得(價差)',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='追求總投資報酬最大',
+                                            display_text='追求總投資報酬最大',
+                                            data='e'
+                                        )
+                            )
                 ])))
-        elif u.quastionCount == 2:
+        elif u.quastionCount == 3:
             u.quastionCount += 1
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
             text='請問您曾經投資過那些金融商品?',
             quick_reply=QuickReply(
-                items=[
-                    QuickReplyButton(
-                        action = MessageAction(label = '0%',text = '0%')
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-5%", text="-5%")
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-10%", text="-10%")
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-15%", text="-15")
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-20%以上", text="-20%以上")
-                    )
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='保持資產的流動性',
+                                            display_text='保持資產的流動性',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='保本',
+                                            display_text='保本',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='賺取固定的利息收益',
+                                            display_text='賺取固定的利息收益',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='賺取資本利得(價差)',
+                                            display_text='賺取資本利得(價差)',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='追求總投資報酬最大',
+                                            display_text='追求總投資報酬最大',
+                                            data='e'
+                                        )
+                            )
                 ])))
-        elif u.quastionCount == 2:
+        elif u.quastionCount == 4:
             u.quastionCount += 1
             line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(
             text='請問您曾經投資過那些金融商品?',
             quick_reply=QuickReply(
-                items=[
-                    QuickReplyButton(
-                        action = MessageAction(label = '0%',text = '0%')
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-5%", text="-5%")
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-10%", text="-10%")
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-15%", text="-15")
-                    ),
-                    QuickReplyButton(
-                        action = MessageAction(label="-20%以上", text="-20%以上")
-                    )
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='保持資產的流動性',
+                                            display_text='保持資產的流動性',
+                                            data='a'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='保本',
+                                            display_text='保本',
+                                            data='b'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='賺取固定的利息收益',
+                                            display_text='賺取固定的利息收益',
+                                            data='c'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='賺取資本利得(價差)',
+                                            display_text='賺取資本利得(價差)',
+                                            data='d'
+                                        )
+                            ),
+                            QuickReplyButton(
+                                action = PostbackAction(
+                                            label='追求總投資報酬最大',
+                                            display_text='追求總投資報酬最大',
+                                            data='e'
+                                        )
+                            )
                 ])))
         else:
             u.state = states.START.value
@@ -915,80 +999,6 @@ def handle_message(event):
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
-        
-        elif u.state == states.QUSTION.value :
-            if u.quastionCount == 1:
-                u.quastionCount += 1
-                line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(
-                    text='二、假設您有 NT100 萬元之投資組合，請問您可承擔最大本金下跌幅度為何？',
-                    quick_reply=QuickReply(
-                        items=[
-                            QuickReplyButton(
-                                action = MessageAction(label = '0%',text = '0%')
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="-5%", text="-5%")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="-10%", text="-10%")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="-15%", text="-15")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="-20%以上", text="-20%以上")
-                            )
-                        ])))
-            elif u.quastionCount == 2:
-                u.quastionCount += 1
-                line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(
-                    text='三、如您持有之整體投資資產下跌超過 15%，請問對您的生活影響程度為何？',
-                    quick_reply=QuickReply(
-                        items=[
-                            QuickReplyButton(
-                                action = MessageAction(label = '無法承受',text = '無法承受')
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="中度影響", text="中度影響")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="影響程度小", text="影響程度小")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="沒有影響", text="沒有影響")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="影響程度大", text="影響程度大")
-                            )
-                        ])))
-            elif u.quastionCount == 3:
-                u.quastionCount += 1
-                line_bot_api.reply_message(
-                event.reply_token,
-                TextSendMessage(
-                    text='四、當您的投資組合預期平均報酬率達到多少時才會考慮賣出？',
-                    quick_reply=QuickReply(
-                        items=[
-                            QuickReplyButton(
-                                action = MessageAction(label = '25%以上',text = '25%以上')
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="20%", text="20%")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="15%", text="15%")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="10%", text="10%")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="5%", text="5%")
-                            )
-                        ])))
             
         elif u.state == states.DIV.value:
             if text == "離開":
