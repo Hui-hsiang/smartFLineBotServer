@@ -589,7 +589,19 @@ def handle_post_message(event):
             u.quastionCount = 0
             reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
             reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
+            line_bot_api.reply_message(
+                    event.reply_token,
+                    TextMessage(
+                        text=reply_text,
+                    )
+                )
             reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
+            line_bot_api.push_message(
+                    event.source.user_id,
+                    TextMessage(
+                        text=reply_text,
+                    )
+                )
             carousel_template_message = TemplateSendMessage(
                 alt_text='營業員',
                 template=CarouselTemplate(
