@@ -683,7 +683,12 @@ def handle_message(event):
                     quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
-                                action = MessageAction(label = '追求總投資報酬最大',text = '追求總投資報酬最大')
+                                
+                                action = PostbackAction(
+                                            label='postback',
+                                            display_text='postback text',
+                                            data='action=buy&itemid=1'
+                                        )
                             ),
                             QuickReplyButton(
                                 action = MessageAction(label="賺取資本利得", text="賺取資本利得")
