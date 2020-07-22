@@ -704,7 +704,7 @@ def handle_message(event):
                 line_bot_api.reply_message(
                 event.reply_token,
                 TextSendMessage(
-                    text='一、請問您投資金融商品最主要的考量因素為何？(投資目的),
+                    text='一、請問您投資金融商品最主要的考量因素為何？(投資目的)',
                     quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
