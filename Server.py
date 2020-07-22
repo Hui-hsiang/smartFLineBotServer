@@ -873,29 +873,29 @@ def handle_post_message(event):
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='3 個月以下',
-                                            display_text='3 個月以下',
+                                            label='3個月以下',
+                                            display_text='3個月以下',
                                             data='b'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='3 個月(含)以上 〜 6 個月',
+                                            label='3個月(含)以上〜6個月',
                                             display_text='3 個月(含)以上 〜 6 個月',
                                             data='c'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='6 個月(含)以上〜9 個月',
-                                            display_text='6 個月(含)以上〜9 個月',
+                                            label='6個月(含)以上〜9個月',
+                                            display_text='6 個月(含)以上〜9個月',
                                             data='d'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='9 個月(含)以上',
-                                            display_text='9 個月(含)以上',
+                                            label='9個月(含)以上',
+                                            display_text='9個月(含)以上',
                                             data='e'
                                         )
                             )
@@ -918,29 +918,29 @@ def handle_post_message(event):
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='絕對低度風險投資組合+穩健保本(低度風險，只要保本就好)',
-                                            display_text='絕對低度風險投資組合+穩健保本(低度風險，只要保本就好)',
+                                            label='低度風險，只要保本就好',
+                                            display_text='低度風險，只要保本就好',
                                             data='b'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='低度風險投資組合+低度回報(低風險承擔下，追求低的投資報酬)',
-                                            display_text='低度風險投資組合+低度回報(低風險承擔下，追求低的投資報酬)',
+                                            label='低風險承擔下，追求低的投資報酬',
+                                            display_text='低風險承擔下，追求低的投資報酬',
                                             data='c'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='中度風險投資組合+中度回報(在中等風險承擔下，要求中等水準的合理報酬)',
-                                            display_text='中度風險投資組合+中度回報(在中等風險承擔下，要求中等水準的合理報酬)',
+                                            label='在中等風險承擔下，要求中等的合理報酬',
+                                            display_text='在中等風險承擔下，要求中等的合理報酬',
                                             data='d'
                                         )
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='高風險投資組合+高度回報(願意承擔高度風險，也期待創造超額報酬)',
-                                            display_text='高風險投資組合+高度回報(願意承擔高度風險，也期待創造超額報酬)',
+                                            label='願意承擔高度風險，也期待創造超額報酬',
+                                            display_text='願意承擔高度風險，也期待創造超額報酬',
                                             data='e'
                                         )
                             )
