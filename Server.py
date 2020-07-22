@@ -501,66 +501,66 @@ def handle_post_message(event):
                     )
                 ])))
         else:
-                u.state = states.START.value
-                u.quastionCount = 0
-                reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
-                reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
-                reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
-                carousel_template_message = TemplateSendMessage(
-                    alt_text='營業員',
-                    template=CarouselTemplate(
-                        columns=[
-                            CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
-                                title='👔營業員 嘉禾',
-                                text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
-                                actions=[
-                                    MessageAction(
-                                        label = '查看評價',
-                                        text = '查看評價'
+            u.state = states.START.value
+            u.quastionCount = 0
+            reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
+            reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
+            reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
+            carousel_template_message = TemplateSendMessage(
+                alt_text='營業員',
+                template=CarouselTemplate(
+                    columns=[
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='👔營業員 嘉禾',
+                            text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
+                            actions=[
+                                MessageAction(
+                                    label = '查看評價',
+                                    text = '查看評價'
+                                ),
+                                PostbackTemplateAction(
+                                    label = '諮詢',
+                                    data='jerry'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='👔營業員 麥基',
+                            text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
+                            actions=[
+                                MessageAction(
+                                    label = '查看評價',
+                                    text = '查看評價'
+                                ),
+                                PostbackTemplateAction(
+                                    label = '諮詢',
+                                    data='maggie'
+                                )
+                            ]
+                        ),
+                        CarouselColumn(
+                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            title='👔營業員 曉琪',
+                            text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
+                            actions=[
+                                MessageAction(
+                                    label = '查看評價',
+                                    text = '查看評價'
+                                ),
+                                PostbackTemplateAction(
+                                        label='諮詢', 
+                                        data='apple'
                                     ),
-                                    PostbackTemplateAction(
-                                        label = '諮詢',
-                                        data='jerry'
-                                    )
-                                ]
-                            ),
-                            CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
-                                title='👔營業員 麥基',
-                                text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
-                                actions=[
-                                    MessageAction(
-                                        label = '查看評價',
-                                        text = '查看評價'
-                                    ),
-                                    PostbackTemplateAction(
-                                        label = '諮詢',
-                                        data='maggie'
-                                    )
-                                ]
-                            ),
-                            CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
-                                title='👔營業員 曉琪',
-                                text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
-                                actions=[
-                                    MessageAction(
-                                        label = '查看評價',
-                                        text = '查看評價'
-                                    ),
-                                    PostbackTemplateAction(
-                                            label='諮詢', 
-                                            data='apple'
-                                        ),
-                                ]
-                            )
-                        ]
-                    )
+                            ]
+                        )
+                    ]
                 )
-                line_bot_api.push_message(event.source.user_id, carousel_template_message)
-            u_doc["quastionCount"] = u.quastionCount
-            u_doc["state"] = u.state 
+            )
+        line_bot_api.push_message(event.source.user_id, carousel_template_message)
+        u_doc["quastionCount"] = u.quastionCount
+        u_doc["state"] = u.state 
 
     else:
         s_doc = UserData_get(event.postback.data)
