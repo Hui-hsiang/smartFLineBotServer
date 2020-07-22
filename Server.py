@@ -948,16 +948,16 @@ def handle_post_message(event):
         else:
             u.state = states.START.value
             u.quastionCount = 0
-            if u.score>=20 && u.score <=27:
+            if u.score>=20 and u.score <=27:
                 reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【保守型】\n"
                 reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
-            elif u.score>=28 && u.score <=36:
+            elif u.score>=28 and u.score <=36:
                 reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【安穩型】\n"
                 reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
-            elif u.score>=37 && u.score <=47:
+            elif u.score>=37 and u.score <=47:
                 reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【穩健型】\n"
                 reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
-            elif u.score>=48 && u.score <=60:
+            elif u.score>=48 and u.score <=60:
                 reply_text = "恭喜您完成問卷，經過分析後您的風險屬性為：【成長型】\n"
                 reply_text += "代表您可以接受中等的投資風險，希望預期報酬率可以優於長期存款利率；以期投資本金不因通貨膨脹而貶值，您可以接受高一點程度的波動。\n"
             else:
