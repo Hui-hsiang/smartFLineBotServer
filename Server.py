@@ -642,9 +642,9 @@ def handle_post_message(event):
                     ]
                 )
             )
-        line_bot_api.push_message(event.source.user_id, carousel_template_message)
-        u_doc["quastionCount"] = u.quastionCount
-        u_doc["state"] = u.state 
+            line_bot_api.push_message(event.source.user_id, carousel_template_message)
+            u_doc["quastionCount"] = u.quastionCount
+            u_doc["state"] = u.state 
 
     else:
         s_doc = UserData_get(event.postback.data)
