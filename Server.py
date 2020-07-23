@@ -1286,7 +1286,7 @@ def handle_message(event):
                 message_doc = {
                     'message' : text,
                     'name' : profile.display_name,
-                    'user_id' : u.user_id
+                    'user_id' : u.user_id,
                     'sales_id' : ''
                 }
 
