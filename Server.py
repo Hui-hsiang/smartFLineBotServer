@@ -293,35 +293,8 @@ def handle_post_message(event):
         reply_text = "您的問題已加入等候序列\n請耐心等候專員回復"
         message = TextSendMessage(reply_text)
         line_bot_api.reply_message(event.reply_token, message)
-
-        
-
-        # if s.state != states.LOGIN.value:
-        #     line_bot_api.reply_message(
-        #             event.reply_token,
-        #             TextMessage(
-        #                 text="營業員目前忙碌中～無法回覆您訊息\n",
-        #             )
-        #         )
-        # else:
-        #     s.state = states.DIV.value
-        #     s_doc["state"] = s.state
-        #     u.state = states.DIV.value
-        #     u_doc["state"] = u.state
-        #     s.div_id = event.source.user_id
-        #     s_doc["div_id"] = s.div_id
-        #     u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
-        #     u_doc["div_id"] = u.div_id
-
-            # line_bot_api.reply_message(
-            #         event.reply_token,
-            #         TextMessage(
-            #             text="正在幫您導向營業員",
-            #         )
-            #     )
-
         line_bot_api.push_message(
-                        u.div_id,
+                        s.user_id,
                         TextMessage(
                             text="有新用戶想向您詢問問題",
                         )
@@ -332,35 +305,20 @@ def handle_post_message(event):
         s_doc = UserData_get('U2649922b5604a80e08b0f9dba91f9029')
         s = toUser(s_doc)
 
-        if s.state != states.LOGIN.value:
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    TextMessage(
-                        text="營業員目前忙碌中～無法回覆您訊息\n",
-                    )
-                )
-        else:
-            s.state = states.DIV.value
-            s_doc["state"] = s.state
-            u.state = states.DIV.value
-            u_doc["state"] = u.state
-            s.div_id = event.source.user_id
-            s_doc["div_id"] = s.div_id
-            u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
-            u_doc["div_id"] = u.div_id
+        message_doc = {
+            'sales_id' : s.user_id
+        }
 
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    TextMessage(
-                        text="正在幫您導向營業員",
-                    )
-                )
-            line_bot_api.push_message(
-                            u.div_id,
-                            TextMessage(
-                                text="有新用戶想向您詢問問題",
-                            )
+        message_update(u.user_id,message_doc)
+        reply_text = "您的問題已加入等候序列\n請耐心等候專員回復"
+        message = TextSendMessage(reply_text)
+        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.push_message(
+                        s.user_id,
+                        TextMessage(
+                            text="有新用戶想向您詢問問題",
                         )
+                    )
         UserData_update(s,s_doc)
 
     if event.postback.data == 'jerry':
@@ -368,35 +326,20 @@ def handle_post_message(event):
         s_doc = UserData_get('U60d04b2a91c5b050242a42de2c1b1947')
         s = toUser(s_doc)
 
-        if s.state != states.LOGIN.value:
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    TextMessage(
-                        text="營業員目前忙碌中～無法回覆您訊息\n",
-                    )
-                )
-        else:
-            s.state = states.DIV.value
-            s_doc["state"] = s.state
-            u.state = states.DIV.value
-            u_doc["state"] = u.state
-            s.div_id = event.source.user_id
-            s_doc["div_id"] = s.div_id
-            u.div_id = 'U60d04b2a91c5b050242a42de2c1b1947'
-            u_doc["div_id"] = u.div_id
+        message_doc = {
+            'sales_id' : s.user_id
+        }
 
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    TextMessage(
-                        text="正在幫您導向營業員",
-                    )
-                )
-            line_bot_api.push_message(
-                            u.div_id,
-                            TextMessage(
-                                text="有新用戶想向您詢問問題",
-                            )
+        message_update(u.user_id,message_doc)
+        reply_text = "您的問題已加入等候序列\n請耐心等候專員回復"
+        message = TextSendMessage(reply_text)
+        line_bot_api.reply_message(event.reply_token, message)
+        line_bot_api.push_message(
+                        s.user_id,
+                        TextMessage(
+                            text="有新用戶想向您詢問問題",
                         )
+                    )
         UserData_update(s,s_doc)
 
     if u.state == states.QUSTION.value :
