@@ -235,7 +235,8 @@ def UserData_new(id, profile):
     db.collection("user").document(id).set(doc)
 def message_new(id,message):
     db.collection("message").document(id).set(message)
-
+def message_update(id,message):
+    db.collection("message").document(id).update(message)
 
 def toUser(doc):
     u = User(doc['user_id'])
@@ -285,13 +286,10 @@ def handle_post_message(event):
         s = toUser(s_doc)
 
         message_doc = {
-                    'message' : text,
-                    'name' : profile.display_name,
-                    'user_id' : u.user_id
                     'sales_id' : s.user_id
                 }
 
-        message_new(u.user_id,message_doc)
+        message_update(u.user_id,message_doc)
         reply_text = "您的問題已加入等候序列\n請耐心等候專員回復"
         message = TextSendMessage(reply_text)
         line_bot_api.reply_message(event.reply_token, message)
@@ -1285,6 +1283,15 @@ def handle_message(event):
                     message = image_message
                     line_bot_api.reply_message(event.reply_token, message)
             elif "投資方案" in text:
+                message_doc = {
+                    'message' : text,
+                    'name' : profile.display_name,
+                    'user_id' : u.user_id
+                    'sales_id' : ''
+                }
+
+                message_new(u.user_id,message_doc)
+
                 if u.score ==0:
                     carousel_template_message = TemplateSendMessage(
                         alt_text='請填問卷',
@@ -1408,7 +1415,15 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             
             elif "方法" in text:
+                
+                message_doc = {
+                    'message' : text,
+                    'name' : profile.display_name,
+                    'user_id' : u.user_id
+                    'sales_id' : ''
+                }
 
+                message_new(u.user_id,message_doc)
                 reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
                     line_bot_api.push_message(
                             event.source.user_id,
@@ -1470,16 +1485,7 @@ def handle_message(event):
                     )
                 line_bot_api.push_message(event.source.user_id, carousel_template_message)
 
-                message_doc = {
-                    'message' : text,
-                    'name' : profile.display_name,
-                    'user_id' : u.user_id
-                }
-
-                message_new(u.user_id,message_doc)
-                reply_text = "您的問題已加入等候序列\n請耐心等候專員回復"
-                message = TextSendMessage(reply_text)
-                line_bot_api.reply_message(event.reply_token, message)
+                
 
             elif text == "交易紀錄":
                 docs = db.collection("transaction").where('customerID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
