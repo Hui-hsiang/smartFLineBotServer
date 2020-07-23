@@ -1352,6 +1352,25 @@ def handle_message(event):
                         )
                     )
                     line_bot_api.push_message(event.source.user_id, carousel_template_message)
+            elif text == "最新活動":
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='最新活動1',
+                    template=CarouselTemplate(
+                        columns=[
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                title='目前尚未有任何最新活動',
+                                text='待平台正式營運 /n 將會更新最新活動',
+                                actions=[
+                                    MessageAction(
+                                        label='最新活動',
+                                        text='最新活動'
+                                    ),
+                                ]
+                            )
+                        ]
+                    )
+                )            
             elif "方法" in text:
                 message_doc = {
                     'message' : text,
