@@ -982,7 +982,7 @@ def handle_post_message(event):
                 template=CarouselTemplate(
                     columns=[
                         CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            thumbnail_image_url='https://i.imgur.com/9PATfwz.jpg',
                             title='👔營業員 嘉禾',
                             text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
                             actions=[
@@ -997,7 +997,7 @@ def handle_post_message(event):
                             ]
                         ),
                         CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            thumbnail_image_url='https://i.imgur.com/n06HVkC.jpg',
                             title='👔營業員 麥基',
                             text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
                             actions=[
@@ -1012,7 +1012,7 @@ def handle_post_message(event):
                             ]
                         ),
                         CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            thumbnail_image_url='https://i.imgur.com/pDtoSWN.jpg',
                             title='👔營業員 曉琪',
                             text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
                             actions=[
@@ -1393,8 +1393,8 @@ def handle_message(event):
                 )  
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             elif text == "我還有其他疑問":
-                text_message = TextSendMessage(text='請輸入您的疑問')
-                text_message = TextSendMessage(text='收到您的問題，將盡速給予您問題答覆')
+                if text_message = TextSendMessage(text='請輸入您的疑問')
+                   text_message = TextSendMessage(text='收到您的問題，將盡速給予您問題答覆')
                 line_bot_api.reply_message(event.reply_token, text_message)
             elif "方法" in text:
                 message_doc = {
