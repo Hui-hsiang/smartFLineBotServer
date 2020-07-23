@@ -1370,7 +1370,8 @@ def handle_message(event):
                             )
                         ]
                     )
-                )            
+                )  
+                line_bot_api.push_message(event.source.user_id, carousel_template_message)          
             elif "方法" in text:
                 message_doc = {
                     'message' : text,
