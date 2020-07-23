@@ -1424,64 +1424,64 @@ def handle_message(event):
 
                 message_new(u.user_id,message_doc)
                 reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
-                    line_bot_api.push_message(
-                            event.source.user_id,
-                            TextMessage(
-                                text=reply_text,
-                            )
-                        )
-                    carousel_template_message = TemplateSendMessage(
-                        alt_text='營業員',
-                        template=CarouselTemplate(
-                            columns=[
-                                CarouselColumn(
-                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
-                                    title='👔營業員 嘉禾',
-                                    text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
-                                    actions=[
-                                        MessageAction(
-                                            label = '查看評價',
-                                            text = '查看評價'
-                                        ),
-                                        PostbackTemplateAction(
-                                            label = '諮詢',
-                                            data='jerry'
-                                        )
-                                    ]
-                                ),
-                                CarouselColumn(
-                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
-                                    title='👔營業員 麥基',
-                                    text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
-                                    actions=[
-                                        MessageAction(
-                                            label = '查看評價',
-                                            text = '查看評價'
-                                        ),
-                                        PostbackTemplateAction(
-                                            label = '諮詢',
-                                            data='maggie'
-                                        )
-                                    ]
-                                ),
-                                CarouselColumn(
-                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
-                                    title='👔營業員 曉琪',
-                                    text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
-                                    actions=[
-                                        MessageAction(
-                                            label = '查看評價',
-                                            text = '查看評價'
-                                        ),
-                                        PostbackTemplateAction(
-                                                label='諮詢', 
-                                                data='apple'
-                                            ),
-                                    ]
-                                )
-                            ]
+                line_bot_api.push_message(
+                        event.source.user_id,
+                        TextMessage(
+                            text=reply_text,
                         )
                     )
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='營業員',
+                    template=CarouselTemplate(
+                        columns=[
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                title='👔營業員 嘉禾',
+                                text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
+                                actions=[
+                                    MessageAction(
+                                        label = '查看評價',
+                                        text = '查看評價'
+                                    ),
+                                    PostbackTemplateAction(
+                                        label = '諮詢',
+                                        data='jerry'
+                                    )
+                                ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                title='👔營業員 麥基',
+                                text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
+                                actions=[
+                                    MessageAction(
+                                        label = '查看評價',
+                                        text = '查看評價'
+                                    ),
+                                    PostbackTemplateAction(
+                                        label = '諮詢',
+                                        data='maggie'
+                                    )
+                                ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                title='👔營業員 曉琪',
+                                text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
+                                actions=[
+                                    MessageAction(
+                                        label = '查看評價',
+                                        text = '查看評價'
+                                    ),
+                                    PostbackTemplateAction(
+                                            label='諮詢', 
+                                            data='apple'
+                                        ),
+                                ]
+                            )
+                        ]
+                    )
+                )
                 line_bot_api.push_message(event.source.user_id, carousel_template_message)
 
                 
