@@ -1420,7 +1420,6 @@ def handle_message(event):
                     'message' : text,
                     'name' : profile.display_name,
                     'user_id' : u.user_id
-                    'sales_id' : ''
                 }
 
                 message_new(u.user_id,message_doc)
