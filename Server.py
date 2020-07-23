@@ -281,39 +281,53 @@ def handle_post_message(event):
     
 
     if event.postback.data == 'apple':
-        
         s_doc = UserData_get('U2649922b5604a80e08b0f9dba91f9029')
         s = toUser(s_doc)
 
-        if s.state != states.LOGIN.value:
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    TextMessage(
-                        text="營業員目前忙碌中～無法回覆您訊息\n",
-                    )
-                )
-        else:
-            s.state = states.DIV.value
-            s_doc["state"] = s.state
-            u.state = states.DIV.value
-            u_doc["state"] = u.state
-            s.div_id = event.source.user_id
-            s_doc["div_id"] = s.div_id
-            u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
-            u_doc["div_id"] = u.div_id
+        message_doc = {
+                    'message' : text,
+                    'name' : profile.display_name,
+                    'user_id' : u.user_id
+                    'sales_id' : s.user_id
+                }
 
-            line_bot_api.reply_message(
-                    event.reply_token,
-                    TextMessage(
-                        text="正在幫您導向營業員",
-                    )
-                )
-            line_bot_api.push_message(
-                            u.div_id,
-                            TextMessage(
-                                text="有新用戶想向您詢問問題",
-                            )
+        message_new(u.user_id,message_doc)
+        reply_text = "您的問題已加入等候序列\n請耐心等候專員回復"
+        message = TextSendMessage(reply_text)
+        line_bot_api.reply_message(event.reply_token, message)
+
+        
+
+        # if s.state != states.LOGIN.value:
+        #     line_bot_api.reply_message(
+        #             event.reply_token,
+        #             TextMessage(
+        #                 text="營業員目前忙碌中～無法回覆您訊息\n",
+        #             )
+        #         )
+        # else:
+        #     s.state = states.DIV.value
+        #     s_doc["state"] = s.state
+        #     u.state = states.DIV.value
+        #     u_doc["state"] = u.state
+        #     s.div_id = event.source.user_id
+        #     s_doc["div_id"] = s.div_id
+        #     u.div_id = 'U2649922b5604a80e08b0f9dba91f9029'
+        #     u_doc["div_id"] = u.div_id
+
+            # line_bot_api.reply_message(
+            #         event.reply_token,
+            #         TextMessage(
+            #             text="正在幫您導向營業員",
+            #         )
+            #     )
+
+        line_bot_api.push_message(
+                        u.div_id,
+                        TextMessage(
+                            text="有新用戶想向您詢問問題",
                         )
+                    )
         UserData_update(s,s_doc)
 
     if event.postback.data == 'maggie':
@@ -1353,6 +1367,68 @@ def handle_message(event):
                     )
                     line_bot_api.push_message(event.source.user_id, carousel_template_message)
             elif "方法" in text:
+
+                reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
+                    line_bot_api.push_message(
+                            event.source.user_id,
+                            TextMessage(
+                                text=reply_text,
+                            )
+                        )
+                    carousel_template_message = TemplateSendMessage(
+                        alt_text='營業員',
+                        template=CarouselTemplate(
+                            columns=[
+                                CarouselColumn(
+                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                    title='👔營業員 嘉禾',
+                                    text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
+                                    actions=[
+                                        MessageAction(
+                                            label = '查看評價',
+                                            text = '查看評價'
+                                        ),
+                                        PostbackTemplateAction(
+                                            label = '諮詢',
+                                            data='jerry'
+                                        )
+                                    ]
+                                ),
+                                CarouselColumn(
+                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                    title='👔營業員 麥基',
+                                    text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
+                                    actions=[
+                                        MessageAction(
+                                            label = '查看評價',
+                                            text = '查看評價'
+                                        ),
+                                        PostbackTemplateAction(
+                                            label = '諮詢',
+                                            data='maggie'
+                                        )
+                                    ]
+                                ),
+                                CarouselColumn(
+                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                    title='👔營業員 曉琪',
+                                    text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
+                                    actions=[
+                                        MessageAction(
+                                            label = '查看評價',
+                                            text = '查看評價'
+                                        ),
+                                        PostbackTemplateAction(
+                                                label='諮詢', 
+                                                data='apple'
+                                            ),
+                                    ]
+                                )
+                            ]
+                        )
+                    )
+                line_bot_api.push_message(event.source.user_id, carousel_template_message)
+
                 message_doc = {
                     'message' : text,
                     'name' : profile.display_name,
@@ -1361,10 +1437,9 @@ def handle_message(event):
 
                 message_new(u.user_id,message_doc)
                 reply_text = "您的問題已加入等候序列\n請耐心等候專員回復"
-                
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+
             elif text == "交易紀錄":
                 docs = db.collection("transaction").where('customerID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
                 contents = []
@@ -1587,7 +1662,7 @@ def handle_message(event):
 
             elif text == "導購諮詢連結":
                 
-                docs = db.collection('message').get()
+                docs = db.collection('message').where('sales_id','==', u.user_id).get()
                 columns = []
                 if len(list(db.collection('message').list_documents())) == 0:
                     
