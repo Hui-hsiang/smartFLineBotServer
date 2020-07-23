@@ -1371,7 +1371,31 @@ def handle_message(event):
                         ]
                     )
                 )  
-                line_bot_api.push_message(event.source.user_id, carousel_template_message)          
+                line_bot_api.reply_message(event.reply_token, carousel_template_message)   
+            elif text == "常見問題":
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='常見問題',
+                    template=CarouselTemplate(
+                        columns=[
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                title='該如何找尋投資方案建議',
+                                text='建議使用者輸入「投資方案」等字元，平台會先提供投資風險屬性問卷填寫，了解使用者風險屬性係數，並推薦合適的營業員給使用者進行詢問',
+                                actions=[
+                                    MessageAction(
+                                        label='我還有其他疑問',
+                                        text='我還有其他疑問'
+                                    ),
+                                ]
+                            )
+                        ]
+                    )
+                )  
+                line_bot_api.reply_message(event.reply_token, carousel_template_message)
+            elif text == "我還有其他疑問":
+                text_message = TextSendMessage(text='請輸入您的疑問')
+                text_message = TextSendMessage(text='收到您的問題，將盡速給予您問題答覆')
+                line_bot_api.reply_message(event.reply_token, text_message)
             elif "方法" in text:
                 message_doc = {
                     'message' : text,
