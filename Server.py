@@ -1406,10 +1406,7 @@ def handle_message(event):
                     )
                 )  
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
-            elif text == "我還有其他疑問":
-                if text_message = TextSendMessage(text='請輸入您的疑問')
-                   text_message = TextSendMessage(text='收到您的問題，將盡速給予您問題答覆')
-                line_bot_api.reply_message(event.reply_token, text_message)
+            
             elif "方法" in text:
 
                 reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
