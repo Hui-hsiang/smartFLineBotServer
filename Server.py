@@ -286,8 +286,8 @@ def handle_post_message(event):
         s = toUser(s_doc)
 
         message_doc = {
-                    'sales_id' : s.user_id
-                }
+            'sales_id' : s.user_id
+        }
 
         message_update(u.user_id,message_doc)
         reply_text = "您的問題已加入等候序列\n請耐心等候專員回復"
