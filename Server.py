@@ -996,7 +996,7 @@ def handle_post_message(event):
                 template=CarouselTemplate(
                     columns=[
                         CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            thumbnail_image_url='https://i.imgur.com/9PATfwz.jpg',
                             title='👔營業員 嘉禾',
                             text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
                             actions=[
@@ -1011,7 +1011,7 @@ def handle_post_message(event):
                             ]
                         ),
                         CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            thumbnail_image_url='https://i.imgur.com/n06HVkC.jpg',
                             title='👔營業員 麥基',
                             text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
                             actions=[
@@ -1026,7 +1026,7 @@ def handle_post_message(event):
                             ]
                         ),
                         CarouselColumn(
-                            thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                            thumbnail_image_url='https://i.imgur.com/pDtoSWN.jpg',
                             title='👔營業員 曉琪',
                             text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
                             actions=[
@@ -1366,6 +1366,50 @@ def handle_message(event):
                         )
                     )
                     line_bot_api.push_message(event.source.user_id, carousel_template_message)
+            elif text == "最新活動":
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='最新活動1',
+                    template=CarouselTemplate(
+                        columns=[
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                title='目前尚未有任何最新活動',
+                                text='待平台正式營運，將會更新最新活動',
+                                actions=[
+                                    MessageAction(
+                                        label='最新活動',
+                                        text='最新活動'
+                                    ),
+                                ]
+                            )
+                        ]
+                    )
+                )  
+                line_bot_api.reply_message(event.reply_token, carousel_template_message)   
+            elif text == "常見問題":
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='常見問題',
+                    template=CarouselTemplate(
+                        columns=[
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                title='該如何找尋投資方案建議',
+                                text='建議使用者輸入「投資方案」等字元，平台會先提供投資風險屬性問卷填寫，了解使用者風險屬性係數，並推薦合適的營業員給使用者進行詢問',
+                                actions=[
+                                    MessageAction(
+                                        label='我還有其他疑問',
+                                        text='我還有其他疑問'
+                                    ),
+                                ]
+                            )
+                        ]
+                    )
+                )  
+                line_bot_api.reply_message(event.reply_token, carousel_template_message)
+            elif text == "我還有其他疑問":
+                if text_message = TextSendMessage(text='請輸入您的疑問')
+                   text_message = TextSendMessage(text='收到您的問題，將盡速給予您問題答覆')
+                line_bot_api.reply_message(event.reply_token, text_message)
             elif "方法" in text:
 
                 reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
