@@ -1066,9 +1066,9 @@ def handle_message(event):
                     reply_text += "（4）其現金價值就像變額保險一樣會高低起伏，也可能會降低至零（如分帳帳戶投資結果不良者），此時若未再繳付保費該保單會因而失效。\n"
                     reply_text += "（5）放在分離帳戶（SeparateAccount）中的基金被規定用以支援該基金來源的保單，與保險公司一般帳戶（GeneralAccount）的資產是分開的，故當保險公司遇到財務困難時，帳戶的分開可以對變額萬能保險之保單持有人提供另外的安全邊際。\n"
                 
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
                 
             elif(text=="金融產品"):
                 carousel_template_message = TemplateSendMessage(
@@ -1139,14 +1139,12 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             elif(text=="意外保險"):
                 reply_text = "EY不EY"
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
             elif(text=="健康保險"):
                 reply_text = "健康的保險非常重要喔"
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
             elif(text=="人壽保險"):
                 carousel_template_message = TemplateSendMessage(
                     alt_text='人壽保險',
@@ -1186,9 +1184,9 @@ def handle_message(event):
                 reply_text += "生存金\n"
                 reply_text += "祝壽金\n"
                 reply_text += "滿期金\n"
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
             elif(text=="雋享年年終身保險"):
                 reply_text = "雋享年年終身保險:\n商品特色\n"
                 reply_text += "承保年齡(15年期)：0 - 65歲\n"
@@ -1201,9 +1199,9 @@ def handle_message(event):
                 reply_text += "祝壽保險金\n"
                 reply_text += "身故保險金\n"
                 reply_text += "完全失能保險金\n"
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
             elif(text=="微馨愛小額終身壽險"):
                 reply_text = "微馨愛小額終身壽險:\n商品特色\n"
                 reply_text += "承保年齡(6年期)16 - 88歲\n"
@@ -1214,17 +1212,17 @@ def handle_message(event):
                 reply_text += "身故保險金\n"
                 reply_text += "完全失能保險金\n"
                 reply_text += "祝壽金\n"
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
             elif(text=="平台介紹"):
                 image_message = ImageSendMessage(
                     original_content_url='https://imgur.com/A0E7Hwz.png',
                     preview_image_url='https://imgur.com/A0E7Hwz.png'
                 )
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = image_message
-                    line_bot_api.reply_message(event.reply_token, message)
+                
+                message = image_message
+                line_bot_api.reply_message(event.reply_token, message)
             elif "投資方案" in text:
                 message_doc = {
                     'message' : text,
@@ -1501,7 +1499,76 @@ def handle_message(event):
                         ])))
                 u.quastionCount += 1
                 doc["quastionCount"] = u.quastionCount
-                
+            elif text == '一顆星':
+                div_doc = UserData_get(u.div_id)
+                div_u = toUser(div_doc)
+                div_u.score += 1
+                div_u.serviceCount += 1
+                div_doc["score"] = div_u.serviceCount
+                div_doc["serviceCount"] = div_u.serviceCount
+                UserData_update(div_u,div_doc)
+                line_bot_api.push_message(
+                        u.div_id,
+                        TextMessage(
+                            text="對方給您一顆星的評價",
+                        )
+                    )
+            elif text == '二顆星':
+                div_doc = UserData_get(u.div_id)
+                div_u = toUser(div_doc)
+                div_u.score += 1
+                div_u.serviceCount += 1
+                div_doc["score"] = div_u.serviceCount
+                div_doc["serviceCount"] = div_u.serviceCount
+                UserData_update(div_u,div_doc)
+                line_bot_api.push_message(
+                        u.div_id,
+                        TextMessage(
+                            text="對方給您二顆星的評價",
+                        )
+                    )
+            elif text == '三顆星':
+                div_doc = UserData_get(u.div_id)
+                div_u = toUser(div_doc)
+                div_u.score += 1
+                div_u.serviceCount += 1
+                div_doc["score"] = div_u.serviceCount
+                div_doc["serviceCount"] = div_u.serviceCount
+                UserData_update(div_u,div_doc)
+                line_bot_api.push_message(
+                        u.div_id,
+                        TextMessage(
+                            text="對方給您三顆星的評價",
+                        )
+                    )
+            elif text == '四顆星':
+                div_doc = UserData_get(u.div_id)
+                div_u = toUser(div_doc)
+                div_u.score += 1
+                div_u.serviceCount += 1
+                div_doc["score"] = div_u.serviceCount
+                div_doc["serviceCount"] = div_u.serviceCount
+                UserData_update(div_u,div_doc)
+                line_bot_api.push_message(
+                        u.div_id,
+                        TextMessage(
+                            text="對方給您四顆星的評價",
+                        )
+                    )
+            elif text == '五顆星':
+                div_doc = UserData_get(u.div_id)
+                div_u = toUser(div_doc)
+                div_u.score += 1
+                div_u.serviceCount += 1
+                div_doc["score"] = div_u.serviceCount
+                div_doc["serviceCount"] = div_u.serviceCount
+                UserData_update(div_u,div_doc)
+                line_bot_api.push_message(
+                        u.div_id,
+                        TextMessage(
+                            text="對方給您五顆星的評價",
+                        )
+                    )
             else:
 
                 reply_text = "Hi\n我是智能金融導購平台💼\n"
@@ -1525,24 +1592,41 @@ def handle_message(event):
         elif u.state == states.DIV.value:
             if text == "離開":
                 reply_text = "您已離開對話"
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
+                TextSendMessage(
+                    text='請為剛才的服務評分',
+                    quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                action = action=MessageAction(label="一顆星", text="一顆星")
+                            ),
+                            QuickReplyButton(
+                                action = action=MessageAction(label="二顆星", text="二顆星")
+                            ),
+                            QuickReplyButton(
+                                action = action=MessageAction(label="三顆星", text="三顆星")
+                            ),
+                            QuickReplyButton(
+                                action = action=MessageAction(label="四顆星", text="四顆星")
+                            ),
+                            QuickReplyButton(
+                                action = action=MessageAction(label="五顆星", text="五顆星")
+                            )
+                        ])))
+                line_bot_api.push_message(u.user_id,TextMessage)
 
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
                             text="對方已離開對話",
                         )
                     )
-
                 div_doc = UserData_get(u.div_id)
                 div_u = toUser(div_doc)
                 div_u.state = states.LOGIN.value
                 div_doc["state"] = div_u.state
                 UserData_update(div_u,div_doc)
-
-                
                 u.state = states.START.value
                 doc["state"] = u.state
             else:
@@ -1552,17 +1636,16 @@ def handle_message(event):
 
             reply_text = "請輸入【手機號碼】登入系統"
 
-            if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                message = TextSendMessage(reply_text)
-                line_bot_api.reply_message(event.reply_token, message)
+            
+            message = TextSendMessage(reply_text)
+            line_bot_api.reply_message(event.reply_token, message)
             u.state = states.UNLOGIN.value
             doc["state"] = u.state
         elif u.state == states.UNLOGIN.value:
             if(text == "確認"): 
                 reply_text = "歡迎登入\n請點選下方【服務項目】執行動作"
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
                 u.state = states.LOGIN.value
                 doc["state"] = u.state
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
@@ -1571,8 +1654,7 @@ def handle_message(event):
                        headers=headers)
             elif(text == "修改"):
                 reply_text = "輸入【手機號碼】登入系統"
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
+                message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
             else:
                 carousel_template_message = TemplateSendMessage(
@@ -1603,9 +1685,9 @@ def handle_message(event):
             if text == "登出":
                 reply_text = "您已成功登出"
 
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
                 
                 u.state = states.START.value
                 doc["state"] = u.state
@@ -1628,10 +1710,8 @@ def handle_message(event):
 
                 if len(contents) == 0:
                     reply_text = "您目前沒有交易紀錄呦"
-
-                    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                        message = TextSendMessage(reply_text)
-                        line_bot_api.reply_message(event.reply_token, message)
+                    message = TextSendMessage(reply_text)
+                    line_bot_api.reply_message(event.reply_token, message)
                 else:   
                     carousel_contents = {
                         "type": "carousel",
@@ -1644,10 +1724,8 @@ def handle_message(event):
             elif text == "本月分潤獎金":
                 s_doc = db.collection('sales').document(u.user_id).get()
                 reply_text = "您的本月分潤獎金為\n【" + str(s_doc.to_dict()['profit'])  +  "】元"
-
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
 
             elif text == "導購諮詢連結":
                 
@@ -1656,10 +1734,8 @@ def handle_message(event):
                 if len(list(db.collection('message').list_documents())) == 0:
                     
                     reply_text = "目前沒有導購諮詢呦"
-
-                    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                        message = TextSendMessage(reply_text)
-                        line_bot_api.reply_message(event.reply_token, message)
+                    message = TextSendMessage(reply_text)
+                    line_bot_api.reply_message(event.reply_token, message)
                 else:
                     for i in docs:
                         m_doc = i.to_dict()
@@ -1688,10 +1764,8 @@ def handle_message(event):
         elif u.state == states.DIV.value :
             if text == "離開":
                 reply_text = "您已離開對話"
-
-                if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
