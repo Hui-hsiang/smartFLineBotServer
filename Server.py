@@ -1364,7 +1364,7 @@ def handle_message(event):
                 }
 
                 message_new(u.user_id,message_doc)
-                reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
+                reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉\n"
                 line_bot_api.push_message(
                         event.source.user_id,
                         TextMessage(
@@ -1372,13 +1372,13 @@ def handle_message(event):
                         )
                     )
                 carousel_template_message = TemplateSendMessage(
-                    alt_text='營業員',
+                    alt_text='保險代理人',
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/Hz8f9N3.jpg',
-                                title='👔營業員 嘉禾',
-                                text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
+                                title='👔保險代理人 嘉禾',
+                                text='您好，我是嘉禾，擔任保險代理人已有10年經歷，希望能用我的專業為您服務 !😁',
                                 actions=[
                                     MessageAction(
                                         label = '查看評價',
@@ -1392,8 +1392,8 @@ def handle_message(event):
                             ),
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/n06HVkC.jpg',
-                                title='👔營業員 麥基',
-                                text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
+                                title='👔保險代理人 麥基',
+                                text='您好，我是麥基，有8年保險業資歷，很高興能為您服務。👍',
                                 actions=[
                                     MessageAction(
                                         label = '查看評價',
@@ -1407,8 +1407,8 @@ def handle_message(event):
                             ),
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/pDtoSWN.jpg',
-                                title='👔營業員 曉琪',
-                                text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
+                                title='👔保險代理人 曉琪',
+                                text='您好，我是曉琪，我在保險業界服務5年了喔，很高興能為您服務!😉',
                                 actions=[
                                     MessageAction(
                                         label = '查看評價',
@@ -1599,19 +1599,19 @@ def handle_message(event):
                     quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
-                                action = action=MessageAction(label="一顆星", text="一顆星")
+                                action = MessageAction(label="一顆星", text="一顆星")
                             ),
                             QuickReplyButton(
-                                action = action=MessageAction(label="二顆星", text="二顆星")
+                                action = MessageAction(label="二顆星", text="二顆星")
                             ),
                             QuickReplyButton(
-                                action = action=MessageAction(label="三顆星", text="三顆星")
+                                action = MessageAction(label="三顆星", text="三顆星")
                             ),
                             QuickReplyButton(
-                                action = action=MessageAction(label="四顆星", text="四顆星")
+                                action = MessageAction(label="四顆星", text="四顆星")
                             ),
                             QuickReplyButton(
-                                action = action=MessageAction(label="五顆星", text="五顆星")
+                                action = MessageAction(label="五顆星", text="五顆星")
                             )
                         ])))
                 line_bot_api.push_message(u.user_id,TextMessage)
