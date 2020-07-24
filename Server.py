@@ -1597,6 +1597,14 @@ def handle_message(event):
                 TextSendMessage(
                     text='請為剛才的服務評分',
                     quick_reply=QuickReply(
+                        
+                        ]))
+                line_bot_api.push_message(u.user_id,TextMessage)
+                line_bot_api.push_message(
+                u.user_id,
+                TextSendMessage(
+                    text='一、請問您投資金融商品最主要的考量因素為何？(投資目的)',
+                    quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
                                 action = MessageAction(label="一顆星", text="一顆星")
@@ -1613,9 +1621,7 @@ def handle_message(event):
                             QuickReplyButton(
                                 action = MessageAction(label="五顆星", text="五顆星")
                             )
-                        ]))
-                line_bot_api.push_message(u.user_id,TextMessage)
-
+                        ])))
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
