@@ -1613,7 +1613,7 @@ def handle_message(event):
                             QuickReplyButton(
                                 action = MessageAction(label="五顆星", text="五顆星")
                             )
-                        ])))
+                        ]))
                 line_bot_api.push_message(u.user_id,TextMessage)
 
                 line_bot_api.push_message(
