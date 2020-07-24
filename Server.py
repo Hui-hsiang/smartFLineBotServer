@@ -1338,7 +1338,7 @@ def handle_message(event):
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+#                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
                                 title='目前尚未有任何最新活動',
                                 text='待平台正式營運，將會更新最新活動',
                                 actions=[
