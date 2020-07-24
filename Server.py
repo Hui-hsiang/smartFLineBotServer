@@ -1501,11 +1501,8 @@ def handle_message(event):
                 doc["quastionCount"] = u.quastionCount
             elif text == '一顆星':
                 div_doc = UserData_get(u.div_id)
-                div_u = toUser(div_doc)
-                div_u.score += 1
-                div_u.serviceCount += 1
-                div_doc["score"] = div_u.serviceCount
-                div_doc["serviceCount"] = div_u.serviceCount
+                div_doc["score"] += 1
+                div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
                 line_bot_api.push_message(
                         u.div_id,
@@ -1515,11 +1512,8 @@ def handle_message(event):
                     )
             elif text == '二顆星':
                 div_doc = UserData_get(u.div_id)
-                div_u = toUser(div_doc)
-                div_u.score += 1
-                div_u.serviceCount += 1
-                div_doc["score"] = div_u.serviceCount
-                div_doc["serviceCount"] = div_u.serviceCount
+                div_doc["score"] += 2
+                div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
                 line_bot_api.push_message(
                         u.div_id,
@@ -1529,11 +1523,8 @@ def handle_message(event):
                     )
             elif text == '三顆星':
                 div_doc = UserData_get(u.div_id)
-                div_u = toUser(div_doc)
-                div_u.score += 1
-                div_u.serviceCount += 1
-                div_doc["score"] = div_u.serviceCount
-                div_doc["serviceCount"] = div_u.serviceCount
+                div_doc["score"] += 3
+                div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
                 line_bot_api.push_message(
                         u.div_id,
@@ -1543,11 +1534,8 @@ def handle_message(event):
                     )
             elif text == '四顆星':
                 div_doc = UserData_get(u.div_id)
-                div_u = toUser(div_doc)
-                div_u.score += 1
-                div_u.serviceCount += 1
-                div_doc["score"] = div_u.serviceCount
-                div_doc["serviceCount"] = div_u.serviceCount
+                div_doc["score"] += 4
+                div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
                 line_bot_api.push_message(
                         u.div_id,
@@ -1557,11 +1545,8 @@ def handle_message(event):
                     )
             elif text == '五顆星':
                 div_doc = UserData_get(u.div_id)
-                div_u = toUser(div_doc)
-                div_u.score += 1
-                div_u.serviceCount += 1
-                div_doc["score"] = div_u.serviceCount
-                div_doc["serviceCount"] = div_u.serviceCount
+                div_doc["score"] += 5
+                div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
                 line_bot_api.push_message(
                         u.div_id,
@@ -1597,7 +1582,7 @@ def handle_message(event):
                 line_bot_api.push_message(
                 u.user_id,
                 TextSendMessage(
-                    text='一、請問您投資金融商品最主要的考量因素為何？(投資目的)',
+                    text='請為剛才的服務評分',
                     quick_reply=QuickReply(
                         items=[
                             QuickReplyButton(
