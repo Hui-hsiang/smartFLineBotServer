@@ -345,17 +345,20 @@ def handle_post_message(event):
     if event.postback.data == 'commentapple':
         s_doc = db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
-        reply_text = "營業員的評分為\n【" + str(score) + "】"
+        reply_text = "營業員曉琪的評分為\n【" + str(score) + "】"
         message = TextSendMessage(reply_text)
         line_bot_api.reply_message(event.reply_token, message)
 
     if event.postback.data == 'commentjerry':
         s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
-        reply_text = "營業員的評分為\n【" + str(score) + "】"
+        reply_text = "營業員嘉禾的評分為\n【" + str(score) + "】"
         message = TextSendMessage(reply_text)
         line_bot_api.reply_message(event.reply_token, message)
-        
+    if event.postback.data == 'commentmaggie':
+        reply_text = "營業員麥基目前沒有評價"
+        message = TextSendMessage(reply_text)
+        line_bot_api.reply_message(event.reply_token, message)
     
     if u.state == states.QUSTION.value :
         if event.postback.data == 'a':
