@@ -342,6 +342,21 @@ def handle_post_message(event):
                     )
         UserData_update(s,s_doc)
 
+    if event.postback.data == 'commentapple':
+        s_doc = db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').get().to_dict()
+        score = s_doc['score'] / s_doc['serviceCount']
+        reply_text = "營業員的評分為\n【" + str(score) + "】"
+        message = TextSendMessage(reply_text)
+        line_bot_api.reply_message(event.reply_token, message)
+
+    if event.postback.data == 'commentjerry':
+        s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get().to_dict()
+        score = s_doc['score'] / s_doc['serviceCount']
+        reply_text = "營業員的評分為\n【" + str(score) + "】"
+        message = TextSendMessage(reply_text)
+        line_bot_api.reply_message(event.reply_token, message)
+        
+    
     if u.state == states.QUSTION.value :
         if event.postback.data == 'a':
             u.score += 2
@@ -941,10 +956,10 @@ def handle_post_message(event):
                             title='👔營業員 嘉禾',
                             text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
                             actions=[
-                                MessageAction(
-                                    label = '查看評價',
-                                    text = '查看評價'
-                                ),
+                                PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentjerry'
+                                        ),
                                 PostbackTemplateAction(
                                     label = '諮詢',
                                     data='jerry'
@@ -956,10 +971,10 @@ def handle_post_message(event):
                             title='👔營業員 麥基',
                             text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
                             actions=[
-                                MessageAction(
-                                    label = '查看評價',
-                                    text = '查看評價'
-                                ),
+                                PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentmaggie'
+                                        ),
                                 PostbackTemplateAction(
                                     label = '諮詢',
                                     data='maggie'
@@ -971,10 +986,10 @@ def handle_post_message(event):
                             title='👔營業員 曉琪',
                             text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
                             actions=[
-                                MessageAction(
-                                    label = '查看評價',
-                                    text = '查看評價'
-                                ),
+                                PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentapple'
+                                        ),
                                 PostbackTemplateAction(
                                         label='諮詢', 
                                         data='apple'
@@ -1270,9 +1285,9 @@ def handle_message(event):
                                     title='👔營業員 嘉禾',
                                     text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
                                     actions=[
-                                        MessageAction(
-                                            label = '查看評價',
-                                            text = '查看評價'
+                                        PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentjerry'
                                         ),
                                         PostbackTemplateAction(
                                             label = '諮詢',
@@ -1285,9 +1300,9 @@ def handle_message(event):
                                     title='👔營業員 麥基',
                                     text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
                                     actions=[
-                                        MessageAction(
-                                            label = '查看評價',
-                                            text = '查看評價'
+                                        PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentmaggie'
                                         ),
                                         PostbackTemplateAction(
                                             label = '諮詢',
@@ -1300,9 +1315,9 @@ def handle_message(event):
                                     title='👔營業員 曉琪',
                                     text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
                                     actions=[
-                                        MessageAction(
-                                            label = '查看評價',
-                                            text = '查看評價'
+                                        PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentapple'
                                         ),
                                         PostbackTemplateAction(
                                                 label='諮詢', 
@@ -1380,10 +1395,10 @@ def handle_message(event):
                                 title='👔保險代理人 嘉禾',
                                 text='您好，我是嘉禾，擔任保險代理人已有10年經歷，希望能用我的專業為您服務 !😁',
                                 actions=[
-                                    MessageAction(
-                                        label = '查看評價',
-                                        text = '查看評價'
-                                    ),
+                                    PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentjerry'
+                                        ),
                                     PostbackTemplateAction(
                                         label = '諮詢',
                                         data='jerry'
@@ -1395,10 +1410,10 @@ def handle_message(event):
                                 title='👔保險代理人 麥基',
                                 text='您好，我是麥基，有8年保險業資歷，很高興能為您服務。👍',
                                 actions=[
-                                    MessageAction(
-                                        label = '查看評價',
-                                        text = '查看評價'
-                                    ),
+                                    PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentmaggie'
+                                        ),
                                     PostbackTemplateAction(
                                         label = '諮詢',
                                         data='maggie'
@@ -1410,10 +1425,10 @@ def handle_message(event):
                                 title='👔保險代理人 曉琪',
                                 text='您好，我是曉琪，我在保險業界服務5年了喔，很高興能為您服務!😉',
                                 actions=[
-                                    MessageAction(
-                                        label = '查看評價',
-                                        text = '查看評價'
-                                    ),
+                                    PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentapple'
+                                        ),
                                     PostbackTemplateAction(
                                             label='諮詢', 
                                             data='apple'
@@ -1500,7 +1515,7 @@ def handle_message(event):
                 u.quastionCount += 1
                 doc["quastionCount"] = u.quastionCount
             elif text == '一顆星':
-                div_doc = UserData_get(u.div_id)
+                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 1
                 div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
@@ -1511,7 +1526,7 @@ def handle_message(event):
                         )
                     )
             elif text == '二顆星':
-                div_doc = UserData_get(u.div_id)
+                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 2
                 div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
@@ -1522,7 +1537,7 @@ def handle_message(event):
                         )
                     )
             elif text == '三顆星':
-                div_doc = UserData_get(u.div_id)
+                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 3
                 div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
@@ -1533,7 +1548,7 @@ def handle_message(event):
                         )
                     )
             elif text == '四顆星':
-                div_doc = UserData_get(u.div_id)
+                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 4
                 div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
@@ -1544,7 +1559,7 @@ def handle_message(event):
                         )
                     )
             elif text == '五顆星':
-                div_doc = UserData_get(u.div_id)
+                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 5
                 div_doc["serviceCount"] += 1
                 UserData_update(div_u,div_doc)
