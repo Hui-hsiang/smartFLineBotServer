@@ -1076,7 +1076,7 @@ def handle_message(event):
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
+                                thumbnail_image_url='https://i.imgur.com/kdZovY5.png',
                                 title='💰保險產品',
                                 text='包含了人身保險以及財產保險，請於下方點選欲查詢之保險產品分類',
                                 actions=[
@@ -1091,7 +1091,7 @@ def handle_message(event):
                                 ]
                             ),
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                thumbnail_image_url='https://i.imgur.com/WxyR81E.png',
                                 title='💹證券商品',
                                 text='包含了股票、基金與衍生性金融商品，於下方點選欲查詢之商品分類。',
                                 actions=[
@@ -1115,7 +1115,7 @@ def handle_message(event):
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                thumbnail_image_url='https://i.imgur.com/DX0hJiE.png',
                                 title='👫人身保險',
                                 text='人身保險是以人的壽命和身體為保險標的的一種保險。',
                                 actions=[
@@ -1151,7 +1151,7 @@ def handle_message(event):
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                thumbnail_image_url='https://i.imgur.com/Yge62eu.png',
                                 title='👫人壽保險',
                                 text='人壽保險產品',
                                 actions=[
@@ -1239,7 +1239,7 @@ def handle_message(event):
                         template=CarouselTemplate(
                             columns=[
                                 CarouselColumn(
-                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                    thumbnail_image_url='https://i.imgur.com/Y5OwYWV.png',
                                     title='請填問券',
                                     text='麻煩您先填寫此風險屬性分析問卷，藉由您的答覆您會得知您的風險屬性，我也會幫您找到最合適的營業員，提供專業知識😃',
                                     actions=[
@@ -1266,7 +1266,7 @@ def handle_message(event):
                         template=CarouselTemplate(
                             columns=[
                                 CarouselColumn(
-                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                    thumbnail_image_url='https://i.imgur.com/Hz8f9N3.jpg',
                                     title='👔營業員 嘉禾',
                                     text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
                                     actions=[
@@ -1281,7 +1281,7 @@ def handle_message(event):
                                     ]
                                 ),
                                 CarouselColumn(
-                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                    thumbnail_image_url='https://i.imgur.com/n06HVkC.jpg',
                                     title='👔營業員 麥基',
                                     text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
                                     actions=[
@@ -1296,7 +1296,7 @@ def handle_message(event):
                                     ]
                                 ),
                                 CarouselColumn(
-                                    thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                    thumbnail_image_url='https://i.imgur.com/pDtoSWN.jpg',
                                     title='👔營業員 曉琪',
                                     text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
                                     actions=[
@@ -1376,7 +1376,7 @@ def handle_message(event):
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                thumbnail_image_url='https://i.imgur.com/Hz8f9N3.jpg',
                                 title='👔營業員 嘉禾',
                                 text='您好，我是嘉禾，擔任證券營業員已有10年經歷，希望能用我的專業為您服務 !😁',
                                 actions=[
@@ -1391,7 +1391,7 @@ def handle_message(event):
                                 ]
                             ),
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                thumbnail_image_url='https://i.imgur.com/n06HVkC.jpg',
                                 title='👔營業員 麥基',
                                 text='您好，我是麥基，有8年證券業資歷，很高興能為您服務。👍',
                                 actions=[
@@ -1406,7 +1406,7 @@ def handle_message(event):
                                 ]
                             ),
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
+                                thumbnail_image_url='https://i.imgur.com/pDtoSWN.jpg',
                                 title='👔營業員 曉琪',
                                 text='您好，我是曉琪，我在證券業界服務5年了喔，很高興能為您服務!😉',
                                 actions=[
@@ -1662,7 +1662,7 @@ def handle_message(event):
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/hPD89TI.png',
+                                thumbnail_image_url='https://i.imgur.com/KH8be5G.jpg',
                                 title='請確認手機號碼是否正確：',
                                 text="【" + text + "】",
                                 actions=[
