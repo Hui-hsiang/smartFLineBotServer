@@ -1521,7 +1521,7 @@ def handle_message(event):
                 div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 1
                 div_doc["serviceCount"] += 1
-                UserData_update(div_u,div_doc)
+                db.collection("sales").document(u.div_id).update(div_doc)
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
@@ -1532,7 +1532,7 @@ def handle_message(event):
                 div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 2
                 div_doc["serviceCount"] += 1
-                UserData_update(div_u,div_doc)
+                db.collection("sales").document(u.div_id).update(div_doc)
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
@@ -1543,7 +1543,7 @@ def handle_message(event):
                 div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 3
                 div_doc["serviceCount"] += 1
-                UserData_update(div_u,div_doc)
+                db.collection("sales").document(u.div_id).update(div_doc)
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
@@ -1554,7 +1554,7 @@ def handle_message(event):
                 div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 4
                 div_doc["serviceCount"] += 1
-                UserData_update(div_u,div_doc)
+                db.collection("sales").document(u.div_id).update(div_doc)
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
@@ -1565,7 +1565,7 @@ def handle_message(event):
                 div_doc = db.collection('sales').document(u.div_id).get().to_dict()
                 div_doc["score"] += 5
                 div_doc["serviceCount"] += 1
-                UserData_update(div_u,div_doc)
+                db.collection("sales").document(u.div_id).update(div_doc)
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
