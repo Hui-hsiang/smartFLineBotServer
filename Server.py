@@ -1192,7 +1192,7 @@ def handle_message(event):
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             elif(text=="幸福轉蛋保險"):
-                reply_text = "幸福轉蛋保險:\n\t商品特色\n"
+                reply_text = "幸福轉蛋保險:\n商品特色\n"
                 reply_text += "承保年齡：21 - 45歲\n"
                 reply_text += "低保費擁有高保障\n"
                 reply_text += "提供終身型別變更權，鎖住優良體況與未來保費\n"
