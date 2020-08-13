@@ -1108,7 +1108,7 @@ def handle_message(event):
                                     MessageAction(
                                         label = '意外保險',
                                         text = '意外保險'
-                                    )
+                                    ),
                                     MessageAction(
                                         label = '健康保險',
                                         text = '健康保險'
