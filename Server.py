@@ -1379,18 +1379,18 @@ def handle_message(event):
                 message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/rrffBB8.png',
                     alt_text='sex',
-                    base_size=BaseSize(height=1040, width=1040),
+                    base_size=BaseSize(height=520, width=520),
                     actions=[
                         MessageImagemapAction(
                             text='male',
                             area=ImagemapArea(
-                                x=0, y=0, width=520, height=1040
+                                x=0, y=0, width=260, height=520
                             )
                         ),
                         MessageImagemapAction(
                             text='female',
                             area=ImagemapArea(
-                                x=520, y=0, width=520, height=1040
+                                x=260, y=0, width=260, height=520
                             )
                         )
                     ]
