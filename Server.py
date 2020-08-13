@@ -352,8 +352,15 @@ def handle_post_message(event):
     if event.postback.data == 'commentjerry':
         s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
-        reply_text = "營業員嘉禾的評分為\n【" + str(score) + "】"
-        message = TextSendMessage(reply_text)
+        # reply_text = "營業員嘉禾的評分為\n【" + str(score) + "】"
+        # message = TextSendMessage(reply_text)
+        # line_bot_api.reply_message(event.reply_token, message)
+        
+        image_message = ImageSendMessage(
+                    original_content_url='https://i.imgur.com/BH7ENpB.png',
+                    preview_image_url='https://i.imgur.com/BH7ENpB.png'
+                )
+        message = image_message
         line_bot_api.reply_message(event.reply_token, message)
     if event.postback.data == 'commentmaggie':
         reply_text = "營業員麥基目前沒有評價"
