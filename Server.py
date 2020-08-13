@@ -1408,7 +1408,7 @@ def handle_message(event):
                 message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/5YHMcSp.png',
                     alt_text='breed',
-                    base_size=BaseSize(height=1040, width=520),
+                    base_size=BaseSize(height=1040, width=1040),
                     actions=[
                         MessageImagemapAction(
                             text='貴賓狗',
