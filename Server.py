@@ -1683,6 +1683,23 @@ def handle_message(event):
             else:
                 u.state = states.START.value
                 doc["state"] = u.state
+
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='保險方案',
+                    template=ImageCarouselTemplate(
+                        columns=[
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/4KdXnxo.png',
+                                action=URITemplateAction(
+                                    label='uri1',
+                                    uri='https://www.fubon.com/insurance/b2c/content/prod_pet/index.html#a'
+                                )
+                            ),
+                        ]
+                    )
+                )
+                line_bot_api.push_message(event.source.user_id, carousel_template_message)
+
                 reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉\n"
                 line_bot_api.push_message(
                         event.source.user_id,
