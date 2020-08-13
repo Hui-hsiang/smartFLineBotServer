@@ -1375,6 +1375,29 @@ def handle_message(event):
             
             elif "方法" in text:
                 
+
+                message = ImagemapSendMessage(
+                    base_url='https://i.imgur.com/rrffBB8.png',
+                    alt_text='sex',
+                    base_size=BaseSize(height=1040, width=1040),
+                    actions=[
+                        MessageImagemapAction(
+                            text='male',
+                            area=ImagemapArea(
+                                x=0, y=0, width=520, height=1040
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='female',
+                            area=ImagemapArea(
+                                x=520, y=0, width=520, height=1040
+                            )
+                        )
+                    ]
+                )
+
+                line_bot_api.reply_message(event.reply_token, message)
+
                 message_doc = {
                     'message' : text,
                     'name' : profile.display_name,
