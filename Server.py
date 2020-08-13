@@ -40,7 +40,7 @@ class states(Enum):
     DIV = 2
     UNLOGIN = 3
     LOGIN = 4
-
+    PETSQUSTION = 5
 class User():
     def __init__(self, id):
         self.user_id = id
@@ -1374,6 +1374,9 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             
             elif "方法" in text:
+                u.state = states.PETSQUSTION.value
+                doc["state"] = u.state
+
                 message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/rrffBB8.png',
                     alt_text='sex',
@@ -1403,152 +1406,6 @@ def handle_message(event):
                 }
 
                 message_new(u.user_id,message_doc)
-            elif text == 'male' or text == 'female' :
-
-                message = ImagemapSendMessage(
-                    base_url='https://i.imgur.com/5YHMcSp.png',
-                    alt_text='breed',
-                    base_size=BaseSize(height=1674, width=1040),
-                    actions=[
-                        MessageImagemapAction(
-                            text='貴賓狗',
-                            area=ImagemapArea(
-                                x=0, y=124, width=360, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='黃金獵犬',
-                            area=ImagemapArea(
-                                x=360, y=124, width=320, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='鬆獅狗',
-                            area=ImagemapArea(
-                                x=680, y=124, width=360, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='柯基',
-                            area=ImagemapArea(
-                                x=0, y=511, width=360, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='柴犬',
-                            area=ImagemapArea(
-                                x=360, y=511, width=320, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='馬爾濟斯',
-                            area=ImagemapArea(
-                                x=680, y=511, width=360, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='比熊犬',
-                            area=ImagemapArea(
-                                x=0, y=898, width=360, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='吉娃娃',
-                            area=ImagemapArea(
-                                x=360, y=898, width=320, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='米克斯',
-                            area=ImagemapArea(
-                                x=680, y=898, width=360, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='博美',
-                            area=ImagemapArea(
-                                x=0, y=1285, width=360, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='法鬥',
-                            area=ImagemapArea(
-                                x=360, y=1285, width=320, height=387
-                            )
-                        ),
-                        MessageImagemapAction(
-                            text='其他',
-                            area=ImagemapArea(
-                                x=680, y=1285, width=360, height=387
-                            )
-                        )
-                    ]
-                )
-
-                line_bot_api.reply_message(event.reply_token, message)
-
-                reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉\n"
-                line_bot_api.push_message(
-                        event.source.user_id,
-                        TextMessage(
-                            text=reply_text,
-                        )
-                    )
-                carousel_template_message = TemplateSendMessage(
-                    alt_text='保險代理人',
-                    template=CarouselTemplate(
-                        columns=[
-                            CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/Hz8f9N3.jpg',
-                                title='👔保險代理人 嘉禾',
-                                text='您好，我是嘉禾，擔任保險代理人已有10年經歷，希望能用我的專業為您服務 !😁',
-                                actions=[
-                                    PostbackTemplateAction(
-                                            label='查看評價', 
-                                            data='commentjerry'
-                                        ),
-                                    PostbackTemplateAction(
-                                        label = '諮詢',
-                                        data='jerry'
-                                    )
-                                ]
-                            ),
-                            CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/n06HVkC.jpg',
-                                title='👔保險代理人 麥基',
-                                text='您好，我是麥基，有8年保險業資歷，很高興能為您服務。👍',
-                                actions=[
-                                    PostbackTemplateAction(
-                                            label='查看評價', 
-                                            data='commentmaggie'
-                                        ),
-                                    PostbackTemplateAction(
-                                        label = '諮詢',
-                                        data='maggie'
-                                    )
-                                ]
-                            ),
-                            CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/pDtoSWN.jpg',
-                                title='👔保險代理人 曉琪',
-                                text='您好，我是曉琪，我在保險業界服務5年了喔，很高興能為您服務!😉',
-                                actions=[
-                                    PostbackTemplateAction(
-                                            label='查看評價', 
-                                            data='commentapple'
-                                        ),
-                                    PostbackTemplateAction(
-                                            label='諮詢', 
-                                            data='apple'
-                                        ),
-                                ]
-                            )
-                        ]
-                    )
-                )
-                line_bot_api.push_message(event.source.user_id, carousel_template_message)
-
-                
 
             elif text == "交易紀錄":
                 docs = db.collection("transaction").where('customerID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
@@ -1739,6 +1596,155 @@ def handle_message(event):
                 doc["state"] = u.state
             else:
                 line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
+        elif u.state == states.PETSQUSTION.value:
+            if text == 'male' or text == 'female' :
+                message = ImagemapSendMessage(
+                    base_url='https://i.imgur.com/5YHMcSp.png',
+                    alt_text='breed',
+                    base_size=BaseSize(height=1674, width=1040),
+                    actions=[
+                        MessageImagemapAction(
+                            text='貴賓狗',
+                            area=ImagemapArea(
+                                x=0, y=124, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='黃金獵犬',
+                            area=ImagemapArea(
+                                x=360, y=124, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='鬆獅狗',
+                            area=ImagemapArea(
+                                x=680, y=124, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='柯基',
+                            area=ImagemapArea(
+                                x=0, y=511, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='柴犬',
+                            area=ImagemapArea(
+                                x=360, y=511, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='馬爾濟斯',
+                            area=ImagemapArea(
+                                x=680, y=511, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='比熊犬',
+                            area=ImagemapArea(
+                                x=0, y=898, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='吉娃娃',
+                            area=ImagemapArea(
+                                x=360, y=898, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='米克斯',
+                            area=ImagemapArea(
+                                x=680, y=898, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='博美',
+                            area=ImagemapArea(
+                                x=0, y=1285, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='法鬥',
+                            area=ImagemapArea(
+                                x=360, y=1285, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='其他',
+                            area=ImagemapArea(
+                                x=680, y=1285, width=360, height=387
+                            )
+                        )
+                    ]
+                )
+
+                line_bot_api.reply_message(event.reply_token, message)
+
+            else:
+                u.state = states.START.value
+                doc["state"] = u.state
+                reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉\n"
+                line_bot_api.push_message(
+                        event.source.user_id,
+                        TextMessage(
+                            text=reply_text,
+                        )
+                    )
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='保險代理人',
+                    template=CarouselTemplate(
+                        columns=[
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/Hz8f9N3.jpg',
+                                title='👔保險代理人 嘉禾',
+                                text='您好，我是嘉禾，擔任保險代理人已有10年經歷，希望能用我的專業為您服務 !😁',
+                                actions=[
+                                    PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentjerry'
+                                        ),
+                                    PostbackTemplateAction(
+                                        label = '諮詢',
+                                        data='jerry'
+                                    )
+                                ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/n06HVkC.jpg',
+                                title='👔保險代理人 麥基',
+                                text='您好，我是麥基，有8年保險業資歷，很高興能為您服務。👍',
+                                actions=[
+                                    PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentmaggie'
+                                        ),
+                                    PostbackTemplateAction(
+                                        label = '諮詢',
+                                        data='maggie'
+                                    )
+                                ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/pDtoSWN.jpg',
+                                title='👔保險代理人 曉琪',
+                                text='您好，我是曉琪，我在保險業界服務5年了喔，很高興能為您服務!😉',
+                                actions=[
+                                    PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentapple'
+                                        ),
+                                    PostbackTemplateAction(
+                                            label='諮詢', 
+                                            data='apple'
+                                        ),
+                                ]
+                            )
+                        ]
+                    )
+                )
+                line_bot_api.push_message(event.source.user_id, carousel_template_message)
+
+
     else:
         if u.state == states.START.value:
 
