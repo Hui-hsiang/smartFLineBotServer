@@ -1696,12 +1696,26 @@ def handle_message(event):
                                 )
                             ),
                             ImageCarouselColumn(
-                                image_url='https://i.imgur.com/O3GszLp.png',
+                                image_url='https://i.imgur.com/eRiEesM.png',
                                 action=URITemplateAction(
                                     label='點選看更多',
-                                    uri='https://www.fubon.com/insurance/b2c/content/prod_pet/index.html#a'
+                                    uri='https://www.sk858.com.tw/products/pl/pet-insurance?utm_source=google&utm_medium=cpc&utm_campaign=petrespon&gclid=CjwKCAjwydP5BRBREiwA-qrCGrcxIm3YfdQmIh2h1zv4C5PyW72vqdrZdbFVDOllrUu7cBYXrzBayRoCtH8QAvD_BwE'
                                 )
-                            )
+                            ),
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/kkKAxiT.png',
+                                action=URITemplateAction(
+                                    label='點選看更多',
+                                    uri='https://www.cathay-ins.com.tw/INSEBWeb/BOBE/pet/pet_quote/prompt?projectId=Q1VTMDAwMw%3D%3D&utm_source=google&utm_medium=cpc&utm_campaign=A_08_搜尋_品牌字(寵物險)_品牌字&gclid=CjwKCAjwydP5BRBREiwA-qrCGs9UZbSSfuQ0Ch_ov4HzIA1J3wd5--aYadNHVvnMtQrD5ME7DKS-rRoCAEwQAvD_BwE'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/iw2jome.png',
+                                action=URITemplateAction(
+                                    label='點選看更多',
+                                    uri='https://www.msig-mingtai.com.tw/MobileWeb/Pet/Insure/Index'
+                                )
+                            )                                                        
                         ]
                     )
                 )
