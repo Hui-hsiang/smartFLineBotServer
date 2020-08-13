@@ -7,8 +7,8 @@ headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncF
 body = {
     "size": {"width": 1200, "height": 810},
     "selected": "true",
-    "name": "點選此處以使用公能",
-    "chatBarText": "點選此處以使用公能",
+    "name": "點選此處以使用功能",
+    "chatBarText": "點選此處以使用功能",
     "areas":[
         {
           "bounds": {"x": 0, "y": 0, "width": 400, "height": 405},
@@ -76,14 +76,14 @@ from linebot import (
 
 line_bot_api = LineBotApi('l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=')
 
-with open("Client.png", 'rb') as f:
+with open("seller.png", 'rb') as f:
     line_bot_api.set_rich_menu_image(id, "image/png", f)
-#%%
+
 import requests
 
 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
 
-req = requests.request('POST', ' https://api.line.me/v2/bot/user/all/richmenu/' + id, 
+req = requests.request('POST', ' https://api.line.me/v2/bot/user/all/richmenu/richmenu-a06e000b9c4ed22ba365b1c797ccd6c1', 
                        headers=headers)
 
 print(req.text)
