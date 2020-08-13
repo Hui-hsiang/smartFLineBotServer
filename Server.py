@@ -1680,15 +1680,14 @@ def handle_message(event):
 
                 line_bot_api.reply_message(event.reply_token, message)
 
-                reply_text = "以下為我為您整理的寵物險資訊\n供您參考"
+            else:
+                reply_text = "以下為我為您整理的寵物險資訊，供您參考"
                 line_bot_api.push_message(
                         event.source.user_id,
                         TextMessage(
                             text=reply_text,
                         )
                     )                
-
-            else:
                 u.state = states.START.value
                 doc["state"] = u.state
 
