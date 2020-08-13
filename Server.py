@@ -1374,8 +1374,6 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             
             elif "方法" in text:
-                
-
                 message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/rrffBB8.png',
                     alt_text='sex',
@@ -1405,6 +1403,90 @@ def handle_message(event):
                 }
 
                 message_new(u.user_id,message_doc)
+            elif text == 'male' or text == 'female' :
+
+                message = ImagemapSendMessage(
+                    base_url='https://i.imgur.com/rrffBB8.png',
+                    alt_text='breed',
+                    base_size=BaseSize(height=1040, width=520),
+                    actions=[
+                        MessageImagemapAction(
+                            text='貴賓狗',
+                            area=ImagemapArea(
+                                x=0, y=95, width=180, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='黃金獵犬',
+                            area=ImagemapArea(
+                                x=180, y=95, width=160, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='鬆獅狗',
+                            area=ImagemapArea(
+                                x=340, y=95, width=180, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='柯基',
+                            area=ImagemapArea(
+                                x=0, y=330, width=180, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='柴犬',
+                            area=ImagemapArea(
+                                x=180, y=330, width=160, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='馬爾濟斯',
+                            area=ImagemapArea(
+                                x=340, y=330, width=180, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='比熊犬',
+                            area=ImagemapArea(
+                                x=0, y=580, width=180, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='吉娃娃',
+                            area=ImagemapArea(
+                                x=180, y=580, width=160, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='米克斯',
+                            area=ImagemapArea(
+                                x=340, y=580, width=180, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='博美',
+                            area=ImagemapArea(
+                                x=0, y=815, width=180, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='法鬥',
+                            area=ImagemapArea(
+                                x=180, y=815, width=160, height=230
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='其他',
+                            area=ImagemapArea(
+                                x=340, y=815, width=180, height=230
+                            )
+                        )
+                    ]
+                )
+
+                line_bot_api.reply_message(event.reply_token, message)
+
                 reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉\n"
                 line_bot_api.push_message(
                         event.source.user_id,
