@@ -1661,6 +1661,200 @@ def handle_message(event):
                 doc["state"] = u.state
             else:
                 line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
+        elif u.state == states.PETSQUSTION.value:
+            if text == 'male' or text == 'female' :
+                message = ImagemapSendMessage(
+                    base_url='https://i.imgur.com/5YHMcSp.png',
+                    alt_text='breed',
+                    base_size=BaseSize(height=1674, width=1040),
+                    actions=[
+                        MessageImagemapAction(
+                            text='貴賓狗',
+                            area=ImagemapArea(
+                                x=0, y=124, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='黃金獵犬',
+                            area=ImagemapArea(
+                                x=360, y=124, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='鬆獅狗',
+                            area=ImagemapArea(
+                                x=680, y=124, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='柯基',
+                            area=ImagemapArea(
+                                x=0, y=511, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='柴犬',
+                            area=ImagemapArea(
+                                x=360, y=511, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='馬爾濟斯',
+                            area=ImagemapArea(
+                                x=680, y=511, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='比熊犬',
+                            area=ImagemapArea(
+                                x=0, y=898, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='吉娃娃',
+                            area=ImagemapArea(
+                                x=360, y=898, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='米克斯',
+                            area=ImagemapArea(
+                                x=680, y=898, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='博美',
+                            area=ImagemapArea(
+                                x=0, y=1285, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='法鬥',
+                            area=ImagemapArea(
+                                x=360, y=1285, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='其他',
+                            area=ImagemapArea(
+                                x=680, y=1285, width=360, height=387
+                            )
+                        )
+                    ]
+                )
+
+                line_bot_api.reply_message(event.reply_token, message)
+
+            else:
+                reply_text = "以下為我為您整理的寵物險資訊，供您參考😀"
+                line_bot_api.push_message(
+                        event.source.user_id,
+                        TextMessage(
+                            text=reply_text,
+                        )
+                    )                
+                u.state = states.START.value
+                doc["state"] = u.state
+
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='保險方案',
+                    template=ImageCarouselTemplate(
+                        columns=[
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/Tpuig6m.png',
+                                action=URITemplateAction(
+                                    label='點選看更多',
+                                    uri='https://www.fubon.com/insurance/b2c/content/prod_pet/index.html#a'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/eRiEesM.png',
+                                action=URITemplateAction(
+                                    label='點選看更多',
+                                    uri='https://www.sk858.com.tw/products/pl/pet-insurance?utm_source=google&utm_medium=cpc&utm_campaign=petrespon&gclid=CjwKCAjwydP5BRBREiwA-qrCGrcxIm3YfdQmIh2h1zv4C5PyW72vqdrZdbFVDOllrUu7cBYXrzBayRoCtH8QAvD_BwE'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/kkKAxiT.png',
+                                action=URITemplateAction(
+                                    label='點選看更多',
+                                    uri='https://www.cathay-ins.com.tw/INSEBWeb/BOBE/pet/pet_quote/prompt?projectId=Q1VTMDAwMw%3D%3D&utm_source=google&utm_medium=cpc&utm_campaign=A_08_搜尋_品牌字(寵物險)_品牌字&gclid=CjwKCAjwydP5BRBREiwA-qrCGs9UZbSSfuQ0Ch_ov4HzIA1J3wd5--aYadNHVvnMtQrD5ME7DKS-rRoCAEwQAvD_BwE'
+                                )
+                            ),
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/iw2jome.png',
+                                action=URITemplateAction(
+                                    label='點選看更多',
+                                    uri='https://www.msig-mingtai.com.tw/MobileWeb/Pet/Insure/Index'
+                                )
+                            )                                                        
+                        ]
+                    )
+                )
+                line_bot_api.push_message(event.source.user_id, carousel_template_message)
+
+                reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉"
+                line_bot_api.push_message(
+                        event.source.user_id,
+                        TextMessage(
+                            text=reply_text,
+                        )
+                    )
+                carousel_template_message = TemplateSendMessage(
+                    alt_text='保險代理人',
+                    template=CarouselTemplate(
+                        columns=[
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/Hz8f9N3.jpg',
+                                title='👔保險代理人 嘉禾',
+                                text='您好，我是嘉禾，擔任保險代理人已有10年經歷，希望能用我的專業為您服務 !😁',
+                                actions=[
+                                    PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentjerry'
+                                        ),
+                                    PostbackTemplateAction(
+                                        label = '諮詢',
+                                        data='jerry'
+                                    )
+                                ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/n06HVkC.jpg',
+                                title='👔保險代理人 麥基',
+                                text='您好，我是麥基，有8年保險業資歷，很高興能為您服務。👍',
+                                actions=[
+                                    PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentmaggie'
+                                        ),
+                                    PostbackTemplateAction(
+                                        label = '諮詢',
+                                        data='maggie'
+                                    )
+                                ]
+                            ),
+                            CarouselColumn(
+                                thumbnail_image_url='https://i.imgur.com/pDtoSWN.jpg',
+                                title='👔保險代理人 曉琪',
+                                text='您好，我是曉琪，我在保險業界服務5年了喔，很高興能為您服務!😉',
+                                actions=[
+                                    PostbackTemplateAction(
+                                            label='查看評價', 
+                                            data='commentapple'
+                                        ),
+                                    PostbackTemplateAction(
+                                            label='諮詢', 
+                                            data='apple'
+                                        ),
+                                ]
+                            )
+                        ]
+                    )
+                )
+                line_bot_api.push_message(event.source.user_id, carousel_template_message)
+
+
     else:
         if u.state == states.START.value:
 
