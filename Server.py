@@ -627,7 +627,7 @@ def handle_post_message(event):
                             ),
                             QuickReplyButton(
                                 action = PostbackAction(
-                                            label='-10%',
+                                            label='-10000%',
                                             display_text='-10%',
                                             data='c'
                                         )
