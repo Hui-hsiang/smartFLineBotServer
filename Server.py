@@ -1574,9 +1574,9 @@ def handle_message(event):
                     )
             else:
 
-                reply_text = "Hi\n我是智能金融導購平台💼\n"
-                reply_text += "有任何金融相關的問題都可以詢問我喔！\n"
-                reply_text += "我會幫你轉接專業證券營業員與保險業務員\n"
+                reply_text = "Hi\nInsurTech⁺💼\n"
+                reply_text += "有任何保險相關的問題都可以詢問我喔！\n"
+                reply_text += "我會幫你轉接專業保險業務員\n"
                 reply_text += "他們能幫你做詳細的介紹與申購👍"
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
