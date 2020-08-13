@@ -1174,15 +1174,15 @@ def handle_message(event):
                                 text='人壽保險產品',
                                 actions=[
                                     MessageAction(
-                                        label = '幸福轉蛋保險',
+                                        label = '國泰人壽 幸福轉蛋保險',
                                         text = '國泰人壽 幸福轉蛋保險'
                                     ),
                                     MessageAction(
-                                        label = '優活定期壽險',
+                                        label = '南山人壽 優活定期壽險',
                                         text = '南山人壽 優活定期壽險'
                                     ),
                                     MessageAction(
-                                        label = 'My Way定期壽險',
+                                        label = '新光人壽 My Way定期壽險',
                                         text = '新光人壽 My Way定期壽險'
                                     )
                                 ]
@@ -1191,7 +1191,7 @@ def handle_message(event):
                     )
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
-            elif(text=="幸福轉蛋保險"):
+            elif(text=="國泰人壽 幸福轉蛋保險"):
                 reply_text = "幸福轉蛋保險:\n商品特色\n"
                 reply_text += "承保年齡：21 - 45歲\n"
                 reply_text += "低保費擁有高保障\n"
