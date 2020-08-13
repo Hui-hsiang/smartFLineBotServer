@@ -1174,16 +1174,16 @@ def handle_message(event):
                                 text='人壽保險產品',
                                 actions=[
                                     MessageAction(
-                                        label = '幸福轉蛋保險',
-                                        text = '幸福轉蛋保險'
+                                        label = '國泰人壽 幸福轉蛋保險',
+                                        text = '國泰人壽 幸福轉蛋保險'
                                     ),
                                     MessageAction(
-                                        label = '雋享年年終身保險',
-                                        text = '雋享年年終身保險'
+                                        label = '南山人壽 優活定期壽險',
+                                        text = '南山人壽 優活定期壽險'
                                     ),
                                     MessageAction(
-                                        label = '微馨愛小額終身壽險',
-                                        text = '微馨愛小額終身壽險'
+                                        label = '新光人壽 My Way定期壽險',
+                                        text = '新光人壽 My Way定期壽險'
                                     )
                                 ]
                             )
