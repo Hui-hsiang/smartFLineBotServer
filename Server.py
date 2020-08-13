@@ -1087,7 +1087,9 @@ def handle_message(event):
                 
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
-                
+            elif '年齡' in text:
+                reply_text = '保險年齡計算是以「足歲」來計算，生日超過6個月要加一歲。說明：保險年齡是以最近生日法來計算，即以是否超過六個月為準，並以申請投保日當天計算年齡，例：30足歲5個月又8天~30歲，30足歲6個月~30歲，30足歲6個月又1天~31歲。'
+                message = TextSendMessage(reply_text)
             elif(text=="金融產品"):
                 carousel_template_message = TemplateSendMessage(
                     alt_text='金融產品',
