@@ -40,7 +40,7 @@ class states(Enum):
     DIV = 2
     UNLOGIN = 3
     LOGIN = 4
-
+    PETSQUSTION = 5
 class User():
     def __init__(self, id):
         self.user_id = id
