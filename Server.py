@@ -943,7 +943,7 @@ def handle_post_message(event):
                         text=reply_text,
                     )
                 )
-            reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉"
+            reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
             line_bot_api.push_message(
                     event.source.user_id,
                     TextMessage(
@@ -1068,7 +1068,7 @@ def handle_message(event):
                     reply_text += "（3）可不定期不定額繳付保費。\n"
                     reply_text += "（4）充分反應市場基本報酬率之波動（採宣告利率制）。在年金開始給付前，年金帳戶餘額受繳費頻率，每次繳費金額及每次宣告利率的高低而影響餘額之大小，換言之是非保證之金額，至於年金開始給付後所換算成之每次可領取年金金額是固定或變動的則視保戶所選擇的給付方式而定，可選擇每年領取固定年金金額或選擇領取同樣受每次宣告利率高低而影響其金額之變動年金金額。"
                 elif case == 3:
-                    reply_text += "不足額保險:\n不足額保險是指被保險人的保單保額遠低於實際需求，不能滿足個人生活或事業的需求。"
+                    reply_text += "不足額保險:\n不足額保險是指被保險人的保單保額遠低於實際需求，不能滿足個人生活或事業的需求。llo"
                 elif case == 4:
                     reply_text += "人身意外傷害保險\n保險人補償被保險人因意外事故所致殘廢、薪資收入損失、醫療費用支出以及被保險人之死亡等之保險，美國慣用。"
                 elif case == 5:
@@ -1204,7 +1204,7 @@ def handle_message(event):
                     )
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
-            elif(text=="國泰人壽 幸福轉蛋保險"):
+            elif(text=="幸福轉蛋保險"):
                 reply_text = "幸福轉蛋保險:\n商品特色\n"
                 reply_text += "承保年齡：21 - 45歲\n"
                 reply_text += "低保費擁有高保障\n"
@@ -1215,13 +1215,9 @@ def handle_message(event):
                 reply_text += "生存金\n"
                 reply_text += "祝壽金\n"
                 reply_text += "滿期金\n"
-                image_message = ImageSendMessage(
-                    original_content_url='https://i.imgur.com/fU0G3rU.png',
-                    preview_image_url='https://i.imgur.com/fU0G3rU.png'
-                )
-                # message = TextSendMessage(reply_text)
                 
-                line_bot_api.reply_message(event.reply_token, image_message)
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
             elif(text=="雋享年年終身保險"):
                 reply_text = "雋享年年終身保險:\n商品特色\n"
                 reply_text += "承保年齡(15年期)：0 - 65歲\n"
@@ -1423,6 +1419,9 @@ def handle_message(event):
                 }
 
                 message_new(u.user_id,message_doc)
+                
+
+                
 
             elif text == "交易紀錄":
                 docs = db.collection("transaction").where('customerID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
@@ -1553,9 +1552,9 @@ def handle_message(event):
                     )
             else:
 
-                reply_text = "Hi\nInsurTech⁺💼\n"
-                reply_text += "有任何保險相關的問題都可以詢問我喔！\n"
-                reply_text += "我會幫你轉接專業保險業務員\n"
+                reply_text = "Hi\n我是智能金融導購平台💼\n"
+                reply_text += "有任何金融相關的問題都可以詢問我喔！\n"
+                reply_text += "我會幫你轉接專業證券營業員與保險業務員\n"
                 reply_text += "他們能幫你做詳細的介紹與申購👍"
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
@@ -1818,7 +1817,7 @@ def handle_message(event):
             u.state = states.UNLOGIN.value
             doc["state"] = u.state
         elif u.state == states.UNLOGIN.value:
-            if(text == "確認"): 
+            if text == '4wyd':
                 reply_text = "歡迎登入\n請點選下方【服務項目】執行動作"
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
@@ -1828,6 +1827,10 @@ def handle_message(event):
 
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-9a3e9e8fd2ca493c4b6c1c638ea5304d', 
                        headers=headers)
+            if(text == "確認"): 
+                reply_text = "輸入【簡訊驗證碼】登入系統"
+                message = TextSendMessage(reply_text)
+                line_bot_api.reply_message(event.reply_token, message)
             elif(text == "修改"):
                 reply_text = "輸入【手機號碼】登入系統"
                 message = TextSendMessage(reply_text)
