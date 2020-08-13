@@ -1689,7 +1689,7 @@ def handle_message(event):
                     template=ImageCarouselTemplate(
                         columns=[
                             ImageCarouselColumn(
-                                image_url='https://i.imgur.com/O3GszLp.png',
+                                image_url='https://i.imgur.com/Tpuig6m.png',
                                 action=URITemplateAction(
                                     label='點選看更多',
                                     uri='https://www.fubon.com/insurance/b2c/content/prod_pet/index.html#a'
