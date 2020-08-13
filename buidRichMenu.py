@@ -76,17 +76,22 @@ from linebot import (
 
 line_bot_api = LineBotApi('l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=')
 
-with open("seller.png", 'rb') as f:
+with open("Client.png", 'rb') as f:
     line_bot_api.set_rich_menu_image(id, "image/png", f)
 
 import requests
 
 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
 
-req = requests.request('POST', ' https://api.line.me/v2/bot/user/all/richmenu/richmenu-a06e000b9c4ed22ba365b1c797ccd6c1', 
+req = requests.request('POST', ' https://api.line.me/v2/bot/user/all/richmenu/richmenu-79d96cd20dc3c93d4f4e69911d0118a4', 
                        headers=headers)
 
 print(req.text)
 
+
+# %%
+headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
+req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + 'U2649922b5604a80e08b0f9dba91f9029' + '/richmenu/' + 'richmenu-79d96cd20dc3c93d4f4e69911d0118a4', 
+                        headers=headers)
 
 # %%

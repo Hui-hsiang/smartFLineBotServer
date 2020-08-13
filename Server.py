@@ -1849,7 +1849,7 @@ def handle_message(event):
                 u.state = states.START.value
                 doc["state"] = u.state
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
-                req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-a06e000b9c4ed22ba365b1c797ccd6c1', 
+                req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-79d96cd20dc3c93d4f4e69911d0118a4', 
                         headers=headers)
 
             elif text == "業績英雄榜":
