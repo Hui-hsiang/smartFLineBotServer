@@ -1698,6 +1698,46 @@ def handle_message(event):
                         ]
                     )
                 )
+                                carousel_template_message = TemplateSendMessage(
+                    alt_text='保險方案',
+                    template=ImageCarouselTemplate(
+                        columns=[
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/O3GszLp.png',
+                                action=URITemplateAction(
+                                    label='點選看更多',
+                                    uri='https://www.fubon.com/insurance/b2c/content/prod_pet/index.html#a'
+                                )
+                            ),
+                        ]
+                    )
+                )                carousel_template_message = TemplateSendMessage(
+                    alt_text='保險方案',
+                    template=ImageCarouselTemplate(
+                        columns=[
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/O3GszLp.png',
+                                action=URITemplateAction(
+                                    label='點選看更多',
+                                    uri='https://www.fubon.com/insurance/b2c/content/prod_pet/index.html#a'
+                                )
+                            ),
+                        ]
+                    )
+                )                carousel_template_message = TemplateSendMessage(
+                    alt_text='保險方案',
+                    template=ImageCarouselTemplate(
+                        columns=[
+                            ImageCarouselColumn(
+                                image_url='https://i.imgur.com/O3GszLp.png',
+                                action=URITemplateAction(
+                                    label='點選看更多',
+                                    uri='https://www.fubon.com/insurance/b2c/content/prod_pet/index.html#a'
+                                )
+                            ),
+                        ]
+                    )
+                )
                 line_bot_api.push_message(event.source.user_id, carousel_template_message)
 
                 reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉\n"
