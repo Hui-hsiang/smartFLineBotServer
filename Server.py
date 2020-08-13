@@ -1807,7 +1807,7 @@ def handle_message(event):
             u.state = states.UNLOGIN.value
             doc["state"] = u.state
         elif u.state == states.UNLOGIN.value:
-            if text == '4wyd ':
+            if text == '4wyd':
                 reply_text = "歡迎登入\n請點選下方【服務項目】執行動作"
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
