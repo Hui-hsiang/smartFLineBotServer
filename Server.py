@@ -1097,7 +1097,7 @@ def handle_message(event):
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/kdZovY5.png',
+                                thumbnail_image_url='https://i.imgur.com/DX0hJiE.png',
                                 title='👫人身保險',
                                 text='人身保險是以人的壽命和身體為保險標的的一種保險。',
                                 actions=[
@@ -1116,8 +1116,8 @@ def handle_message(event):
                                 ]
                             ),
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/WxyR81E.png',
-                                title='財產保險'',
+                                thumbnail_image_url='https://i.imgur.com/kdZovY5.png',
+                                title='財產保險',
                                 text='又名產物保險，是以各種財產及其相關利益為保險標的的保險。',
                                 actions=[
                                     MessageAction(
@@ -1127,7 +1127,7 @@ def handle_message(event):
                                     MessageAction(
                                         label = '寵物險',
                                         text = '寵物險'
-                                    )
+                                    ),
                                     MessageAction(
                                         label = '汽車保險',
                                         text = '汽車保險'
@@ -1138,36 +1138,7 @@ def handle_message(event):
                     )
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
-'''            elif(text=="人身保險"):
-                carousel_template_message = TemplateSendMessage(
-                    alt_text='人身保險',
-                    template=CarouselTemplate(
-                        columns=[
-                            CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/DX0hJiE.png',
-                                title='👫人身保險',
-                                text='人身保險是以人的壽命和身體為保險標的的一種保險。',
-                                actions=[
-                                    MessageAction(
-                                        label = '人壽保險',
-                                        text = '人壽保險'
-                                    ),
-                                    MessageAction(
-                                        label = '意外保險',
-                                        text = '意外保險'
-                                    ),
-                                    MessageAction(
-                                        label = '健康保險',
-                                        text = '健康保險'
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                )
-
-                line_bot_api.reply_message(event.reply_token, carousel_template_message)
-'''
+            
             elif(text=="意外保險"):
                 reply_text = "EY不EY"
                 message = TextSendMessage(reply_text)
@@ -1216,8 +1187,15 @@ def handle_message(event):
                 reply_text += "祝壽金\n"
                 reply_text += "滿期金\n"
                 
-                message = TextSendMessage(reply_text)
+                image_message = ImageSendMessage(
+                    original_content_url='https://i.imgur.com/fU0G3rU.png',
+                    preview_image_url='https://i.imgur.com/fU0G3rU.png'
+                )
+                
+                message = image_message
                 line_bot_api.reply_message(event.reply_token, message)
+
+                
             elif(text=="雋享年年終身保險"):
                 reply_text = "雋享年年終身保險:\n商品特色\n"
                 reply_text += "承保年齡(15年期)：0 - 65歲\n"
