@@ -943,7 +943,7 @@ def handle_post_message(event):
                         text=reply_text,
                     )
                 )
-            reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉\n"
+            reply_text = "我已幫您找到了幾個證券營業員，我會將方才的投資屬性表及數據交給您所選擇的營業員，您可以更深入的向他們詢問相關問題😉"
             line_bot_api.push_message(
                     event.source.user_id,
                     TextMessage(
@@ -1681,7 +1681,7 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, message)
 
             else:
-                reply_text = "以下為我為您整理的寵物險資訊，供您參考"
+                reply_text = "以下為我為您整理的寵物險資訊，供您參考😀"
                 line_bot_api.push_message(
                         event.source.user_id,
                         TextMessage(
@@ -1728,7 +1728,7 @@ def handle_message(event):
                 )
                 line_bot_api.push_message(event.source.user_id, carousel_template_message)
 
-                reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉\n"
+                reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉"
                 line_bot_api.push_message(
                         event.source.user_id,
                         TextMessage(
