@@ -1406,7 +1406,7 @@ def handle_message(event):
             elif text == 'male' or text == 'female' :
 
                 message = ImagemapSendMessage(
-                    base_url='https://i.imgur.com/rrffBB8.png',
+                    base_url='https://i.imgur.com/5YHMcSp.png',
                     alt_text='breed',
                     base_size=BaseSize(height=1040, width=520),
                     actions=[
