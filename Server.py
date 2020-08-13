@@ -1175,15 +1175,15 @@ def handle_message(event):
                                 actions=[
                                     MessageAction(
                                         label = '幸福轉蛋保險',
-                                        text = '幸福轉蛋保險'
+                                        text = '國泰人壽 幸福轉蛋保險'
                                     ),
                                     MessageAction(
-                                        label = '雋享年年終身保險',
-                                        text = '雋享年年終身保險'
+                                        label = '優活定期壽險',
+                                        text = '南山人壽 優活定期壽險'
                                     ),
                                     MessageAction(
-                                        label = '微馨愛小額終身壽險',
-                                        text = '微馨愛小額終身壽險'
+                                        label = 'My Way定期壽險',
+                                        text = '新光人壽 My Way定期壽險'
                                     )
                                 ]
                             )
@@ -1202,9 +1202,13 @@ def handle_message(event):
                 reply_text += "生存金\n"
                 reply_text += "祝壽金\n"
                 reply_text += "滿期金\n"
+                image_message = ImageSendMessage(
+                    original_content_url='https://i.imgur.com/fU0G3rU.png',
+                    preview_image_url='https://i.imgur.com/fU0G3rU.png'
+                )
+                # message = TextSendMessage(reply_text)
                 
-                message = TextSendMessage(reply_text)
-                line_bot_api.reply_message(event.reply_token, message)
+                line_bot_api.reply_message(event.reply_token, image_message)
             elif(text=="雋享年年終身保險"):
                 reply_text = "雋享年年終身保險:\n商品特色\n"
                 reply_text += "承保年齡(15年期)：0 - 65歲\n"
