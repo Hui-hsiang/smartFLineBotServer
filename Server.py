@@ -1373,7 +1373,7 @@ def handle_message(event):
                 )  
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             
-            elif "方法" in text:
+            elif "資訊" in text:
                 u.state = states.PETSQUSTION.value
                 doc["state"] = u.state
 
