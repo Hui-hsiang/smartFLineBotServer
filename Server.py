@@ -1091,46 +1091,54 @@ def handle_message(event):
                 reply_text = '保險年齡計算是以「足歲」來計算，生日超過6個月要加一歲。說明：保險年齡是以最近生日法來計算，即以是否超過六個月為準，並以申請投保日當天計算年齡，例：30足歲5個月又8天~30歲，30足歲6個月~30歲，30足歲6個月又1天~31歲。'
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
-            elif(text=="金融產品"):
+            elif(text=="保險產品"):
                 carousel_template_message = TemplateSendMessage(
-                    alt_text='金融產品',
+                    alt_text='保險產品',
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/kdZovY5.png',
-                                title='💰保險產品',
-                                text='包含了人身保險以及財產保險，請於下方點選欲查詢之保險產品分類',
+                                title='👫人身保險',
+                                text='人身保險是以人的壽命和身體為保險標的的一種保險。',
                                 actions=[
                                     MessageAction(
-                                        label = '人身保險',
-                                        text = '人身保險'
+                                        label = '人壽保險',
+                                        text = '人壽保險'
                                     ),
                                     MessageAction(
-                                        label = '財產保險',
-                                        text = '財產保險'
+                                        label = '意外保險',
+                                        text = '意外保險'
                                     )
+                                    MessageAction(
+                                        label = '健康保險',
+                                        text = '健康保險'
+                                    )                                    
                                 ]
                             ),
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/WxyR81E.png',
-                                title='💹證券商品',
-                                text='包含了股票、基金與衍生性金融商品，於下方點選欲查詢之商品分類。',
+                                title='財產保險'',
+                                text='又名產物保險，是以各種財產及其相關利益為保險標的的保險。',
                                 actions=[
                                     MessageAction(
-                                        label = '股票',
-                                        text = '股票'
+                                        label = '住宅火險',
+                                        text = '住宅火險'
                                     ),
                                     MessageAction(
-                                        label = '基金',
-                                        text = '基金'
+                                        label = '寵物險',
+                                        text = '寵物險'
                                     )
+                                    MessageAction(
+                                        label = '汽車保險',
+                                        text = '汽車保險'
+                                    )                                   
                                 ]
                             )
                         ]
                     )
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
-            elif(text=="人身保險"):
+'''            elif(text=="人身保險"):
                 carousel_template_message = TemplateSendMessage(
                     alt_text='人身保險',
                     template=CarouselTemplate(
@@ -1157,7 +1165,9 @@ def handle_message(event):
                         ]
                     )
                 )
+
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
+'''
             elif(text=="意外保險"):
                 reply_text = "EY不EY"
                 message = TextSendMessage(reply_text)
@@ -1920,7 +1930,7 @@ def handle_message(event):
                         )
                     
                     carousel_template_message = TemplateSendMessage(
-                        alt_text='金融產品',
+                        alt_text='保險產品',
                         template=CarouselTemplate(
                             columns
                         )
