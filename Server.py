@@ -1374,7 +1374,28 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             
             elif "方法" in text:
-                
+                message = ImagemapSendMessage(
+                    base_url='https://i.imgur.com/rrffBB8.png',
+                    alt_text='sex',
+                    base_size=BaseSize(height=520, width=1040),
+                    actions=[
+                        MessageImagemapAction(
+                            text='male',
+                            area=ImagemapArea(
+                                x=0, y=0, width=520, height=520
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='female',
+                            area=ImagemapArea(
+                                x=520, y=0, width=520, height=520
+                            )
+                        )
+                    ]
+                )
+
+                line_bot_api.reply_message(event.reply_token, message)
+
                 message_doc = {
                     'message' : text,
                     'name' : profile.display_name,
@@ -1382,6 +1403,90 @@ def handle_message(event):
                 }
 
                 message_new(u.user_id,message_doc)
+            elif text == 'male' or text == 'female' :
+
+                message = ImagemapSendMessage(
+                    base_url='https://i.imgur.com/5YHMcSp.png',
+                    alt_text='breed',
+                    base_size=BaseSize(height=1674, width=1040),
+                    actions=[
+                        MessageImagemapAction(
+                            text='貴賓狗',
+                            area=ImagemapArea(
+                                x=0, y=124, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='黃金獵犬',
+                            area=ImagemapArea(
+                                x=360, y=124, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='鬆獅狗',
+                            area=ImagemapArea(
+                                x=680, y=124, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='柯基',
+                            area=ImagemapArea(
+                                x=0, y=511, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='柴犬',
+                            area=ImagemapArea(
+                                x=360, y=511, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='馬爾濟斯',
+                            area=ImagemapArea(
+                                x=680, y=511, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='比熊犬',
+                            area=ImagemapArea(
+                                x=0, y=898, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='吉娃娃',
+                            area=ImagemapArea(
+                                x=360, y=898, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='米克斯',
+                            area=ImagemapArea(
+                                x=680, y=898, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='博美',
+                            area=ImagemapArea(
+                                x=0, y=1285, width=360, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='法鬥',
+                            area=ImagemapArea(
+                                x=360, y=1285, width=320, height=387
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='其他',
+                            area=ImagemapArea(
+                                x=680, y=1285, width=360, height=387
+                            )
+                        )
+                    ]
+                )
+
+                line_bot_api.reply_message(event.reply_token, message)
+
                 reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉\n"
                 line_bot_api.push_message(
                         event.source.user_id,
