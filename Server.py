@@ -272,7 +272,8 @@ def callback():
 
 @app.route("/", methods=['GET'])
 def home():
-    return "https://line.me/ti/p/KIA8wlvRQQ"
+    return "<head><meta http-equiv="refresh" content="0; url=https://line.me/ti/p/KIA8wlvRQQ"></head>"
+
 
 
 
