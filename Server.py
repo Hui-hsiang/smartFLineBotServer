@@ -1,5 +1,5 @@
 # Line Bot
-from flask import Flask, request, abort
+from flask import Flask, request, abort, render_template
 from urllib.request import urlopen
 from config import line_channel_access_token, line_channel_secret
 from datetime import date
