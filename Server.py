@@ -356,8 +356,15 @@ def handle_post_message(event):
     if event.postback.data == 'commentjerry':
         s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
-        reply_text = "營業員嘉禾的評分為\n【" + str(score) + "】"
-        message = TextSendMessage(reply_text)
+        # reply_text = "營業員嘉禾的評分為\n【" + str(score) + "】"
+        # message = TextSendMessage(reply_text)
+        # line_bot_api.reply_message(event.reply_token, message)
+        
+        image_message = ImageSendMessage(
+                    original_content_url='https://i.imgur.com/BH7ENpB.png',
+                    preview_image_url='https://i.imgur.com/BH7ENpB.png'
+                )
+        message = image_message
         line_bot_api.reply_message(event.reply_token, message)
     if event.postback.data == 'commentmaggie':
         reply_text = "營業員麥基目前沒有評價"
@@ -1101,7 +1108,7 @@ def handle_message(event):
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/kdZovY5.png',
+                                thumbnail_image_url='https://i.imgur.com/DX0hJiE.png',
                                 title='👫人身保險',
                                 text='人身保險是以人的壽命和身體為保險標的的一種保險。',
                                 actions=[
@@ -1120,8 +1127,8 @@ def handle_message(event):
                                 ]
                             ),
                             CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/WxyR81E.png',
-                                title='財產保險'',
+                                thumbnail_image_url='https://i.imgur.com/kdZovY5.png',
+                                title='財產保險',
                                 text='又名產物保險，是以各種財產及其相關利益為保險標的的保險。',
                                 actions=[
                                     MessageAction(
@@ -1131,7 +1138,7 @@ def handle_message(event):
                                     MessageAction(
                                         label = '寵物險',
                                         text = '寵物險'
-                                    )
+                                    ),
                                     MessageAction(
                                         label = '汽車保險',
                                         text = '汽車保險'
@@ -1142,36 +1149,7 @@ def handle_message(event):
                     )
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
-'''            elif(text=="人身保險"):
-                carousel_template_message = TemplateSendMessage(
-                    alt_text='人身保險',
-                    template=CarouselTemplate(
-                        columns=[
-                            CarouselColumn(
-                                thumbnail_image_url='https://i.imgur.com/DX0hJiE.png',
-                                title='👫人身保險',
-                                text='人身保險是以人的壽命和身體為保險標的的一種保險。',
-                                actions=[
-                                    MessageAction(
-                                        label = '人壽保險',
-                                        text = '人壽保險'
-                                    ),
-                                    MessageAction(
-                                        label = '意外保險',
-                                        text = '意外保險'
-                                    ),
-                                    MessageAction(
-                                        label = '健康保險',
-                                        text = '健康保險'
-                                    )
-                                ]
-                            )
-                        ]
-                    )
-                )
-
-                line_bot_api.reply_message(event.reply_token, carousel_template_message)
-'''
+            
             elif(text=="意外保險"):
                 reply_text = "EY不EY"
                 message = TextSendMessage(reply_text)
@@ -1208,7 +1186,7 @@ def handle_message(event):
                     )
                 )
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
-            elif(text=="幸福轉蛋保險"):
+            elif(text=="國泰人壽 幸福轉蛋保險"):
                 reply_text = "幸福轉蛋保險:\n商品特色\n"
                 reply_text += "承保年齡：21 - 45歲\n"
                 reply_text += "低保費擁有高保障\n"
@@ -1220,8 +1198,15 @@ def handle_message(event):
                 reply_text += "祝壽金\n"
                 reply_text += "滿期金\n"
                 
-                message = TextSendMessage(reply_text)
+                image_message = ImageSendMessage(
+                    original_content_url='https://i.imgur.com/fU0G3rU.png',
+                    preview_image_url='https://i.imgur.com/fU0G3rU.png'
+                )
+                
+                message = image_message
                 line_bot_api.reply_message(event.reply_token, message)
+
+                
             elif(text=="雋享年年終身保險"):
                 reply_text = "雋享年年終身保險:\n商品特色\n"
                 reply_text += "承保年齡(15年期)：0 - 65歲\n"
@@ -1748,7 +1733,7 @@ def handle_message(event):
                 )
                 line_bot_api.push_message(event.source.user_id, carousel_template_message)
 
-                reply_text = "我已幫您找到了幾個保險代理人，您可以更深入的向他們詢問相關問題😉"
+                reply_text = "我已幫您找到了幾個保險業務員，您可以更深入的向他們詢問相關問題😉"
                 line_bot_api.push_message(
                         event.source.user_id,
                         TextMessage(
@@ -1756,13 +1741,13 @@ def handle_message(event):
                         )
                     )
                 carousel_template_message = TemplateSendMessage(
-                    alt_text='保險代理人',
+                    alt_text='保險業務員',
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/Hz8f9N3.jpg',
-                                title='👔保險代理人 嘉禾',
-                                text='您好，我是嘉禾，擔任保險代理人已有10年經歷，希望能用我的專業為您服務 !😁',
+                                title='👔保險業務員 嘉禾',
+                                text='您好，我是嘉禾，擔任保險業務員已有10年經歷，希望能用我的專業為您服務 !😁',
                                 actions=[
                                     PostbackTemplateAction(
                                             label='查看評價', 
@@ -1776,7 +1761,7 @@ def handle_message(event):
                             ),
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/n06HVkC.jpg',
-                                title='👔保險代理人 麥基',
+                                title='👔保險業務員 麥基',
                                 text='您好，我是麥基，有8年保險業資歷，很高興能為您服務。👍',
                                 actions=[
                                     PostbackTemplateAction(
@@ -1791,7 +1776,7 @@ def handle_message(event):
                             ),
                             CarouselColumn(
                                 thumbnail_image_url='https://i.imgur.com/pDtoSWN.jpg',
-                                title='👔保險代理人 曉琪',
+                                title='👔保險業務員 曉琪',
                                 text='您好，我是曉琪，我在保險業界服務5年了喔，很高興能為您服務!😉',
                                 actions=[
                                     PostbackTemplateAction(
@@ -1831,6 +1816,8 @@ def handle_message(event):
 
                 req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-9a3e9e8fd2ca493c4b6c1c638ea5304d', 
                        headers=headers)
+                UserData_update(u,doc)
+
             if(text == "確認"): 
                 reply_text = "輸入【簡訊驗證碼】登入系統"
                 message = TextSendMessage(reply_text)
@@ -1867,16 +1854,15 @@ def handle_message(event):
         elif u.state == states.LOGIN.value:
             if text == "登出":
                 reply_text = "您已成功登出"
-
-                
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
                 
                 u.state = states.START.value
                 doc["state"] = u.state
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
-                req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-6b8167a5a521e96c320ca94ad954e6c6', 
+                req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-79d96cd20dc3c93d4f4e69911d0118a4', 
                         headers=headers)
+
             elif text == "業績英雄榜":
                 contents = rank_flex()
                 line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
