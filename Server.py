@@ -270,6 +270,10 @@ def callback():
         abort(400)
     return 'OK'
 
+@app.route("/", methods=['GET'])
+def home():
+    return "<h1>Hello Flask!</h1>"
+
 
 
 @handler.add(PostbackEvent)
