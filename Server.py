@@ -272,7 +272,7 @@ def callback():
 
 @app.route("/", methods=['GET'])
 def home():
-    return "<head><meta http-equiv="refresh" content="0; url=https://line.me/ti/p/KIA8wlvRQQ"></head>"
+    return render_template("lineFriends.html")
 
 
 
