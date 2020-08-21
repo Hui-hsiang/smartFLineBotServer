@@ -272,7 +272,7 @@ def callback():
 
 @app.route("/", methods=['GET'])
 def home():
-    return "<h1>Hello Flask!</h1>"
+    return "https://line.me/ti/p/KIA8wlvRQQ"
 
 
 
