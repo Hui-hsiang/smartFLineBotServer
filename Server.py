@@ -270,7 +270,7 @@ def callback():
         abort(400)
     return 'OK'
 
-@app.route("/", methods=['GET'])
+@app.route("/taipei", methods=['GET'])
 def home():
     return render_template("lineFriends.html")
 
