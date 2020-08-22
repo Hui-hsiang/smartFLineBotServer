@@ -322,7 +322,7 @@ def comment_flex(name, img_url, rank, docs):
             "height": "sm",
             "action": {
                 "type": "uri",
-                "label": "WEBSITE",
+                "label": "所有評論",
                 "uri": "https://linecorp.com"
             }
             },
@@ -471,7 +471,7 @@ def handle_post_message(event):
         s_doc = db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
         docs = db.collection("comment").where('id','==', 'U2649922b5604a80e08b0f9dba91f9029').get()
-        content= comment_flex('jerry',line_bot_api.get_profile('U60d04b2a91c5b050242a42de2c1b1947').picture_url,score,docs)
+        content= comment_flex('jerry',line_bot_api.get_profile('U2649922b5604a80e08b0f9dba91f9029').picture_url,score,docs)
         line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
                     FlexSendMessage('交易紀錄', content)
@@ -484,7 +484,7 @@ def handle_post_message(event):
         s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
         docs = db.collection("comment").where('id','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
-        content= comment_flex('apple',line_bot_api.get_profile('U2649922b5604a80e08b0f9dba91f9029').picture_url,score,docs)
+        content= comment_flex('apple',line_bot_api.get_profile('U60d04b2a91c5b050242a42de2c1b1947').picture_url,score,docs)
         line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
                     FlexSendMessage('交易紀錄', content)
