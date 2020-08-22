@@ -22,7 +22,7 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 # 引用私密金鑰
 # path/to/serviceAccount.json 請用自己存放的路徑
-cred = credentials.Certificate('smartflinebotserver-firebase-adminsdk-q4kci-72696b6a64.json')
+cred = credentials.Certificate('src/smartflinebotserver-firebase-adminsdk-q4kci-72696b6a64.json')
 
 # 初始化firebase，注意不能重複初始化
 firebase_admin.initialize_app(cred)
