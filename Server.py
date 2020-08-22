@@ -471,7 +471,7 @@ def handle_post_message(event):
         s_doc = db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
         docs = db.collection("comment").where('id','==', 'U2649922b5604a80e08b0f9dba91f9029').get()
-        content= comment_flex('apple'',line_bot_api.get_profile('U2649922b5604a80e08b0f9dba91f9029').picture_url,score,docs)
+        content= comment_flex('apple',line_bot_api.get_profile('U2649922b5604a80e08b0f9dba91f9029').picture_url,score,docs)
         line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
                     FlexSendMessage('交易紀錄', content)
