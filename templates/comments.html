@@ -1,0 +1,36 @@
+<html>
+    <head>
+      <title>Legal Seafood</title>
+    </head>
+    <body>
+        <amp-list id="comments"
+            class="comments"
+            src="https://amp.dev/documentation/examples/interactivity-dynamic-content/comment_section/comments"
+            layout="fixed-height"
+            height="200"
+            items="."
+            single-item
+            binding="no"
+            credentials="include"
+            reset-on-refresh
+            noloading>
+            <template type="amp-mustache">
+                <div class="comment">
+                <p><span class="user">{{user}}</span> <span class="date">{{date}}</span></p>
+                <p>{{text}}</p>
+                </div>
+            </template>
+            <button overflow>Show all comments</button>
+            <div placeholder>
+                <div class="comment">
+                <p><span class="placeholder"></span> <span class="placeholder"></span></p>
+                <p><span class="placeholder"></span></p>
+                </div>
+                <div class="comment">
+                <p><span class="placeholder"></span> <span class="placeholder"></span></p>
+                <p><span class="placeholder"></span></p>
+                </div>
+            </div>
+        </amp-list>
+    </body>
+  </html>
