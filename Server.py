@@ -276,7 +276,7 @@ def comment_flex(name, img_url, rank, docs):
         "type": "bubble",
         "hero": {
         "type": "image",
-        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+        "url": "https://i.imgur.com/Hz8f9N3.jpg",
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover",
