@@ -256,6 +256,7 @@ def comment_flex(name, img_url, rank, docs):
                     {
                     "type": "text",
                     "text": doc['name'],
+                    "wrap": True,
                     "color": "#aaaaaa",
                     "size": "sm",
                     "flex": 1
