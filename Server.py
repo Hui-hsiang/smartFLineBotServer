@@ -474,7 +474,7 @@ def handle_post_message(event):
         content= comment_flex('apple',line_bot_api.get_profile('U2649922b5604a80e08b0f9dba91f9029').picture_url,score,docs)
         line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
-                    FlexSendMessage('交易紀錄', content)
+                    FlexSendMessage('評價', content)
                     )
                 )
        
@@ -487,7 +487,7 @@ def handle_post_message(event):
         content= comment_flex('jerry',line_bot_api.get_profile('U60d04b2a91c5b050242a42de2c1b1947').picture_url,score,docs)
         line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
-                    FlexSendMessage('交易紀錄', content)
+                    FlexSendMessage('評價', content)
                     )
                 )
     elif event.postback.data == 'commentmaggie':
