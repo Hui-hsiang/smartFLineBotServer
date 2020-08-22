@@ -216,7 +216,34 @@ def historyServices_flex(text, date,product):
         }
     return contents    
 
-def comment_flex(name, img_url, score,docs):
+def comment_flex(name, img_url, score, docs):
+    
+    star_ico = []
+    goldStar = {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                }
+    grayStar =  {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+                }
+    score = {
+                "type": "text",
+                "text": str(score),
+                "size": "sm",
+                "color": "#999999",
+                "margin": "md",
+                "flex": 0
+            }
+    
+    for i in range int(score):
+        star_ico.append(goldStar)
+    for i in random int(5-score):
+        star_ico.append(grayStar)
+    star_ico.append(score)
+
     content = {
         "type": "bubble",
         "hero": {
@@ -244,41 +271,7 @@ def comment_flex(name, img_url, score,docs):
             "type": "box",
             "layout": "baseline",
             "margin": "md",
-            "contents": [
-                {
-                "type": "icon",
-                "size": "sm",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-                },
-                {
-                "type": "icon",
-                "size": "sm",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-                },
-                {
-                "type": "icon",
-                "size": "sm",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-                },
-                {
-                "type": "icon",
-                "size": "sm",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
-                },
-                {
-                "type": "icon",
-                "size": "sm",
-                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
-                },
-                {
-                "type": "text",
-                "text": "4.0",
-                "size": "sm",
-                "color": "#999999",
-                "margin": "md",
-                "flex": 0
-                }
-            ]
+            "contents": star_ico
             },
             {
             "type": "box",
