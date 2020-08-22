@@ -238,9 +238,9 @@ def comment_flex(name, img_url, score, docs):
                 "flex": 0
             }
     
-    for i in range int(score):
+    for i in range(int(score)):
         star_ico.append(goldStar)
-    for i in random int(5-score):
+    for i in range(int(5-score)):
         star_ico.append(grayStar)
     star_ico.append(score)
 
