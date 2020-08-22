@@ -216,6 +216,159 @@ def historyServices_flex(text, date,product):
         }
     return contents    
 
+def comment_flex(name, img_url, score,docs):
+    content = {
+        "type": "bubble",
+        "hero": {
+        "type": "image",
+        "url": "img_url",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "action": {
+            "type": "uri",
+            "uri": "http://linecorp.com/"
+        }
+        },
+        "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+            {
+            "type": "text",
+            "text": "jerry",
+            "weight": "bold",
+            "size": "xl"
+            },
+            {
+            "type": "box",
+            "layout": "baseline",
+            "margin": "md",
+            "contents": [
+                {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                },
+                {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                },
+                {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                },
+                {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gold_star_28.png"
+                },
+                {
+                "type": "icon",
+                "size": "sm",
+                "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/review_gray_star_28.png"
+                },
+                {
+                "type": "text",
+                "text": "4.0",
+                "size": "sm",
+                "color": "#999999",
+                "margin": "md",
+                "flex": 0
+                }
+            ]
+            },
+            {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "lg",
+            "spacing": "sm",
+            "contents": [
+                {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "Place",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                    },
+                    {
+                    "type": "text",
+                    "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                    "wrap": true,
+                    "color": "#666666",
+                    "size": "sm",
+                    "flex": 5
+                    }
+                ]
+                },
+                {
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "Time",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                    },
+                    {
+                    "type": "text",
+                    "text": "10:00 - 23:00",
+                    "wrap": true,
+                    "color": "#666666",
+                    "size": "sm",
+                    "flex": 5
+                    }
+                ]
+                }
+            ]
+            }
+        ]
+        },
+        "footer": {
+        "type": "box",
+        "layout": "vertical",
+        "spacing": "sm",
+        "contents": [
+            {
+            "type": "button",
+            "style": "link",
+            "height": "sm",
+            "action": {
+                "type": "uri",
+                "label": "CALL",
+                "uri": "https://linecorp.com"
+            }
+            },
+            {
+            "type": "button",
+            "style": "link",
+            "height": "sm",
+            "action": {
+                "type": "uri",
+                "label": "WEBSITE",
+                "uri": "https://linecorp.com"
+            }
+            },
+            {
+            "type": "spacer",
+            "size": "sm"
+            }
+        ],
+        "flex": 0
+        }
+    }
+    return content
+
 def UserData_get(id):
     path = "user/" + id
     collection_ref = db.document(path)
@@ -271,7 +424,7 @@ def callback():
     return 'OK'
 
 @app.route("/taipei", methods=['GET'])
-def home():
+def lineFriends():
     return render_template("lineFriends.html")
 
 
@@ -350,23 +503,24 @@ def handle_post_message(event):
     if event.postback.data == 'commentapple':
         s_doc = db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
-        reply_text = "營業員曉琪的評分為\n【" + str(score) + "】"
-        message = TextSendMessage(reply_text)
-        line_bot_api.reply_message(event.reply_token, message)
+        docs = db.collection("comment").where('id','==', 'U2649922b5604a80e08b0f9dba91f9029').get()
+        content= comment_flex(score,comment)
+       
 
     if event.postback.data == 'commentjerry':
+        
+        
         s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
-        # reply_text = "營業員嘉禾的評分為\n【" + str(score) + "】"
-        # message = TextSendMessage(reply_text)
-        # line_bot_api.reply_message(event.reply_token, message)
+        docs = db.collection("comment").where('id','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
+        content= comment_flex('jerry',line_bot_api.get_profile('U60d04b2a91c5b050242a42de2c1b1947').picture_url,score,docs)
+
+
         
-        image_message = ImageSendMessage(
-                    original_content_url='https://i.imgur.com/BH7ENpB.png',
-                    preview_image_url='https://i.imgur.com/BH7ENpB.png'
-                )
-        message = image_message
-        line_bot_api.reply_message(event.reply_token, message)
+        
+
+
+
     if event.postback.data == 'commentmaggie':
         reply_text = "營業員麥基目前沒有評價"
         message = TextSendMessage(reply_text)
