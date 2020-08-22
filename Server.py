@@ -459,7 +459,7 @@ def handle_post_message(event):
                     )
         UserData_update(s,s_doc)
 
-    if event.postback.data == 'maggie':
+    elif event.postback.data == 'maggie':
         s_doc = UserData_get('U2649922b5604a80e08b0f9dba91f9029')
         s = toUser(s_doc)
 
@@ -479,7 +479,7 @@ def handle_post_message(event):
                     )
         UserData_update(s,s_doc)
 
-    if event.postback.data == 'jerry':
+    elif event.postback.data == 'jerry':
 
         s_doc = UserData_get('U60d04b2a91c5b050242a42de2c1b1947')
         s = toUser(s_doc)
@@ -500,14 +500,13 @@ def handle_post_message(event):
                     )
         UserData_update(s,s_doc)
 
-    if event.postback.data == 'commentapple':
+    elif event.postback.data == 'commentapple':
         s_doc = db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').get().to_dict()
         score = s_doc['score'] / s_doc['serviceCount']
         docs = db.collection("comment").where('id','==', 'U2649922b5604a80e08b0f9dba91f9029').get()
         content= comment_flex(score,comment)
        
-
-    if event.postback.data == 'commentjerry':
+    elif event.postback.data == 'commentjerry':
         
         
         s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get().to_dict()
@@ -515,18 +514,12 @@ def handle_post_message(event):
         docs = db.collection("comment").where('id','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
         content= comment_flex('jerry',line_bot_api.get_profile('U60d04b2a91c5b050242a42de2c1b1947').picture_url,score,docs)
 
-
-        
-        
-
-
-
-    if event.postback.data == 'commentmaggie':
+    elif event.postback.data == 'commentmaggie':
         reply_text = "營業員麥基目前沒有評價"
         message = TextSendMessage(reply_text)
         line_bot_api.reply_message(event.reply_token, message)
     
-    if u.state == states.QUSTION.value :
+    elif u.state == states.QUSTION.value :
         if event.postback.data == 'a':
             u.score += 2
             u_doc["score"] = u.score
@@ -948,52 +941,6 @@ def handle_post_message(event):
                                         )
                             )
                 ])))
-        elif u.quastionCount == 9:
-            u.quastionCount += 1
-            line_bot_api.reply_message(
-            event.reply_token,
-            TextSendMessage(
-            text='十、當您的投資組合預期平均報酬率達到多少時才會考慮賣出？(風險評估) (現金流量期望)',
-            quick_reply=QuickReply(
-                        items=[
-                            QuickReplyButton(
-                                
-                                action = PostbackAction(
-                                            label='5%',
-                                            display_text='5%',
-                                            data='a'
-                                        )
-                            ),
-                            QuickReplyButton(
-                                action = PostbackAction(
-                                            label='10%',
-                                            display_text='10%',
-                                            data='b'
-                                        )
-                            ),
-                            QuickReplyButton(
-                                action = PostbackAction(
-                                            label='15%',
-                                            display_text='15%',
-                                            data='c'
-                                        )
-                            ),
-                            QuickReplyButton(
-                                action = PostbackAction(
-                                            label='20%',
-                                            display_text='20%',
-                                            data='d'
-                                        )
-                            ),
-                            QuickReplyButton(
-                                action = PostbackAction(
-                                            label='25%以上',
-                                            display_text='25%以上',
-                                            data='e'
-                                        )
-                            )
-                ])))
-        
         elif u.quastionCount == 10:
             u.quastionCount += 1
             line_bot_api.reply_message(
