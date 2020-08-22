@@ -513,7 +513,11 @@ def handle_post_message(event):
         score = s_doc['score'] / s_doc['serviceCount']
         docs = db.collection("comment").where('id','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
         content= comment_flex('jerry',line_bot_api.get_profile('U60d04b2a91c5b050242a42de2c1b1947').picture_url,score,docs)
-
+        line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
+                    event.reply_token,
+                    FlexSendMessage('交易紀錄', content)
+                    )
+                )
     elif event.postback.data == 'commentmaggie':
         reply_text = "營業員麥基目前沒有評價"
         message = TextSendMessage(reply_text)
