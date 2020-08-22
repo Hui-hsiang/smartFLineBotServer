@@ -244,6 +244,34 @@ def comment_flex(name, img_url, rank, docs):
         star_ico.append(grayStar)
     star_ico.append(score)
 
+    comment = []
+    for i in docs:
+        doc = i.to_dict()
+
+        comment.append({
+                "type": "box",
+                "layout": "baseline",
+                "spacing": "sm",
+                "contents": [
+                    {
+                    "type": "text",
+                    "text": "Comment",
+                    "color": "#aaaaaa",
+                    "size": "sm",
+                    "flex": 1
+                    },
+                    {
+                    "type": "text",
+                    "text": doc['comment'],
+                    "wrap": True,
+                    "color": "#666666",
+                    "size": "sm",
+                    "flex": 5
+                    }
+                ]
+        })
+
+
     content = {
         "type": "bubble",
         "hero": {
@@ -278,52 +306,7 @@ def comment_flex(name, img_url, rank, docs):
             "layout": "vertical",
             "margin": "lg",
             "spacing": "sm",
-            "contents": [
-                {
-                "type": "box",
-                "layout": "baseline",
-                "spacing": "sm",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "Place",
-                    "color": "#aaaaaa",
-                    "size": "sm",
-                    "flex": 1
-                    },
-                    {
-                    "type": "text",
-                    "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
-                    "wrap": True,
-                    "color": "#666666",
-                    "size": "sm",
-                    "flex": 5
-                    }
-                ]
-                },
-                {
-                "type": "box",
-                "layout": "baseline",
-                "spacing": "sm",
-                "contents": [
-                    {
-                    "type": "text",
-                    "text": "Time",
-                    "color": "#aaaaaa",
-                    "size": "sm",
-                    "flex": 1
-                    },
-                    {
-                    "type": "text",
-                    "text": "10:00 - 23:00",
-                    "wrap": True,
-                    "color": "#666666",
-                    "size": "sm",
-                    "flex": 5
-                    }
-                ]
-                }
-            ]
+            "contents": comment 
             }
         ]
         },
@@ -332,16 +315,6 @@ def comment_flex(name, img_url, rank, docs):
         "layout": "vertical",
         "spacing": "sm",
         "contents": [
-            {
-            "type": "button",
-            "style": "link",
-            "height": "sm",
-            "action": {
-                "type": "uri",
-                "label": "CALL",
-                "uri": "https://linecorp.com"
-            }
-            },
             {
             "type": "button",
             "style": "link",
