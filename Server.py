@@ -216,7 +216,7 @@ def historyServices_flex(text, date,product):
         }
     return contents    
 
-def comment_flex(name, img_url, score, docs):
+def comment_flex(name, img_url, rank, docs):
     
     star_ico = []
     goldStar = {
@@ -231,16 +231,16 @@ def comment_flex(name, img_url, score, docs):
                 }
     score = {
                 "type": "text",
-                "text": str(score),
+                "text": str(rank),
                 "size": "sm",
                 "color": "#999999",
                 "margin": "md",
                 "flex": 0
             }
     
-    for i in range(int(score)):
+    for i in range(int(rank)):
         star_ico.append(goldStar)
-    for i in range(int(5-score)):
+    for i in range(5-int(rank)):
         star_ico.append(grayStar)
     star_ico.append(score)
 
