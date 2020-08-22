@@ -147,7 +147,7 @@ def rank_flex():
     }
     return contents 
 
-def prepare_flex(text, date,product): 
+def historyServices_flex(text, date,product): 
     
     contents ={
         "type": "bubble",
@@ -1418,7 +1418,7 @@ def handle_message(event):
                 contents = []
                 for i in docs:
                     t_doc = i.to_dict()
-                    contents.append(prepare_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
+                    contents.append(historyServices_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
 
                 if len(contents) == 0:
                     reply_text = "您目前沒有交易紀錄呦"
@@ -1876,7 +1876,7 @@ def handle_message(event):
                 contents = []
                 for i in docs:
                     t_doc = i.to_dict()
-                    contents.append(prepare_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
+                    contents.append(historyServices_flex(t_doc['customerNAME'], str(t_doc['date']).split(" ")[0],t_doc['product']))
 
                 if len(contents) == 0:
                     reply_text = "您目前沒有交易紀錄呦"
