@@ -402,7 +402,7 @@ def jerrycomments():
     names = []
 
     docs = db.collection('comment').where('id','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
-    s_doc = db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').get().to_dict()
+    s_doc = db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').get().to_dict()
 
 
     for i in docs:
