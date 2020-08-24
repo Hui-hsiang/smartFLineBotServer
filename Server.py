@@ -51,9 +51,7 @@ class User():
         self.name =""
         self.score = 0
 
-# 這邊要改資料庫!!!!!
-posts = []
-names = []
+
 
 def rank_flex():
     rank = 1
@@ -361,6 +359,7 @@ def message_new(id,message):
     db.collection("message").document(id).set(message)
 def message_update(id,message):
     db.collection("message").document(id).update(message)
+def comment_new(id, comment):
 
 def toUser(doc):
     u = User(doc['user_id'])
@@ -400,11 +399,28 @@ def lineFriends():
 
 @app.route("/jerrycomments", methods=['GET','POST'])
 def jerrycomments():
+    
+    posts = []
+    names = []
+
+    docs = db.collection('comment').where('id','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
+
+    for i in docs:
+        i = i.to_dict
+        posts.append(i['comment'])
+        names.append(i['name'])
+    
     if request.method == 'POST':
+        new_comment = {
+            'id' : 'U60d04b2a91c5b050242a42de2c1b1947',
+            'star' : int(request.form.get('star')),
+            'comment' : request.form.get('comment'),
+            'name' : request.form.get('name'),
+        }
 
-        posts.append(request.form.get('url'))
+        posts.append(request.form.get('comment'))
         names.append(request.form.get('name'))
-
+        db.collection('comment').add(new_comment)
         return render_template("comments.html", title = 'jerry', names = names, posts = posts)
     else:
         return render_template("comments.html", title = 'jerry', names = names, posts = posts)
