@@ -2,10 +2,24 @@ from flask import Flask, request, abort, render_template
 from urllib.request import urlopen
 
 
+posts = []
+names = []
+
 app = Flask(__name__)
-@app.route("/taipei", methods=['GET'])
-def lineFriends():
-    return render_template("lineFriends.html")
+@app.route("/jerrycomments", methods=['GET','POST'])
+def jerrycomments():
+    if request.method == 'POST':
+
+        posts.append(request.form.get('url'))
+        names.append(request.form.get('name'))
+
+        return render_template("comments.html",title = 'apple', names = names, posts = posts)
+    else:
+        return render_template("comments.html",title = 'apple', names = names, posts = posts)
+
+    
+
+ 
 
 import os
 if __name__ == "__main__":

@@ -51,6 +51,10 @@ class User():
         self.name =""
         self.score = 0
 
+# 這邊要改資料庫!!!!!
+posts = []
+names = []
+
 def rank_flex():
     rank = 1
     today = date.today()
@@ -394,7 +398,16 @@ def callback():
 def lineFriends():
     return render_template("lineFriends.html")
 
+@app.route("/jerrycomments", methods=['GET','POST'])
+def jerrycomments():
+    if request.method == 'POST':
 
+        posts.append(request.form.get('url'))
+        names.append(request.form.get('name'))
+
+        return render_template("comments.html", title = 'jerry', names = names, posts = posts)
+    else:
+        return render_template("comments.html", title = 'jerry', names = names, posts = posts)
 
 
 @handler.add(PostbackEvent)

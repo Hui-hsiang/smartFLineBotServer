@@ -1,36 +1,21 @@
+<!DOCTYPE html>
 <html>
-    <head>
-      <title>Legal Seafood</title>
-    </head>
-    <body>
-        <amp-list id="comments"
-            class="comments"
-            src="https://amp.dev/documentation/examples/interactivity-dynamic-content/comment_section/comments"
-            layout="fixed-height"
-            height="200"
-            items="."
-            single-item
-            binding="no"
-            credentials="include"
-            reset-on-refresh
-            noloading>
-            <template type="amp-mustache">
-                <div class="comment">
-                <p><span class="user">{{user}}</span> <span class="date">{{date}}</span></p>
-                <p>{{text}}</p>
-                </div>
-            </template>
-            <button overflow>Show all comments</button>
-            <div placeholder>
-                <div class="comment">
-                <p><span class="placeholder"></span> <span class="placeholder"></span></p>
-                <p><span class="placeholder"></span></p>
-                </div>
-                <div class="comment">
-                <p><span class="placeholder"></span> <span class="placeholder"></span></p>
-                <p><span class="placeholder"></span></p>
-                </div>
-            </div>
-        </amp-list>
-    </body>
-  </html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{title}} 的評論</title>
+</head>
+<body>
+    <form action="" method="post">
+        用戶： <input name="name"><br>
+        評論： <input name="url"><br> 
+        <input type="submit" value="提交">
+        <ul>
+            {% for i in posts %}
+                <li>  {{ names[loop.index - 1] }} : {{ i }}</li>
+            {% endfor %}
+        </ul>
+    </form>
+</body>
+</html>
