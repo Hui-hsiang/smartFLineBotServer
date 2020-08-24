@@ -359,8 +359,6 @@ def message_new(id,message):
     db.collection("message").document(id).set(message)
 def message_update(id,message):
     db.collection("message").document(id).update(message)
-def comment_new(id, comment):
-
 def toUser(doc):
     u = User(doc['user_id'])
     u.state = doc['state']
