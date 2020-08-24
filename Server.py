@@ -404,7 +404,7 @@ def jerrycomments():
     docs = db.collection('comment').where('id','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
 
     for i in docs:
-        i = i.to_dict
+        i = i.to_dict()
         posts.append(i['comment'])
         names.append(i['name'])
     
