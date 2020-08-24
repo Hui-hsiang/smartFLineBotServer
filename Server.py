@@ -394,6 +394,38 @@ def callback():
 @app.route("/taipei", methods=['GET'])
 def lineFriends():
     return render_template("lineFriends.html")
+@app.route("/applecomments", methods=['GET','POST'])
+def applecomments():
+    
+    posts = []
+    names = []
+
+    docs = db.collection('comment').where('id','==', 'U2649922b5604a80e08b0f9dba91f9029').get()
+    s_doc = db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').get().to_dict()
+
+
+    for i in docs:
+        i = i.to_dict()
+        posts.append(i['comment'])
+        names.append(i['name'])
+    
+    if request.method == 'POST':
+        new_comment = {
+            'id' : 'U2649922b5604a80e08b0f9dba91f9029',
+            'star' : int(request.form.get('star')),
+            'comment' : request.form.get('comment'),
+            'name' : request.form.get('name'),
+        }
+        
+        s_doc['serviceCount'] = s_doc['serviceCount'] + 1
+        s_doc['score'] = s_doc['score'] + int(request.form.get('star'))
+        posts.append(request.form.get('comment'))
+        names.append(request.form.get('name'))
+        db.collection('comment').add(new_comment)
+        db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').update(s_doc)
+        return render_template("comments.html", title = 'apple', names = names, posts = posts)
+    else:
+        return render_template("comments.html", title = 'apple', names = names, posts = posts)
 
 @app.route("/jerrycomments", methods=['GET','POST'])
 def jerrycomments():
