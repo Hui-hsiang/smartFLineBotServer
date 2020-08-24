@@ -402,6 +402,8 @@ def jerrycomments():
     names = []
 
     docs = db.collection('comment').where('id','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
+    s_doc = db.collection('sales').document('U2649922b5604a80e08b0f9dba91f9029').get().to_dict()
+
 
     for i in docs:
         i = i.to_dict()
@@ -415,10 +417,13 @@ def jerrycomments():
             'comment' : request.form.get('comment'),
             'name' : request.form.get('name'),
         }
-
+        
+        s_doc['serviceCount'] = s_doc['serviceCount'] + 1
+        s_doc['score'] = s_doc['score'] + int(request.form.get('star'))
         posts.append(request.form.get('comment'))
         names.append(request.form.get('name'))
         db.collection('comment').add(new_comment)
+        db.collection('sales').document('U60d04b2a91c5b050242a42de2c1b1947').update(s_doc)
         return render_template("comments.html", title = 'jerry', names = names, posts = posts)
     else:
         return render_template("comments.html", title = 'jerry', names = names, posts = posts)
