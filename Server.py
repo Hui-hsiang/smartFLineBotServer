@@ -391,8 +391,32 @@ def callback():
         abort(400)
     return 'OK'
 
-@app.route("/taipei", methods=['GET'])
-def lineFriends():
+@app.route("/001", methods=['GET'])
+def lineFriends001():
+    line_bot_api.push_message(
+                        'U60d04b2a91c5b050242a42de2c1b1947',
+                        TextMessage(
+                            text="有新用由寵物店001加入好友!",
+                        )
+                    )
+    return render_template("lineFriends.html")
+@app.route("/002", methods=['GET'])
+def lineFriends002():
+    line_bot_api.push_message(
+                        'U60d04b2a91c5b050242a42de2c1b1947',
+                        TextMessage(
+                            text="有新用由寵物店002加入好友!",
+                        )
+                    )
+    return render_template("lineFriends.html")
+@app.route("/003", methods=['GET'])
+def lineFriends003():
+    line_bot_api.push_message(
+                        'U60d04b2a91c5b050242a42de2c1b1947',
+                        TextMessage(
+                            text="有新用由寵物店003加入好友!",
+                        )
+                    )
     return render_template("lineFriends.html")
 @app.route("/applecomments", methods=['GET','POST'])
 def applecomments():
