@@ -394,7 +394,7 @@ def callback():
 @app.route("/001", methods=['GET'])
 def lineFriends001():
     line_bot_api.push_message(
-                        'U60d04b2a91c5b050242a42de2c1b1947',
+                        'U2649922b5604a80e08b0f9dba91f9029',
                         TextMessage(
                             text="有新用由寵物店001加入好友!",
                         )
@@ -403,7 +403,7 @@ def lineFriends001():
 @app.route("/002", methods=['GET'])
 def lineFriends002():
     line_bot_api.push_message(
-                        'U60d04b2a91c5b050242a42de2c1b1947',
+                        'U2649922b5604a80e08b0f9dba91f9029',
                         TextMessage(
                             text="有新用由寵物店002加入好友!",
                         )
@@ -412,7 +412,7 @@ def lineFriends002():
 @app.route("/003", methods=['GET'])
 def lineFriends003():
     line_bot_api.push_message(
-                        'U60d04b2a91c5b050242a42de2c1b1947',
+                        'U2649922b5604a80e08b0f9dba91f9029',
                         TextMessage(
                             text="有新用由寵物店003加入好友!",
                         )
