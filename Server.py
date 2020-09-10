@@ -574,7 +574,7 @@ def handle_post_message(event):
         score = s_doc['score'] / s_doc['serviceCount']
         docs = db.collection("comment").where('id','==', 'U60d04b2a91c5b050242a42de2c1b1947').get()
         url = 'https://smartflinebotserver.herokuapp.com/jerrycomments'
-        content= comment_flex('jerry',line_bot_api.get_profile('U60d04b2a91c5b050242a42de2c1b1947').picture_url,score,docs,url)
+        content= comment_flex('嘉禾',line_bot_api.get_profile('U60d04b2a91c5b050242a42de2c1b1947').picture_url,score,docs,url)
         line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
                     FlexSendMessage('評價', content)
