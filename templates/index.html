@@ -83,7 +83,7 @@
         <tbody>
           <tr>
             <!-- 輸入股票代碼查詢股價 -->
-            <form method="post" >{% csrf_token %}
+            <form method="post" >
               <td width="30%">公司代碼：</td>
               
               <td width="20%">
@@ -108,7 +108,7 @@
           </tr>
 
           <!-- 輸入欲購買張數 -->
-          <form action="post/" method="post" name="post">{% csrf_token %}
+          <form action="post/" method="post" name="post">
             <tr>
               <td>張　　數： </td>
               <td colspan="2">
@@ -150,7 +150,7 @@
         </tr>
       </thead>          
       <tbody id="tbodyid">
-		    {% for stock in stocks %}
+		    
         <tr height="35px">
           <td>{{ forloop.counter }}</td> <!--當前迴圈的執行次數的整數計數器 -->
           <td>{{ stock.stock_company }}({{ stock.stock_companyNum }})</td>
@@ -159,13 +159,13 @@
           <td id="thousandths{{ forloop.counter }}">{{ stock.stock_amount  | strThcut }}</td>
           <td>
             <form action="delete/" method="post" name="delete">
-              {% csrf_token %}
+              
               <input type="hidden" name="fk_id" value="{{stock.id}}">
               <input type="submit" class="button" id="delete" name="delete" value="✕" style="width: 25px; height: 20px;padding-top: 0;padding-bottom: 0;font-style: strong;" >
             </form>  
           </td>
         </tr>
-        {% endfor %} 
+         
 		  </tbody>
     </table>
     <table width="100%" border="1" rules="rows" frame="void">
@@ -179,7 +179,7 @@
           </td>
           <td>&nbsp;</td>
           <td align="center">
-            <form method="post" >{% csrf_token %}
+            <form method="post" >
             <input type="submit" name="totalConfirm" id="totalConfirm" class="button" value="送出" >
             </form>
           </td>
