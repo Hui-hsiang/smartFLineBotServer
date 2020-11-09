@@ -158,10 +158,10 @@
           <td>{{ stock.stock_company }}({{ stock.stock_companyNum }})</td>
           <td>{{ stock.stock_shares }}</td>
           <td>{{ stock.stock_strike_price }}</td>
-          <td id="thousandths{{ forloop.counter }}">{{ stock.stock_amount  | strThcut }}</td>
+          <td id="thousandths{{ forloop.counter }}">{{ stock.stock_amount }}</td>
           <td>
             <form action="delete/" method="post" name="delete">
-              {% csrf_token %}
+              
               <input type="hidden" name="fk_id" value="{{stock.id}}">
               <input type="submit" class="button" id="delete" name="delete" value="✕" style="width: 25px; height: 20px;padding-top: 0;padding-bottom: 0;font-style: strong;" >
             </form>  
