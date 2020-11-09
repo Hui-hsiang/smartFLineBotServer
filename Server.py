@@ -54,6 +54,98 @@ class User():
 
 def welcome_flex():
     welcome = 1
+    today = date.today()
+    content = {
+        "type": "bubble",
+        "body": {
+            "type": "box",
+            "layout": "vertical",
+            "contents": [
+            {
+                "type": "text",
+                "text": "歡迎使用",
+                "weight": "bold",
+                "color": "#1DB446",
+                "size": "sm"
+            },
+            {
+                "type": "text",
+                "text": "InsurTech⁺",
+                "weight": "bold",
+                "size": "xl"
+                "margin":"md"
+            },
+            {
+                "type": "separator",
+                "margin": "xl"
+            },
+            ]
+                
+                "type": "box",
+                "layout": "vertical",
+                "contents": [
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [                
+                    {
+                    "type": "text",
+                    "text": "我是智能保險導購平台-InsurTech⁺",
+                    "size": "sm"
+                    "color": "#111111",
+                    },
+                    ]
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [ 
+                    { 
+                    "type": "text",
+                    "text": "任何關於保險相關的問題都可以詢問我喔！",
+                    "size": "sm"
+                    "color": "#111111",   
+                    },
+                    ]
+                    }
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [ 
+                    {    
+                    "type": "text",
+                    "text": "我會幫你轉接專業的保險業務員",
+                    "size": "sm"
+                    "color": "#111111", 
+                    }, 
+                    ]
+                    }
+                    {
+                    "type": "box",
+                    "layout": "horizontal",
+                    "contents": [ 
+                    {    
+                    "type": "text",
+                    "text": "他們能幫你做詳細的介紹",
+                    "size": "sm"
+                    "color": "#111111", 
+                    },
+                    ]
+                    }
+                ] 
+                }, 
+            {
+                "type": "separator",
+                "margin": "xl"
+            },  
+    button = {'type':'button',
+            'type':,
+            'style':,
+            'color':,
+            'action':}
+
+
+    }
+
 
 def rank_flex():
     rank = 1
