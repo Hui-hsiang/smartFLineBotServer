@@ -52,6 +52,8 @@ class User():
         self.score = 0
 
 
+def welcome_flex():
+    welcome = 1
 
 def rank_flex():
     rank = 1
@@ -390,7 +392,9 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
-
+@app.route("/purchase")
+def purchase():
+    return render_template("comments.html")
 @app.route("/001", methods=['GET'])
 def lineFriends001():
     line_bot_api.push_message(
@@ -1602,7 +1606,6 @@ def handle_message(event):
                         FlexSendMessage('交易紀錄', carousel_contents)
                         )
                     )
-
             elif text == "投資風險屬性分析問卷":
                 u.state = states.QUSTION.value
                 doc["state"] = u.state
@@ -1713,9 +1716,12 @@ def handle_message(event):
                 reply_text += "有任何金融相關的問題都可以詢問我喔！\n"
                 reply_text += "我會幫你轉接專業證券營業員與保險業務員\n"
                 reply_text += "他們能幫你做詳細的介紹與申購👍"
+                
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     message = TextSendMessage(reply_text)
                     line_bot_api.reply_message(event.reply_token, message)
+
+
         elif u.state == states.QUSTION.value:
             reply_text = "問卷還未完成喔~"        
             message = TextSendMessage(reply_text)
