@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, maximum-scale=1.0, user-scalable=0">
 
-<title>新增投資組合</title>
+<title>happy寵物險</title>
 <style type="text/css">
 @media screen{
 }
@@ -30,22 +30,22 @@
 <body class="a">
 <div class="title" >
   <h1 align="center" >
-	  <font color="#FF5A58"> 新增</font>投資組合
+	  <font color="#FF5A58"> 填寫</font>寵物資料
 	 </h1>
-	<p class="text" align="center">New a portfolio.
+	<p class="text" align="center">Creat a form.
   </p>
 </div>
 
 <div class="new">
   <fieldset class="b">
-    <legend class="l">&nbsp;&nbsp;&nbsp;新增組合</legend>
+    <legend class="l">&nbsp;&nbsp;&nbsp;表單內容</legend>
     <table width="100%"  border="0" class="table" >
       <tbody>
         <form action="" method="post" name="post">
           <tr height="22px">
             <td width="30%">&nbsp;組合名稱： </td>
             <td width="70%">
-              {{display_portfolioName}}
+              測試一
 
               <input type="hidden" name="portfolioInfo" value="portfolioInfo">
             </td>
@@ -53,14 +53,14 @@
           <tr height="22px">
             <td>&nbsp;投資時間： </td>
               <td>
-                {{display_portfolioDays}}
+                測試二
 
             </td>
           </tr>
           <tr height="22px">
             <td>&nbsp;投資預算：</td>
             <td id='budget'>
-              {{display_portfolioBudget}}
+              測試三
 
             </td>
           </tr>
@@ -208,25 +208,10 @@ function PortfolioConfirm() {
       {
           window.alert("請新增股票至你的投資組合");
       }                  
-      // else if (parseInt(total.replace(/[,]+/g, ""))<=parseInt(budget.replace(/[,]+/g, "")))
-      // {
-      //     window.alert("成功新增投資組合");
-      // }
-      // else
-      // {
-      //     window.alert("請先新增投資組合");
-      // }
       
     });
   });
-  // 將總金額加入千分位
-  // $(function(){
-  //   $("td[id*='thousandths']").text(function(i,v){
-  //     return v.replace(/(?!^)(?=(\d{3})+($|\.))/g,",");
-  //   });
-  // });           
+         
 </script>
-
-
 </body>
 </html>
