@@ -394,6 +394,8 @@ def callback():
     return 'OK'
 @app.route("/purchase")
 def purchase():
+    if request.method == 'POST':
+        
     return render_template("index.html")
 @app.route("/001", methods=['GET'])
 def lineFriends001():
