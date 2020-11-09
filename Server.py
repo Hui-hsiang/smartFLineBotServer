@@ -394,7 +394,7 @@ def callback():
     return 'OK'
 @app.route("/purchase")
 def purchase():
-    return render_template("comments.html")
+    return render_template("index.html")
 @app.route("/001", methods=['GET'])
 def lineFriends001():
     line_bot_api.push_message(
