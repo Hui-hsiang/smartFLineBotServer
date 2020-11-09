@@ -46,7 +46,7 @@
             <td width="30%">&nbsp;組合名稱： </td>
             <td width="70%">
               {{display_portfolioName}}
-              {{ Portfolioform.portfolio_name }}
+
               <input type="hidden" name="portfolioInfo" value="portfolioInfo">
             </td>
           </tr>
@@ -54,14 +54,14 @@
             <td>&nbsp;投資時間： </td>
               <td>
                 {{display_portfolioDays}}
-                {{ Portfolioform.portfolio_days }}
+
             </td>
           </tr>
           <tr height="22px">
             <td>&nbsp;投資預算：</td>
             <td id='budget'>
               {{display_portfolioBudget}}
-              {{ Portfolioform.portfolio_budget }}
+
             </td>
           </tr>
           <tr align="center">
@@ -112,7 +112,7 @@
             <tr>
               <td>張　　數： </td>
               <td colspan="2">
-                {{Homeform.stock_shares}}
+
               </td>
             </tr>
           
@@ -152,11 +152,11 @@
       <tbody id="tbodyid">
 		    
         <tr height="35px">
-          <td>{{ forloop.counter }}</td> <!--當前迴圈的執行次數的整數計數器 -->
-          <td>{{ stock.stock_company }}({{ stock.stock_companyNum }})</td>
-          <td>{{ stock.stock_shares }}</td>
-          <td>{{ stock.stock_strike_price }}</td>
-          <td id="thousandths{{ forloop.counter }}">{{ stock.stock_amount  }}</td>
+          <td>{{  }}</td> <!--當前迴圈的執行次數的整數計數器 -->
+          <td>{{  }}({{  }})</td>
+          <td>{{  }}</td>
+          <td>{{  }}</td>
+          <td id="thousandths{{ forloop.counter }}">{{   }}</td>
           <td>
             <form action="delete/" method="post" name="delete">
               
