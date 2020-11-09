@@ -392,7 +392,7 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
-@app.route("/purchase")
+@app.route("/purchase", methods=['GET','POST'])
 def purchase():
     if request.method == 'POST':
         return render_template("index.html")
