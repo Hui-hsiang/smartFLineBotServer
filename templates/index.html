@@ -156,7 +156,7 @@
           <td>{{ stock.stock_company }}({{ stock.stock_companyNum }})</td>
           <td>{{ stock.stock_shares }}</td>
           <td>{{ stock.stock_strike_price }}</td>
-          <td id="thousandths{{ forloop.counter }}">{{ stock.stock_amount  | strThcut }}</td>
+          <td id="thousandths{{ forloop.counter }}">{{ stock.stock_amount  }}</td>
           <td>
             <form action="delete/" method="post" name="delete">
               
