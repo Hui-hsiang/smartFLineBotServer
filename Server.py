@@ -73,7 +73,7 @@ def welcome_flex():
             "contents": [
             {
                 "type": "text",
-                "text": "Brown Cafe",
+                "text": "insurTech",
                 "weight": "bold",
                 "size": "xl"
                 },
@@ -473,11 +473,19 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return 'OK'
+
 @app.route("/purchase", methods=['GET','POST'])
 def purchase():
     if request.method == 'POST':
         return render_template("petForm.html")
-    return render_template("index.html")
+    return render_template("petForm".html")
+
+@app.route("/apply", methods=['GET','POST'])
+def apply():
+    if request.method == 'POST':
+        return render_template("apply.html")
+    return render_template("apply".html")
+
 @app.route("/001", methods=['GET'])
 def lineFriends001():
     line_bot_api.push_message(
