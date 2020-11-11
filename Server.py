@@ -478,7 +478,7 @@ def callback():
 def purchase():
     if request.method == 'POST':
         return render_template("petForm.html")
-    return render_template("petForm".html")
+    return render_template("petForm.html")
 
 @app.route("/apply", methods=['GET','POST'])
 def apply():
