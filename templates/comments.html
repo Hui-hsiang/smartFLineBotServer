@@ -8,16 +8,26 @@
     <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css')}}">
     <title>{{ title }} 的評論</title>
 </head>
-<body>
+<body class = "a">
+    <div class="title" >
+        <h1 align="center" >
+            <font color="#FF5A58"> 業務員</font>嘉禾
+            </h1>
+            <p class="text" align="center">Jerry.
+        </p>
+    </div>
+    <div class="new">
     <form action="" method="post">
         用戶： <input name="name"><br>
         評論： <input name="comment"><br>
         星數： <input name="star"><br>
-         
-        <input type="submit" value="提交">
+    </div>
+        <input type="submit" value="提交" class="button">
         <ul>
             {% for i in posts %}
-                <li>  {{ names[loop.index - 1] }} : {{ i }}</li>
+            <div class="new">    
+                {{ names[loop.index - 1] }} : {{ i }}
+            </div>
             {% endfor %}
         </ul>
     </form>
