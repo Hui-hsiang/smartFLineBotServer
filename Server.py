@@ -57,94 +57,87 @@ def welcome_flex():
     today = date.today()
     content = {
         "type": "bubble",
+        "hero": {
+        "type": "image",
+        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover",
+        "action": {
+            "type": "uri",
+            "uri": "http://linecorp.com/"
+            }
+            },
         "body": {
             "type": "box",
             "layout": "vertical",
             "contents": [
             {
                 "type": "text",
-                "text": "歡迎使用",
+                "text": "Brown Cafe",
                 "weight": "bold",
-                "color": "#1DB446",
-                "size": "sm"
-            },
+                "size": "xl"
+                },
             {
-                "type": "text",
-                "text": "InsurTech⁺",
-                "weight": "bold",
-                "size": "xl",
-                "margin":"md"
-            },
-            {
-                "type": "separator",
-                "margin": "xl"
-            },
-            ]
-                
                 "type": "box",
                 "layout": "vertical",
+                "margin": "lg",
+                "spacing": "sm",
                 "contents": [
-                    {
+                {
                     "type": "box",
-                    "layout": "horizontal",
-                    "contents": [                
+                    "layout": "baseline",
+                    "spacing": "sm",
+                    "contents": [
                     {
-                    "type": "text",
-                    "text": "我是智能保險導購平台-InsurTech⁺",
-                    "size": "sm"
-                    "color": "#111111",
-                    },
-                    ]
-                    {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [ 
-                    { 
-                    "type": "text",
-                    "text": "任何關於保險相關的問題都可以詢問我喔！",
-                    "size": "sm"
-                    "color": "#111111",   
-                    },
-                    ]
+                        "type": "text",
+                        "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                        "wrap": true,
+                        "color": "#666666",
+                        "size": "sm",
+                        "flex": 5
+                        }
+                        ]
                     }
-                    {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [ 
-                    {    
-                    "type": "text",
-                    "text": "我會幫你轉接專業的保險業務員",
-                    "size": "sm"
-                    "color": "#111111", 
-                    }, 
-                    ]
-                    }
-                    {
-                    "type": "box",
-                    "layout": "horizontal",
-                    "contents": [ 
-                    {    
-                    "type": "text",
-                    "text": "他們能幫你做詳細的介紹",
-                    "size": "sm"
-                    "color": "#111111", 
-                    },
-                    ]
-                    }
-                ] 
-                }, 
+                ]
+                }
+                ]
+            },
+        "footer": {
+            "type": "box",
+            "layout": "vertical",
+            "spacing": "sm",
+            "contents": [
             {
-                "type": "separator",
-                "margin": "xl"
-            },  
-    button = {'type':'button',
-            'type':,
-            'style':,
-            'color':,
-            'action':}
+                "type": "button",
+                "style": "link",
+                "height": "sm",
+                "action": {
+                "type": "uri",
+                "label": "CALL",
+                "uri": "https://linecorp.com"
+                }
+            },
+            {
+                "type": "button",
+                "style": "link",
+                "height": "sm",
+                "action": {
+                "type": "uri",
+                "label": "WEBSITE",
+                "uri": "https://linecorp.com"
+                }
+            },
+            {
+                "type": "spacer",
+                "size": "sm"
+            }
+            ],
+            "flex": 0
+        }
+        }
 
-
-    }
+        
 
 
 def rank_flex():
