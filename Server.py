@@ -1810,11 +1810,11 @@ def handle_message(event):
                 # reply_text += "有任何金融相關的問題都可以詢問我喔！\n"
                 # reply_text += "我會幫你轉接專業證券營業員與保險業務員\n"
                 # reply_text += "他們能幫你做詳細的介紹與申購👍"
-                
+                contents = welcome_flex()
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     line_bot_api.reply_message(
                         event.reply_token,
-                        FlexSendMessage('交易紀錄', carousel_contents)
+                        FlexSendMessage('交易紀錄', contents)
                     )
                     
 
