@@ -702,9 +702,8 @@ def handle_post_message(event):
                             title='點選申請' + product + "理賠",
                             text='購買人姓名:' + name + '\n購買日期:' + date + '\n產品:' + product,
                             actions=
-                            URIAction(
+                            URITemplateAction(
                                 label='前往申請',
-                                display_text='前往申請',
                                 uri='https://smartflinebotserver.herokuapp.com/apply'
                             )
                         )
