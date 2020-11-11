@@ -30,7 +30,7 @@
 <body class="a">
 <div class="title" >
   <h1 align="center" >
-	  <font color="#FF5A58"> 填寫</font>寵物資料
+	  <font color="#FF5A58"> 購買</font>happy寵物險
 	 </h1>
 	<p class="text" align="center">Creat a form.
   </p>
@@ -38,7 +38,7 @@
 
 <div class="new">
   <fieldset class="b">
-    <legend class="l">&nbsp;&nbsp;&nbsp;表單內容</legend>
+    <legend class="l">&nbsp;&nbsp;&nbsp;寵物資料</legend>
     <table width="100%"  border="0" class="table" >
       <tbody>
         <form action="" method="post" name="post">
@@ -86,19 +86,73 @@
               <input type="date" id="birthday" name="birthday">
             </td>
           </tr>
-          <tr align="center">
-            <td height="36" colspan="2">
-              <strong>
-                  <input type="submit" class="button" value="確認" onclick='PortfolioConfirm()'>
-              </strong>
-            </td>
-          </tr>
+          
         </form>
       </tbody>
     </table>
   </fieldset>
 	</div>
   <p>&nbsp;</p>
-	
+	<div class="new">
+    <fieldset class="b">
+      <legend class="l">&nbsp;&nbsp;&nbsp;投保人資料</legend>
+      <table width="100%"  border="0" class="table" >
+        <tbody>
+          <form action="" method="post" name="post">
+            <tr height="22px">
+              <td width="30%">&nbsp;寵物種類 </td>
+              <td width="70%">
+                <input type="radio" id="dog" name="category" value="狗星人">
+                <label for="male">狗星人</label>
+                <input type="radio" id="cat" name="category" value="貓星人">
+                <label for="female">貓星人</label>
+  
+              <br>
+  
+              </td>
+            </tr>
+            <tr height="22px">
+              <td>&nbsp;寵物性別 </td>
+                
+              <td>
+                <input type="radio" id="male" name="gender" value="male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="gender" value="female">
+                <label for="female">Female</label>
+              </td>
+            </tr>
+            <tr height="22px">
+              <td>&nbsp;寵物品種</td>
+              <td>
+                <input type="text" name="portfolioInfo" value="拉布拉多">
+              </td>
+            </tr>
+            <tr height="22px">
+              <td>&nbsp;寵物生日 </td>
+                
+              <td>
+  
+                <input type="date" id="birthday" name="birthday">
+              </td>
+            </tr>
+            <tr height="22px">
+              <td>&nbsp;保險期間 </td>
+                
+              <td>  
+  
+                <input type="date" id="birthday" name="birthday">
+              </td>
+            </tr>
+            
+          </form>
+        </tbody>
+      </table>
+    </fieldset>
+    </div>
+
+    
+    <input  type="submit" class="button" value="確認" onclick='PortfolioConfirm()' align ="middle">
+    
+    
 </body>
 </html>

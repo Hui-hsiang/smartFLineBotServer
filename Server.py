@@ -288,6 +288,16 @@ def historyServices_flex(text, date,product):
                     "color": "#555555"
                 }
                 ]
+            },
+            {
+                "type": "button",
+                "style": "link",
+                "height": "sm",
+                "action": {
+                "type": "uri",
+                "label": "申請理賠",
+                "uri": "https://smartflinebotserver.herokuapp.com/apply"
+                }
             }
             ]
         }
