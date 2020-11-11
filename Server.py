@@ -53,8 +53,7 @@ class User():
 
 
 def welcome_flex():
-    welcome = 1
-    today = date.today()
+    
     content = {
         "type": "bubble",
         "hero": {
@@ -136,6 +135,7 @@ def welcome_flex():
             "flex": 0
             }
         }
+    return content
 
         
 
