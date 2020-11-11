@@ -694,26 +694,24 @@ def handle_post_message(event):
         name = event.postback.data.split("&")[1]
         date = event.postback.data.split("&")[2]
         product = event.postback.data.split("&")[3]
-        TemplateSendMessage(
-                alt_text='申請理賠',
-                template=CarouselTemplate(
-                    columns=[
-                        CarouselColumn(
-                            title='點選申請' + product + "理賠",
-                            text='購買人姓名:' + name + '\n購買日期:' + date + '\n產品:' + product,
-                            actions=
-                            URITemplateAction(
-                                label='前往申請',
-                                uri='https://smartflinebotserver.herokuapp.com/apply'
-                            )
-                        )
-                    ]
+        
+        buttons_template_message = TemplateSendMessage(
+        alt_text='申請理賠',
+        template=ButtonsTemplate(
+            title='點選申請' + product + "理賠",
+            text='購買人姓名:' + name + '\n購買日期:' + date + '\n產品:' + product,
+            actions=[
+                URIAction(
+                    label='前往申請',
+                    uri='https://smartflinebotserver.herokuapp.com/apply'
                 )
-            )
+            ]
+        )
+    )
             
         line_bot_api.reply_message(
             event.reply_token,
-            TemplateSendMessage
+            buttons_template_message
             )
 
 
