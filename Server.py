@@ -1806,14 +1806,17 @@ def handle_message(event):
                     )
             else:
 
-                reply_text = "Hi\n我是智能金融導購平台💼\n"
-                reply_text += "有任何金融相關的問題都可以詢問我喔！\n"
-                reply_text += "我會幫你轉接專業證券營業員與保險業務員\n"
-                reply_text += "他們能幫你做詳細的介紹與申購👍"
+                # reply_text = "Hi\n我是智能金融導購平台💼\n"
+                # reply_text += "有任何金融相關的問題都可以詢問我喔！\n"
+                # reply_text += "我會幫你轉接專業證券營業員與保險業務員\n"
+                # reply_text += "他們能幫你做詳細的介紹與申購👍"
                 
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
-                    message = TextSendMessage(reply_text)
-                    line_bot_api.reply_message(event.reply_token, message)
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        FlexSendMessage('交易紀錄', carousel_contents)
+                    )
+                    
 
 
         elif u.state == states.QUSTION.value:
