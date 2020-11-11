@@ -72,7 +72,7 @@ def welcome_flex():
                 "type": "text",
                 "text": "InsurTech⁺",
                 "weight": "bold",
-                "size": "xl"
+                "size": "xl",
                 "margin":"md"
             },
             {
