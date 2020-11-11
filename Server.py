@@ -90,7 +90,7 @@ def welcome_flex():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "Miraina Tower, 4-1-6 Shinjuku, Tokyo",
+                        "text": "嗨我是智慧金融導購平台 insurtech\n我能協助你喔",
                         "wrap": True,
                         "color": "#666666",
                         "size": "sm",
@@ -112,9 +112,9 @@ def welcome_flex():
                 "style": "link",
                 "height": "sm",
                 "action": {
-                "type": "uri",
-                "label": "CALL",
-                "uri": "https://linecorp.com"
+                    "type":"message",
+                    "label":"我想諮詢業務員",
+                    "text":"我想諮詢業務員"
                 }
             },
             {
@@ -1630,7 +1630,7 @@ def handle_message(event):
                 )  
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             
-            elif "資訊" in text:
+            elif "諮詢" in text:
                 u.state = states.PETSQUSTION.value
                 doc["state"] = u.state
 
