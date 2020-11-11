@@ -294,9 +294,10 @@ def historyServices_flex(text, date,product):
                 "style": "link",
                 "height": "sm",
                 "action": {
-                "type": "uri",
-                "label": "申請理賠",
-                "uri": "https://smartflinebotserver.herokuapp.com/apply"
+                "type":"postback",
+                "label":"申請理賠",
+                "data":"apply&"+text+"&"+date+"&"+product",
+                "text":"申請理賠"
                 }
             }
             ]
@@ -689,7 +690,30 @@ def handle_post_message(event):
         reply_text = "營業員麥基目前沒有評價"
         message = TextSendMessage(reply_text)
         line_bot_api.reply_message(event.reply_token, message)
-    
+    elif event.postback.data.split("&")[0] == 'apply':
+        name = event.postback.data.split("&")[1]
+        date = event.postback.data.split("&")[2]
+        product = event.postback.data.split("&")[3]
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(
+                text='點選申請' + product + "理賠",
+                quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = PostbackAction(
+                                            label='前往申請',
+                                            display_text='前往申請',
+                                            uri='https://smartflinebotserver.herokuapp.com/apply'
+                                        )
+                            ),
+                            
+                    ])))
+
+
+
+
     elif u.state == states.QUSTION.value :
         if event.postback.data == 'a':
             u.score += 2
