@@ -484,7 +484,7 @@ def purchase():
 def apply():
     if request.method == 'POST':
         return render_template("apply.html")
-    return render_template("apply".html")
+    return render_template("apply.html")
 
 @app.route("/001", methods=['GET'])
 def lineFriends001():
