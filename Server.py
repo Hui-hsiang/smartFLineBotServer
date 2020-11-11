@@ -296,7 +296,7 @@ def historyServices_flex(text, date,product):
                 "action": {
                 "type":"postback",
                 "label":"申請理賠",
-                "data":"apply&"+text+"&"+date+"&"+product",
+                "data":"apply&"+text+"&"+date+"&"+product,
                 "text":"申請理賠"
                 }
             }
