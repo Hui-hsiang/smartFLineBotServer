@@ -25,11 +25,11 @@
         <input type="submit" value="提交" class="button">
         <ul>
             {% for i in posts %}
-            {{<div class="new">   }}
-                {{<fieldset class="b">}}
+            <div class="new">   
+                <fieldset class="b">
                      {{names[loop.index - 1]}} :  {{i}} 
-                {{</fieldset> 
-            </div> }}
+                </fieldset> 
+            </div> 
             {% endfor %}
         </ul>
     </form>
