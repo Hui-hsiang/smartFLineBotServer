@@ -702,7 +702,7 @@ def handle_post_message(event):
                         items=[
                             QuickReplyButton(
                                 
-                                action = PostbackAction(
+                                action = URIAction(
                                             label='前往申請',
                                             display_text='前往申請',
                                             uri='https://smartflinebotserver.herokuapp.com/apply'
