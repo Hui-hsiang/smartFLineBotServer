@@ -495,6 +495,11 @@ def purchase():
 def apply():
     if request.method == 'POST':
         return render_template("apply.html")
+    if request.method == 'GET':
+        name = request.args.get('name')
+        date = request.args.get('date')
+        product = request.args.get('product')
+        return render_template("apply.html",name = name,date = date,product = product)    
     return render_template("apply.html")
 
 @app.route("/001", methods=['GET'])
@@ -703,7 +708,7 @@ def handle_post_message(event):
             actions=[
                 URIAction(
                     label='前往申請',
-                    uri='https://smartflinebotserver.herokuapp.com/apply'
+                    uri='https://smartflinebotserver.herokuapp.com/apply?name='+name+'&date='+date+'&product='+product
                 )
             ]
         )

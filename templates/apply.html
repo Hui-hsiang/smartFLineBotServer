@@ -35,7 +35,45 @@
 	<p class="text" align="center">Creat a form.
   </p>
 </div>
+<div class="new">
+  <fieldset class="b">
+    <legend class="l">&nbsp;&nbsp;&nbsp;保險內容</legend>
+    <table width="100%"  border="0" class="table" >
+      <tbody>
+        <form action="" method="post" name="post">
+          <tr height="22px">
+            <td width="30%">&nbsp;投保人: {{name}} </td>
+            <td width="70%">
+              <input type="radio" id="dog" name="category" value="狗星人">
+              <label for="male">狗星人</label>
+              <input type="radio" id="cat" name="category" value="貓星人">
+              <label for="female">貓星人</label>
 
+            <br>
+
+            </td>
+          </tr>
+          <tr height="22px">
+            <td>&nbsp;投保日期: {{date}} </td>
+              
+            <td>
+              <input type="radio" id="male" name="gender" value="male">
+              <label for="male">Male</label>
+              <input type="radio" id="female" name="gender" value="female">
+              <label for="female">Female</label>
+            </td>
+          </tr>
+          <tr height="22px">
+            <td>&nbsp;投保產品: {{product}}</td>
+            <td>
+              <input type="text" name="portfolioInfo" value="拉布拉多">
+            </td>
+          </tr>          
+        </form>
+      </tbody>
+    </table>
+  </fieldset>
+	</div>
 <div class="new">
   <fieldset class="b">
     <legend class="l">&nbsp;&nbsp;&nbsp;表單內容</legend>
