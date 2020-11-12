@@ -2340,7 +2340,7 @@ def handle_message(event):
                 if (u.div_id != 0):
                     line_bot_api.push_message(
                         u.div_id,
-                        text_message = TextSendMessage(text=text,
+                        TextSendMessage(text=text,
                                quick_reply=QuickReply(items=[
                                    QuickReplyButton(action=MessageAction(label="離開", text="離開"))
                                ])))
