@@ -1813,17 +1813,17 @@ def handle_message(event):
 
                 message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/rrffBB8.png',
-                    alt_text='sex',
+                    alt_text='CATEGORY',
                     base_size=BaseSize(height=520, width=1040),
                     actions=[
                         MessageImagemapAction(
-                            text='male',
+                            text='dog',
                             area=ImagemapArea(
                                 x=0, y=0, width=520, height=520
                             )
                         ),
                         MessageImagemapAction(
-                            text='female',
+                            text='cat',
                             area=ImagemapArea(
                                 x=520, y=0, width=520, height=520
                             )
@@ -1832,6 +1832,8 @@ def handle_message(event):
                 )
 
                 line_bot_api.reply_message(event.reply_token, message)
+
+                
 
                 message_doc = {
                     'message' : text,
@@ -1980,6 +1982,29 @@ def handle_message(event):
             else:
                 line_bot_api.push_message(u.div_id, TextSendMessage(text=text))
         elif u.state == states.PETSQUSTION.value:
+            if text == 'cat' or text == 'dog':
+                message = ImagemapSendMessage(
+                    base_url='https://i.imgur.com/rrffBB8.png',
+                    alt_text='sex',
+                    base_size=BaseSize(height=520, width=1040),
+                    actions=[
+                        MessageImagemapAction(
+                            text='male',
+                            area=ImagemapArea(
+                                x=0, y=0, width=520, height=520
+                            )
+                        ),
+                        MessageImagemapAction(
+                            text='female',
+                            area=ImagemapArea(
+                                x=520, y=0, width=520, height=520
+                            )
+                        )
+                    ]
+                )
+
+                line_bot_api.reply_message(event.reply_token, message)
+                
             if text == 'male' or text == 'female' :
                 message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/5YHMcSp.png',
