@@ -95,3 +95,8 @@ req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + 'U2649922b5
                         headers=headers)
 
 # %%
+headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
+
+req = requests.request('POST', ' https://api.line.me/v2/bot/user/all/richmenu/richmenu-0a9ab22894face43826ff3b3a67babcc', 
+                       headers=headers)
+# %%

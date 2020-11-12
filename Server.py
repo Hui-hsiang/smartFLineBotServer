@@ -232,7 +232,99 @@ def rank_flex():
         }
     }
     return contents 
+def listOfservice_flex(user_id):
+    docs = db.collection("transaction").where('customerID','==', user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
+    service = []
+    for i in docs:
+        r_doc = i.to_dict()
+        content = {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+            {
+                "type": "text",
+                "text": id,
+                "size": "sm",
+                "color": "#1DB446",
+                "flex": 0
+            }
+            ]
+        }
+        service.append(content)
+        content = {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+            {
+                "type": "text",
+                "text": str(r_doc["date"]),
+                "size": "sm",
+                "color": "#555555"
+            }
+            ]
+        }
+        service.append(content)
+        content = {
+            "type": "box",
+            "layout": "horizontal",
+            "contents": [
+            {
+                "type": "text",
+                "text": str(r_doc["product"]),
+                "size": "sm",
+                "color": "#555555"
+            }
+            ]
+        }
+        service.append(content)
+        content = {
+            "type": "separator",
+            "margin": "xxl"
+        }
+        service.append(content)
+        
 
+
+    contents ={
+        "type": "bubble",
+        "body": {
+        "type": "box",
+        "layout": "vertical",
+        "contents": [
+        {
+            "type": "text",
+            "text": str(today),
+            "weight": "bold",
+            "color": "#1DB446",
+            "size": "sm"
+        },
+        {
+            "type": "text",
+            "text": "保單紀錄",
+            "weight": "bold",
+            "size": "xxl",
+            "margin": "md"
+        },
+        {
+            "type": "separator",
+            "margin": "xxl"
+        },
+        {
+            "type": "box",
+            "layout": "vertical",
+            "margin": "xxl",
+            "spacing": "sm",
+            "contents": service
+        }
+        ]
+        },
+        "styles": {
+            "footer": {
+            "separator": True
+            }
+        }
+    }
+    return contents
 def historyServices_flex(text,number, date,product): 
     
     contents ={
@@ -1730,8 +1822,23 @@ def handle_message(event):
                 
 
                 
+            elif text == "保單紀錄":
+                contents = listOfservice_flex(u.user_id)
+                
+                if len(contents) == 0:
+                    reply_text = "您目前沒有保單紀錄呦"
 
-            elif text == "保單紀錄" or text == "申請理賠":
+                    if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
+                        message = TextSendMessage(reply_text)
+                        line_bot_api.reply_message(event.reply_token, message)
+                else:   
+                    line_bot_api.reply_message(
+                        event.reply_token,
+                        FlexSendMessage('保單紀錄', contents)
+                    )
+                       
+
+            elif text == "申請理賠":
                 docs = db.collection("transaction").where('customerID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
                 contents = []
                 for i in docs:
@@ -1739,7 +1846,7 @@ def handle_message(event):
                     contents.append(historyServices_flex(t_doc['customerNAME'],i.id, str(t_doc['date']).split(" ")[0],t_doc['product']))
 
                 if len(contents) == 0:
-                    reply_text = "您目前沒有交易紀錄呦"
+                    reply_text = "您目前沒有保單紀錄呦"
 
                     if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                         message = TextSendMessage(reply_text)
@@ -1750,7 +1857,7 @@ def handle_message(event):
                         "contents": contents}
                     line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                         event.reply_token,
-                        FlexSendMessage('交易紀錄', carousel_contents)
+                        FlexSendMessage('保單紀錄', carousel_contents)
                         )
                     )
             
@@ -2133,7 +2240,7 @@ def handle_message(event):
                 contents = rank_flex()
                 line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
                     event.reply_token,
-                    FlexSendMessage('交易紀錄', contents)
+                    FlexSendMessage('業績英雄榜', contents)
                     )
                 )
             elif text == "歷史服務紀錄":
