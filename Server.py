@@ -707,7 +707,10 @@ def handle_post_message(event):
         line_bot_api.reply_message(event.reply_token, message)
     elif event.postback.data.split("&")[0] == 'apply':
         doc_id = event.postback.data.split("&")[1]
-        
+        doc = db.collection("transaction").document(doc_id).get().to_dict()
+        name = doc['name']
+        date = doc['date']
+        product = doc['product']
         get_url = 'https://smartflinebotserver.herokuapp.com/apply?id='+doc_id
         buttons_template_message = TemplateSendMessage(
         alt_text='申請理賠',
