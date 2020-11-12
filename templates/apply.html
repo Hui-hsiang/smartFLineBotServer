@@ -32,15 +32,16 @@
   <h1 align="center" >
 	  <font color="#FF5A58"> 申請</font>表單理賠
 	 </h1>
-	<p class="text" align="center">Creat a form.
+	<p class="text" align="center">Create a form.
   </p>
 </div>
 <div class="new">
   <fieldset class="b">
     <legend class="l">&nbsp;&nbsp;&nbsp;保險內容</legend>
+    <form action="" method="post" name="post">
     <table width="100%"  border="0" class="table" >
       <tbody>
-        <form action="" method="post" name="post">
+        
           <tr height="22px">
             <td width="30%">&nbsp;投保人: {{name}} </td>
             
@@ -53,7 +54,6 @@
             <td>&nbsp;投保產品: {{product}}</td>
             
           </tr>          
-        </form>
       </tbody>
     </table>
   </fieldset>
@@ -63,7 +63,7 @@
     <legend class="l">&nbsp;&nbsp;&nbsp;表單內容</legend>
     <table width="100%"  border="0" class="table" >
       <tbody>
-        <form action="" method="post" name="post">
+        
           <tr height="22px">
             <td width="30%">&nbsp;寵物種類 </td>
             <td width="70%">
@@ -109,7 +109,7 @@
             </td>
           </tr>
           
-        </form>
+        
       </tbody>
     </table>
   </fieldset>
@@ -134,5 +134,6 @@
     </fieldset>
   </div>
   <input type="submit" class="button" value="確認" >
+  </form>
 </body>
 </html>
