@@ -506,11 +506,11 @@ def apply():
         doc_id = request.args.get('id')
         print(doc_id)
         doc = db.collection("transaction").document(doc_id).get().to_dict()
-        #name = doc['customerNAME']
+        name = doc['customerNAME']
         date = doc['date']
         product = doc['product']
 
-        return render_template("apply.html",name = 'namfe',date = date,product = product)    
+        return render_template("apply.html",name = name,date = date,product = product)    
     return render_template("apply.html")
 
 @app.route("/001", methods=['GET'])
