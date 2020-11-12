@@ -510,7 +510,7 @@ def apply():
         date = doc['date']
         product = doc['product']
 
-        return render_template("apply.html",name = 'name',date = date,product = product)    
+        return render_template("apply.html",name = 'namfe',date = date,product = product)    
     return render_template("apply.html")
 
 @app.route("/001", methods=['GET'])
