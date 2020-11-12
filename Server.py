@@ -413,7 +413,19 @@ def historyServices_flex(text,number, date,product):
         }
         }
     return contents    
-
+def profitSharing_flex():
+    content = {
+        "type": "bubble",
+        "hero": {
+        "type": "image",
+        "url": "https://i.imgur.com/dCmDaEZ.jpg",
+        "size": "full",
+        "aspectRatio": "20:13",
+        "aspectMode": "cover"
+            }
+        
+        }
+    return content
 def comment_flex(name, img_url, rank, docs, url):
     
     star_ico = []
@@ -2266,10 +2278,17 @@ def handle_message(event):
                         )
                     )
             elif text == "分潤獎金":
-                s_doc = db.collection('sales').document(u.user_id).get()
-                reply_text = "您的本月分潤獎金為\n【" + str(s_doc.to_dict()['profit'])  +  "】元"
-                message = TextSendMessage(reply_text)
-                line_bot_api.reply_message(event.reply_token, message)
+                contents = profitSharing_flex()
+                line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
+                    event.reply_token,
+                    FlexSendMessage('分潤獎金', contents)
+                    )
+                )
+                
+                # s_doc = db.collection('sales').document(u.user_id).get()
+                # reply_text = "您的本月分潤獎金為\n【" + str(s_doc.to_dict()['profit'])  +  "】元"
+                # message = TextSendMessage(reply_text)
+                # line_bot_api.reply_message(event.reply_token, message)
 
             elif text == "導購諮詢連結":
                 
