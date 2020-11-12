@@ -1803,7 +1803,7 @@ def handle_message(event):
             elif "諮詢" in text:
                 if text == '立即諮詢':
                     line_bot_api.push_message(
-                        u.div_id,
+                        u.user_id,
                         TextMessage(
                             text="您好請先填寫寵物基本資料呦😉",
                         )
