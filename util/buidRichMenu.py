@@ -12,27 +12,27 @@ body = {
     "areas":[
         {
           "bounds": {"x": 0, "y": 0, "width": 400, "height": 405},
-          "action": {"type": "message", "text": "交易紀錄"}
+          "action": {"type": "message", "text": "立即諮詢"}
         },
         {
           "bounds": {"x": 400, "y": 0, "width": 400, "height": 405},
-          "action": {"type": "message", "text": "保險產品"}
+          "action": {"type": "message", "text": "保單紀錄"}
         },
         {
           "bounds": {"x": 800, "y": 0, "width": 400, "height": 405},
-          "action": {"type": "message", "text": "保險小知識"}
+          "action": {"type": "message", "text": "申請理賠"}
         },
         {
           "bounds": {"x": 0, "y": 405, "width": 400, "height": 405},
-          "action": {"type": "message", "text": "平台介紹"}
+          "action": {"type": "message", "text": "保單介紹"}
         },
         {
           "bounds": {"x": 400, "y": 405, "width": 400, "height": 405},
-          "action": {"type": "message", "text": "最新活動"}
+          "action": {"type": "message", "text": "平台介紹"}
         },
         {
           "bounds": {"x": 800, "y": 405, "width": 400, "height": 405},
-          "action": {"type": "message", "text": "常見問題"}
+          "action": {"type": "message", "text": "我的優惠"}
         }
     ]
   }
@@ -76,14 +76,14 @@ from linebot import (
 
 line_bot_api = LineBotApi('l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=')
 
-with open("Client.png", 'rb') as f:
+with open("new_rich.png", 'rb') as f:
     line_bot_api.set_rich_menu_image(id, "image/png", f)
 
 import requests
 
 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
 
-req = requests.request('POST', ' https://api.line.me/v2/bot/user/all/richmenu/richmenu-79d96cd20dc3c93d4f4e69911d0118a4', 
+req = requests.request('POST', ' https://api.line.me/v2/bot/user/all/richmenu/richmenu-0a9ab22894face43826ff3b3a67babcc', 
                        headers=headers)
 
 print(req.text)
@@ -91,7 +91,7 @@ print(req.text)
 
 # %%
 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
-req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + 'U2649922b5604a80e08b0f9dba91f9029' + '/richmenu/' + 'richmenu-79d96cd20dc3c93d4f4e69911d0118a4', 
+req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + 'U2649922b5604a80e08b0f9dba91f9029' + '/richmenu/' + 'richmenu-0a9ab22894face43826ff3b3a67babcc', 
                         headers=headers)
 
 # %%

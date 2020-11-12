@@ -58,7 +58,7 @@ def welcome_flex():
         "type": "bubble",
         "hero": {
         "type": "image",
-        "url": "https://scdn.line-apps.com/n/channel_devcenter/img/fx/01_1_cafe.png",
+        "url": "https://i.imgur.com/XcJ0dvq.jpeg",
         "size": "full",
         "aspectRatio": "20:13",
         "aspectMode": "cover",
@@ -73,7 +73,8 @@ def welcome_flex():
             "contents": [
             {
                 "type": "text",
-                "text": "insurTech",
+                "text": "InsurTech⁺",
+                "color": "#4969c3",
                 "weight": "bold",
                 "size": "xl"
                 },
@@ -90,7 +91,7 @@ def welcome_flex():
                     "contents": [
                     {
                         "type": "text",
-                        "text": "嗨我是智慧金融導購平台 insurtech\n我能協助你喔",
+                        "text": "嗨我是智慧保險導購平台 InsurTech⁺\n任何與保險相關問題\n我都可以協助您😁",
                         "wrap": True,
                         "color": "#666666",
                         "size": "sm",
@@ -1421,7 +1422,7 @@ def handle_message(event):
                 reply_text = '保險年齡計算是以「足歲」來計算，生日超過6個月要加一歲。說明：保險年齡是以最近生日法來計算，即以是否超過六個月為準，並以申請投保日當天計算年齡，例：30足歲5個月又8天~30歲，30足歲6個月~30歲，30足歲6個月又1天~31歲。'
                 message = TextSendMessage(reply_text)
                 line_bot_api.reply_message(event.reply_token, message)
-            elif(text=="保險產品"):
+            elif(text=="保單介紹"):
                 carousel_template_message = TemplateSendMessage(
                     alt_text='保險產品',
                     template=CarouselTemplate(
@@ -1659,7 +1660,6 @@ def handle_message(event):
                     template=CarouselTemplate(
                         columns=[
                             CarouselColumn(
-#                                thumbnail_image_url='https://i.imgur.com/N8LSkzI.png',
                                 title='目前尚未有任何最新活動',
                                 text='待平台正式營運，將會更新最新活動',
                                 actions=[
@@ -1731,7 +1731,7 @@ def handle_message(event):
 
                 
 
-            elif text == "交易紀錄":
+            elif text == "保單紀錄" or text == "申請理賠":
                 docs = db.collection("transaction").where('customerID','==', u.user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
                 contents = []
                 for i in docs:
@@ -1803,67 +1803,8 @@ def handle_message(event):
                         ])))
                 u.quastionCount += 1
                 doc["quastionCount"] = u.quastionCount
-            elif text == '一顆星':
-                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
-                div_doc["score"] += 1
-                div_doc["serviceCount"] += 1
-                db.collection("sales").document(u.div_id).update(div_doc)
-                line_bot_api.push_message(
-                        u.div_id,
-                        TextMessage(
-                            text="對方給您一顆星的評價",
-                        )
-                    )
-            elif text == '二顆星':
-                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
-                div_doc["score"] += 2
-                div_doc["serviceCount"] += 1
-                db.collection("sales").document(u.div_id).update(div_doc)
-                line_bot_api.push_message(
-                        u.div_id,
-                        TextMessage(
-                            text="對方給您二顆星的評價",
-                        )
-                    )
-            elif text == '三顆星':
-                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
-                div_doc["score"] += 3
-                div_doc["serviceCount"] += 1
-                db.collection("sales").document(u.div_id).update(div_doc)
-                line_bot_api.push_message(
-                        u.div_id,
-                        TextMessage(
-                            text="對方給您三顆星的評價",
-                        )
-                    )
-            elif text == '四顆星':
-                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
-                div_doc["score"] += 4
-                div_doc["serviceCount"] += 1
-                db.collection("sales").document(u.div_id).update(div_doc)
-                line_bot_api.push_message(
-                        u.div_id,
-                        TextMessage(
-                            text="對方給您四顆星的評價",
-                        )
-                    )
-            elif text == '五顆星':
-                div_doc = db.collection('sales').document(u.div_id).get().to_dict()
-                div_doc["score"] += 5
-                div_doc["serviceCount"] += 1
-                db.collection("sales").document(u.div_id).update(div_doc)
-                line_bot_api.push_message(
-                        u.div_id,
-                        TextMessage(
-                            text="對方給您五顆星的評價",
-                        )
-                    )
+            
             else:
-
-                ##reply_text = "Hi\n我是智能金融導購平台💼\n"
-                # # reply_text += "有任何金融相關的問題都可以詢問我喔！\n"
-                # # reply_text += "我會幫你轉接專業證券營業員與保險業務員\n"
-                # # reply_text += "他們能幫你做詳細的介紹與申購👍"
                 contents = welcome_flex()
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     line_bot_api.reply_message(
