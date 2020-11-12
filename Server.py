@@ -303,7 +303,7 @@ def historyServices_flex(text,number, date,product):
                 "action": {
                 "type":"postback",
                 "label":"申請理賠",
-                "data":"apply&"+text+"&"+date+"&"+product,
+                "data":"apply&"+number,
                 "text":"申請理賠"
                 }
             }
@@ -503,9 +503,12 @@ def apply():
     if request.method == 'POST':
         return render_template("apply.html")
     if request.method == 'GET':
-        name = request.args.get('name')
-        date = request.args.get('date')
-        product = request.args.get('product')
+        doc_id = request.args.get('doc_id')
+        doc = db.collection("transaction").document(doc_id).get().to_dict()
+        name = doc['name']
+        date = doc['date']
+        product = doc['product']
+
         return render_template("apply.html",name = name,date = date,product = product)    
     return render_template("apply.html")
 
@@ -703,10 +706,9 @@ def handle_post_message(event):
         message = TextSendMessage(reply_text)
         line_bot_api.reply_message(event.reply_token, message)
     elif event.postback.data.split("&")[0] == 'apply':
-        name = event.postback.data.split("&")[1]
-        date = event.postback.data.split("&")[2]
-        product = event.postback.data.split("&")[3]
-        get_url = 'https://smartflinebotserver.herokuapp.com/apply?name='+name+'&date='+date+'&product='+product
+        doc_id = event.postback.data.split("&")[1]
+        
+        get_url = 'https://smartflinebotserver.herokuapp.com/apply?id='doc_id
         buttons_template_message = TemplateSendMessage(
         alt_text='申請理賠',
         template=ButtonsTemplate(
@@ -715,7 +717,7 @@ def handle_post_message(event):
             actions=[
                 URIAction(
                     label='前往申請',
-                    uri='https://smartflinebotserver.herokuapp.com/apply?name=andy&date=22085&product=123'
+                    uri=get_url
                 )
             ]
         )
