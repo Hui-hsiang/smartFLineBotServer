@@ -504,8 +504,9 @@ def apply():
         return render_template("apply.html")
     if request.method == 'GET':
         doc_id = request.args.get('doc_id')
+        pritn(doc_id)
         doc = db.collection("transaction").document(doc_id).get().to_dict()
-        name = doc['customerNAME']
+        #name = doc['customerNAME']
         date = doc['date']
         product = doc['product']
 
