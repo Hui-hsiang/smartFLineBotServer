@@ -1805,7 +1805,7 @@ def handle_message(event):
                     line_bot_api.push_message(
                         u.user_id,
                         TextMessage(
-                            text="您好請先填寫寵物基本資料呦😉",
+                            text="您好請先填寫寵物基本資料呦",
                         )
                     )
                 u.state = states.PETSQUSTION.value
