@@ -708,7 +708,7 @@ def handle_post_message(event):
             actions=[
                 URIAction(
                     label='前往申請',
-                    uri=get_url
+                    uri='https://smartflinebotserver.herokuapp.com/apply?name=andy&date=22085&product=123'
                 )
             ]
         )
