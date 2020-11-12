@@ -713,6 +713,7 @@ def handle_post_message(event):
         date = doc['date']
         product = doc['product']
         get_url = 'https://smartflinebotserver.herokuapp.com/apply?id='+doc_id
+        print('URL:',get_url)
         buttons_template_message = TemplateSendMessage(
         alt_text='申請理賠',
         template=ButtonsTemplate(
