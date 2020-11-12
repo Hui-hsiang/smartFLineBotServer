@@ -441,7 +441,7 @@ def comment_flex(name, img_url, rank, docs, url):
                 }
     score = {
                 "type": "text",
-                "text": str(rank),
+                "text": str(round(float(rank),1)),
                 "size": "sm",
                 "color": "#999999",
                 "margin": "md",
