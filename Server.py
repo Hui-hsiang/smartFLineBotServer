@@ -2080,7 +2080,7 @@ def handle_message(event):
                 doc["state"] = u.state
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
 
-                req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-9a3e9e8fd2ca493c4b6c1c638ea5304d', 
+                req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-ba1f2f2bf9390cbe53adb620abe23235', 
                        headers=headers)
                 UserData_update(u,doc)
 
@@ -2126,7 +2126,7 @@ def handle_message(event):
                 u.state = states.START.value
                 doc["state"] = u.state
                 headers = {"Authorization":"Bearer l82Nfs2Ji9XdgljwOFqOvPFQfQCytjakXuH1R8GB5oncFlzOPehHqxoj4utnElFJJBKfw2SUt2n7SiX56GIeSJwGglKRr0iCv78QttD7IaXe0zwxt9evRrbHObpOEp8FYCyTmqagFJt651108NGjYQdB04t89/1O/w1cDnyilFU=","Content-Type":"application/json","Content-Type":"application/json"}
-                req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-79d96cd20dc3c93d4f4e69911d0118a4', 
+                req = requests.request('POST', ' https://api.line.me/v2/bot/user/' + u.user_id + '/richmenu/' + 'richmenu-0a9ab22894face43826ff3b3a67babcc', 
                         headers=headers)
 
             elif text == "業績英雄榜":
@@ -2156,7 +2156,7 @@ def handle_message(event):
                         FlexSendMessage('交易紀錄', carousel_contents)
                         )
                     )
-            elif text == "本月分潤獎金":
+            elif text == "分潤獎金":
                 s_doc = db.collection('sales').document(u.user_id).get()
                 reply_text = "您的本月分潤獎金為\n【" + str(s_doc.to_dict()['profit'])  +  "】元"
                 message = TextSendMessage(reply_text)
