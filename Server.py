@@ -718,7 +718,7 @@ def handle_post_message(event):
         alt_text='申請理賠',
         template=ButtonsTemplate(
             title='點選申請' + product + "理賠",
-            text='購買人姓名:' + name + '\n購買日期:' + date + '\n產品:' + product,
+            text='購買人姓名:' + name + '\n購買日期:' + str(date) + '\n產品:' + product,
             actions=[
                 URIAction(
                     label='前往申請',
