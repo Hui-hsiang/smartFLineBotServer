@@ -39,9 +39,10 @@
 <div class="new">
   <fieldset class="b">
     <legend class="l">&nbsp;&nbsp;&nbsp;寵物資料</legend>
+    <form action="" method="post" name="post">
     <table width="100%"  border="0" class="table" >
       <tbody>
-        <form action="" method="post" name="post">
+        
           <tr height="22px">
             <td width="30%">&nbsp;寵物種類 </td>
             <td width="70%">
@@ -87,7 +88,7 @@
             </td>
           </tr>
           
-        </form>
+        
       </tbody>
     </table>
   </fieldset>
@@ -96,9 +97,10 @@
 	<div class="new">
     <fieldset class="b">
       <legend class="l">&nbsp;&nbsp;&nbsp;投保人資料</legend>
+      
       <table width="100%"  border="0" class="table" >
         <tbody>
-          <form action="" method="post" name="post">
+          
             <tr height="22px">
               <td width="30%">&nbsp;寵物種類 </td>
               <td width="70%">
@@ -144,15 +146,20 @@
               </td>
             </tr>
             
-          </form>
+          
         </tbody>
       </table>
     </fieldset>
     </div>
 
     
-    <input  type="submit" class="button" value="確認" >
-    
-    
+    <input  type="submit" class="button" value="確認" onclick="PortfolioConfirm()" >
+  </form>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script type="text/javascript">
+  // 成功輸入投資組合
+  function PortfolioConfirm() {
+    window.alert("輸入完成，表單已經上傳等待審核中");
+  }
 </body>
 </html>
