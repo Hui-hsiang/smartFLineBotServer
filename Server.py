@@ -2347,8 +2347,7 @@ def handle_message(event):
                                 QuickReplyButton(
                                     action = MessageAction(
                                         label = '離開',
-                                        text = '離開'))]))
-                    )
+                                        text = '離開'))])))
 
     UserData_update(u,doc)
 
