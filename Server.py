@@ -2005,7 +2005,7 @@ def handle_message(event):
 
                 line_bot_api.reply_message(event.reply_token, message)
 
-            if text == 'male' or text == 'female' :
+            elif text == 'male' or text == 'female' :
                 message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/5YHMcSp.png',
                     alt_text='breed',
