@@ -1754,7 +1754,7 @@ def handle_message(event):
                         )
                     )
             elif text == "申請理賠":
-                continue
+                break
             elif text == "投資風險屬性分析問卷":
                 u.state = states.QUSTION.value
                 doc["state"] = u.state
