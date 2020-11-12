@@ -2342,6 +2342,15 @@ def handle_message(event):
                             u.div_id,
                             TextMessage(
                                 text=text,
+                                quick_reply=QuickReply(
+                        items=[
+                            QuickReplyButton(
+                                
+                                action = MessageAction(
+                                            label = '離開',
+                                        text = '離開'
+                                        )
+                            )])
                             )
                         )
 
