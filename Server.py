@@ -421,7 +421,7 @@ def profitSharing_flex():
         "url": "https://i.imgur.com/dCmDaEZ.jpg",
         "size": "full",
         "aspectRatio": "20:13",
-        "aspectMode": "cover"
+        "aspectMode": "fit"
             }
         
         }
