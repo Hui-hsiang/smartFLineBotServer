@@ -699,7 +699,7 @@ def handle_post_message(event):
         name = event.postback.data.split("&")[1]
         date = event.postback.data.split("&")[2]
         product = event.postback.data.split("&")[3]
-        
+        get_url = 'https://smartflinebotserver.herokuapp.com/apply?name='+name+'&date='+date+'&product='+product
         buttons_template_message = TemplateSendMessage(
         alt_text='申請理賠',
         template=ButtonsTemplate(
@@ -708,7 +708,7 @@ def handle_post_message(event):
             actions=[
                 URIAction(
                     label='前往申請',
-                    uri='https://smartflinebotserver.herokuapp.com/apply?name='+name+'&date='+date+'&product='+product
+                    uri=get_url
                 )
             ]
         )
