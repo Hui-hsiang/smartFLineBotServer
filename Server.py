@@ -1753,6 +1753,8 @@ def handle_message(event):
                         FlexSendMessage('交易紀錄', carousel_contents)
                         )
                     )
+            elif text == "申請理賠":
+                continue
             elif text == "投資風險屬性分析問卷":
                 u.state = states.QUSTION.value
                 doc["state"] = u.state
@@ -1867,7 +1869,7 @@ def handle_message(event):
                 if event.source.user_id != "Udeadbeefdeadbeefdeadbeefdeadbeef":
                     line_bot_api.reply_message(
                         event.reply_token,
-                        FlexSendMessage('交易紀錄', contents)
+                        FlexSendMessage('歡迎使用insurTech', contents)
                     )
                     
 
