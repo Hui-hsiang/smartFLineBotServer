@@ -1812,7 +1812,7 @@ def handle_message(event):
                 doc["state"] = u.state
 
                 message = ImagemapSendMessage(
-                    base_url='https://i.imgur.com/rrffBB8.png',
+                    base_url='https://i.imgur.com/nzsEUKz.png',
                     alt_text='CATEGORY',
                     base_size=BaseSize(height=520, width=1040),
                     actions=[
@@ -2004,7 +2004,7 @@ def handle_message(event):
                 )
 
                 line_bot_api.reply_message(event.reply_token, message)
-                
+
             if text == 'male' or text == 'female' :
                 message = ImagemapSendMessage(
                     base_url='https://i.imgur.com/5YHMcSp.png',
