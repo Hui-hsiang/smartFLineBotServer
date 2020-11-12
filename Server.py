@@ -505,7 +505,7 @@ def apply():
     if request.method == 'GET':
         doc_id = request.args.get('doc_id')
         doc = db.collection("transaction").document(doc_id).get().to_dict()
-        name = doc['name']
+        name = doc['customerNAME']
         date = doc['date']
         product = doc['product']
 
@@ -708,7 +708,7 @@ def handle_post_message(event):
     elif event.postback.data.split("&")[0] == 'apply':
         doc_id = event.postback.data.split("&")[1]
         doc = db.collection("transaction").document(doc_id).get().to_dict()
-        name = doc['name']
+        name = doc['customerNAME']
         date = doc['date']
         product = doc['product']
         get_url = 'https://smartflinebotserver.herokuapp.com/apply?id='+doc_id
