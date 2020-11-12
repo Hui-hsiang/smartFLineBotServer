@@ -1961,25 +1961,9 @@ def handle_message(event):
                 line_bot_api.push_message(
                 u.user_id,
                 TextSendMessage(
-                    text='請為剛才的服務評分',
-                    quick_reply=QuickReply(
-                        items=[
-                            QuickReplyButton(
-                                action = MessageAction(label="一顆星", text="一顆星")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="二顆星", text="二顆星")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="三顆星", text="三顆星")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="四顆星", text="四顆星")
-                            ),
-                            QuickReplyButton(
-                                action = MessageAction(label="五顆星", text="五顆星")
-                            )
-                        ])))
+                    text='請為剛才的服務評分\n' + 'https://smartflinebotserver.herokuapp.com/jerrycomments',
+
+                   ))
                 line_bot_api.push_message(
                         u.div_id,
                         TextMessage(
