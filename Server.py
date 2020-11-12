@@ -337,7 +337,7 @@ def historyServices_flex(text,number, date,product):
         "contents": [
         {
             "type": "text",
-            "text": "交易紀錄",
+            "text": "保單紀錄",
             "weight": "bold",
             "color": "#1DB446",
             "size": "sm"
