@@ -304,7 +304,7 @@ def historyServices_flex(text,number, date,product):
                 "type":"postback",
                 "label":"申請理賠",
                 "data":"apply&"+number,
-                "text":"申請理賠"
+                
                 }
             }
             ]
@@ -1753,8 +1753,7 @@ def handle_message(event):
                         FlexSendMessage('交易紀錄', carousel_contents)
                         )
                     )
-            elif text == "申請理賠":
-                break
+            
             elif text == "投資風險屬性分析問卷":
                 u.state = states.QUSTION.value
                 doc["state"] = u.state
