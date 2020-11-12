@@ -503,7 +503,7 @@ def apply():
     if request.method == 'POST':
         return render_template("apply.html")
     if request.method == 'GET':
-        doc_id = request.args.get('doc_id')
+        doc_id = request.args.get('id')
         print(doc_id)
         doc = db.collection("transaction").document(doc_id).get().to_dict()
         #name = doc['customerNAME']
