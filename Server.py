@@ -245,7 +245,7 @@ def listOfservice_flex(user_id):
             "contents": [
             {
                 "type": "text",
-                "text": id,
+                "text": i.id,
                 "size": "sm",
                 "color": "#1DB446",
                 "flex": 0
