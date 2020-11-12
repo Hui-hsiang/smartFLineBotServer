@@ -1801,6 +1801,13 @@ def handle_message(event):
                 line_bot_api.reply_message(event.reply_token, carousel_template_message)
             
             elif "諮詢" in text:
+                if text == '立即諮詢':
+                    line_bot_api.push_message(
+                        u.div_id,
+                        TextMessage(
+                            text="您好請先填寫寵物基本資料呦😉",
+                        )
+                    )
                 u.state = states.PETSQUSTION.value
                 doc["state"] = u.state
 
@@ -2279,11 +2286,11 @@ def handle_message(event):
                     )
             elif text == "分潤獎金":
                 contents = profitSharing_flex()
-                line_bot_api.reply_message(event.reply_token, line_bot_api.reply_message(
+                line_bot_api.reply_message(
                     event.reply_token,
                     FlexSendMessage('分潤獎金', contents)
-                    )
                 )
+                
                 
                 # s_doc = db.collection('sales').document(u.user_id).get()
                 # reply_text = "您的本月分潤獎金為\n【" + str(s_doc.to_dict()['profit'])  +  "】元"
