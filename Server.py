@@ -235,8 +235,10 @@ def rank_flex():
 def listOfservice_flex(user_id):
     docs = db.collection("transaction").where('customerID','==', user_id).order_by("date", direction=firestore.Query.DESCENDING).get()
     service = []
+    
     for i in docs:
         r_doc = i.to_dict()
+        name = r_doc['customerNAME']
         content = {
             "type": "box",
             "layout": "horizontal",
@@ -293,7 +295,7 @@ def listOfservice_flex(user_id):
         "contents": [
         {
             "type": "text",
-            "text": str(today),
+            "text": name,
             "weight": "bold",
             "color": "#1DB446",
             "size": "sm"
